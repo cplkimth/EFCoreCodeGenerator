@@ -1,0 +1,23 @@
+﻿template = {database | table loop | table | column loop | comment | variable | character} ;
+
+database = "<#D " , "Name" | "CamelName" | "PascalName" | "DataContext" , " D#>" ;
+
+table loop = "<#A " , table loop type , ":", {loop separator} , ":", {character | table} , " A#>" ;
+
+table loop type = "AL" | "TB" | "VW" ; 
+
+loop separator = "[N]" | "[T]" | character ;
+
+table = "<#T " , "Name" | "CamelName" | "PascalName" | "BeginOnView" | "EndOnView", " T#>" ;
+
+column loop = "<#O " , column loop type , ":" , {loop separator} , ":", {character | column} , " O#>" ;
+
+column =  "<#C " , "Name" | "CamelName" | "PascalName" | "Type",  " C#>" ;
+
+column loop type = "AL" | "PK" | "NP" | "IN" | "NI" | "FK" | "NF"; 
+
+variable = "<#V ", {character}, " V#>";
+
+comment = "<#- ", {character}, " -#>";
+
+character = [a-z] | [A-Z] | [0-9] | white space ;

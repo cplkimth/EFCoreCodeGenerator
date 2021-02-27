@@ -1,0 +1,19 @@
+{
+	"Version":1,
+	"Scope":1,
+	"TargetPath":"Dao/{0}Dao.cs",
+	"Overwritable": false
+}
+*** body starts here ***
+#region using
+using System.Collections.Generic;
+using System.Linq;
+#endregion
+
+namespace <#V DataNamespace V#>
+{
+    public partial class <#T Name T#>Dao
+    {
+        
+    }
+}

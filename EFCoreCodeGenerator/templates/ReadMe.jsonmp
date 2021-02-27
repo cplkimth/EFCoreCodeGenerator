@@ -1,0 +1,33 @@
+{
+	"Version":1,
+	"Scope":0,
+	"TargetPath":"ReadMe.txt",
+	"Overwritable": true
+}
+*** body starts here ***
+1. You can generate framework by executing following code.
+Lovanpis.UsingEntityFrameworkCore.CodeGenerator.Generate(new <#V DataNamespace V#>.<#D DataContext D#>(), @"<#V DataDirectory V#>");            
+
+
+2. Partial classes of each entiy are located in following directory. The files will be generated only if they are NOT exist.
+<#V DataDirectory V#>\UEF\Entities
+
+
+3. Partial classes of each DAO are located in following directory. The files will be generated only if they are NOT exist.
+<#V DataDirectory V#>\UEF\Dao
+
+
+4. Most codes are located in following path. The file is overwriten on every generating.
+<#V DataDirectory V#>\UEF\Generated.cs
+
+
+5. You can set connection string in static constructor of <#V DataDirectory V#>\UEF\DbContextFactory.cs.
+protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+{
+    if (!optionsBuilder.IsConfigured)
+    {
+        // 연결문자열 설정
+        
+        optionsBuilder.UseLoggerFactory(<#D DataContext D#>LoggerFactory.GetInstance(LoggerType.Console));
+    }
+}

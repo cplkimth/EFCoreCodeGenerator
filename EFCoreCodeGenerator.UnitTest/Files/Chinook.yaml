@@ -1,0 +1,7 @@
+album :
+    album_id :
+    title : Title
+    artist_id :
+artist : Artist
+    artist_id :
+    name : Name

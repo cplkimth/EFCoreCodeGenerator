@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\ChinookCore.Data\ChinookContext.cs" Link="ChinookContext.cs" />
+    <Compile Include="..\ChinookCore.Data\EF\Album.cs" Link="EF\Album.cs" />
+    <Compile Include="..\ChinookCore.Data\EF\Album_SearchResult.cs" Link="EF\Album_SearchResult.cs" />
+    <Compile Include="..\ChinookCore.Data\EF\Artist.cs" Link="EF\Artist.cs" />
+    <Compile Include="..\ChinookCore.Data\EF\ChinookContext.cs" Link="EF\ChinookContext.cs" />
+    <Compile Include="..\ChinookCore.Data\EF\ChinookContextProcedures.cs" Link="EF\ChinookContextProcedures.cs" />
+    <Compile Include="..\ChinookCore.Data\EF\DbContextExtensions.cs" Link="EF\DbContextExtensions.cs" />
+    <Compile Include="..\ChinookCore.Data\EF\InitializeResult.cs" Link="EF\InitializeResult.cs" />
+    <Compile Include="..\ChinookCore.Data\EF\Playlist.cs" Link="EF\Playlist.cs" />
+    <Compile Include="..\ChinookCore.Data\EF\PlaylistTrack.cs" Link="EF\PlaylistTrack.cs" />
+    <Compile Include="..\ChinookCore.Data\EF\Track.cs" Link="EF\Track.cs" />
+    <Compile Include="..\ChinookCore.Data\EF\Track_SearchResult.cs" Link="EF\Track_SearchResult.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.12" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.12" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\EFCoreCodeGenerator\EFCoreCodeGenerator.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="EF\" />
+  </ItemGroup>
+
+</Project>
