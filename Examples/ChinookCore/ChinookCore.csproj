@@ -11,7 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\EFCoreCodeGenerator\EFCoreCodeGenerator.csproj" />
     <ProjectReference Include="..\ChinookCore.Data\ChinookCore.Data.csproj" />
   </ItemGroup>
 

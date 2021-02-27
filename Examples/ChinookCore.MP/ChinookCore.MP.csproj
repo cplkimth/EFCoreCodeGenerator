@@ -6,7 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="..\ChinookCore.Data\ChinookContext.cs" Link="ChinookContext.cs" />
     <Compile Include="..\ChinookCore.Data\EF\Album.cs" Link="EF\Album.cs" />
     <Compile Include="..\ChinookCore.Data\EF\Album_SearchResult.cs" Link="EF\Album_SearchResult.cs" />
     <Compile Include="..\ChinookCore.Data\EF\Artist.cs" Link="EF\Artist.cs" />
@@ -26,11 +25,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\EFCoreCodeGenerator\EFCoreCodeGenerator.csproj" />
+    <Folder Include="EF\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="EF\" />
+    <ProjectReference Include="..\..\EFCoreCodeGenerator\EFCoreCodeGenerator.csproj" />
   </ItemGroup>
 
 </Project>

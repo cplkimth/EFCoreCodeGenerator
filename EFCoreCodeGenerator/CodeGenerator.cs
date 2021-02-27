@@ -27,7 +27,7 @@ namespace EFCoreCodeGenerator
         private static string _dataDirectoryPath;
         private static string _templateDirectoryPath;
 
-        private static readonly HashSet<string> _resourceKeys = new HashSet<string>();
+        private static readonly HashSet<string> _resourceKeys = new();
 
         /// <summary>
         ///     MP 코드를 생성한다.

@@ -1,0 +1,32 @@
+{
+	"Version":1,
+	"Scope":0,
+	"TargetPath":"PartialDbContext.cs",
+	"Overwritable": false
+}
+*** body starts here ***
+using Microsoft.EntityFrameworkCore;
+
+namespace <#V DataNamespace V#>
+{
+    public partial class <#D DataContext D#>
+    {
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (optionsBuilder.IsConfigured)
+                return;
+
+            // 연결문자열 설정
+            optionsBuilder.UseSqlServer("Data Source=.,3423;Initial Catalog=Chinook;Integrated Security=True");
+        
+            // 콘솔에 로그 출력
+            optionsBuilder.UseLoggerFactory(<#D DataContext D#>LoggerFactory.GetInstance(LoggerType.Console));
+        }
+
+        public static ChinookContext Create()
+        {
+            ChinookContext context = new ChinookContext();
+            return context;
+        }
+    }
+}

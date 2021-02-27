@@ -19,15 +19,3 @@ Lovanpis.UsingEntityFrameworkCore.CodeGenerator.Generate(new <#V DataNamespace V
 
 4. Most codes are located in following path. The file is overwriten on every generating.
 <#V DataDirectory V#>\UEF\Generated.cs
-
-
-5. You can set connection string in static constructor of <#V DataDirectory V#>\UEF\DbContextFactory.cs.
-protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-{
-    if (!optionsBuilder.IsConfigured)
-    {
-        // 연결문자열 설정
-        
-        optionsBuilder.UseLoggerFactory(<#D DataContext D#>LoggerFactory.GetInstance(LoggerType.Console));
-    }
-}

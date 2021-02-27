@@ -1,7 +1,6 @@
 ﻿#region
 using System;
 using ChinookCore.Data;
-using EFCoreCodeGenerator;
 using Microsoft.EntityFrameworkCore;
 #endregion
 

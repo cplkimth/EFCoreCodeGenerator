@@ -15,7 +15,7 @@ namespace ChinookFW.MP
 #if Linux
             MidnightPeachCore.CodeGenerator.Generate(new ChinookContext(), "/home/thkim/git/MidnightPeachCore/Example/Chinook.Data");
 #else
-            CodeGenerator.Generate(new ChinookContext(), @"C:\git\EFCoreCodeGenerator\Examples\DotNetFramework\ChinookFW.Data");            
+            CodeGenerator.Generate(new ChinookContext(), @"C:\git\EFCoreCodeGenerator\Examples\ChinookFW.Data");            
 #endif
         }
     }

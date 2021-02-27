@@ -1,0 +1,27 @@
+{
+	"Version":1,
+	"Scope":0,
+	"TargetPath":"PartialDbContext.cs",
+	"Overwritable": false
+}
+*** body starts here ***
+using Microsoft.EntityFrameworkCore;
+
+namespace <#V DataNamespace V#>
+{
+    public partial class <#D DataContext D#>
+    {
+        public static <#D DataContext D#> Create()
+        {
+            DbContextOptionsBuilder<<#D DataContext D#>> builder = new DbContextOptionsBuilder<<#D DataContext D#>>();
+            
+            // 콘솔에 로그 출력
+            builder.UseLoggerFactory(<#D DataContext D#>LoggerFactory.GetInstance(LoggerType.Console));
+
+            // 엔터티 상태를 트랙킹하지 않음
+            builder.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+
+            return new <#D DataContext D#>(builder.Options);
+        }
+    }
+}

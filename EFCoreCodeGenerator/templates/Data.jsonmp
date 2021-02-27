@@ -501,7 +501,7 @@ namespace <#V DataNamespace V#>
 		/// <returns>엔터티의 리스트</returns>
         public virtual List<T> Get<U>(Expression<Func<T, bool>> where, Expression<Func<T, U>> orderBy, bool ascending, int startRowIndex, int maximumRows)
 		{
-            using var context = new <#D DataContext D#>();
+            using var context = <#D DataContext D#>.Create();
 
             return GetCore(where, orderBy, ascending, startRowIndex, maximumRows, context).ToList();
 		}
@@ -609,7 +609,7 @@ namespace <#V DataNamespace V#>
 		/// <returns> 엔터티의 리스트 </returns>
         public virtual List<R> Select<U, R>(Expression<Func<T, bool>> where, Expression<Func<T, U>> orderBy, bool ascending, int startRowIndex, int maximumRows, Expression<Func<T, R>> select)
 		{
-            using var context = new <#D DataContext D#>();
+            using var context = <#D DataContext D#>.Create();
 
 				var query = GetCore(where, orderBy, ascending, startRowIndex, maximumRows, context);
 				return query.Select(select).ToList();
@@ -700,7 +700,7 @@ namespace <#V DataNamespace V#>
 
 	    private T GetFirstCore<U>(Expression<Func<T, bool>> where, Expression<Func<T, U>> orderBy, bool ascending)
 	    {
-            using var context = new <#D DataContext D#>();
+            using var context = <#D DataContext D#>.Create();
 
 	        return QueryFirst(where, orderBy, ascending, context).FirstOrDefault();
 	    }
@@ -825,7 +825,7 @@ namespace <#V DataNamespace V#>
         /// <returns>엔터티</returns>
         private R SelectFirstCore<U, R>(Expression<Func<T, bool>> where, Expression<Func<T, U>> orderBy, Expression<Func<T, R>> select, bool ascending)
 		{
-            using var context = new <#D DataContext D#>();
+            using var context = <#D DataContext D#>.Create();
 
 			var query = QueryFirst(where, orderBy, ascending, context);
 			return query.Select(select).FirstOrDefault();
@@ -885,7 +885,7 @@ namespace <#V DataNamespace V#>
 		/// <returns>엔터티의 갯수</returns>
         public virtual int GetCount(Expression<Func<T, bool>> where)
 		{
-            using var context = new <#D DataContext D#>();
+            using var context = <#D DataContext D#>.Create();
 
 			var query = from item in context.Set<T>()
 						select item;
@@ -908,7 +908,7 @@ namespace <#V DataNamespace V#>
 		/// <returns>존재 여부</returns>
         public virtual bool Exists(Expression<Func<T, bool>> where)
 		{
-            using var context = new <#D DataContext D#>();
+            using var context = <#D DataContext D#>.Create();
 
 			var query = from item in context.Set<T>()
 						select item;
@@ -947,7 +947,7 @@ namespace <#V DataNamespace V#>
 		/// <returns>삽입된 엔터티</returns>
         public virtual T Insert(T entity)
 		{
-            using var context = new <#D DataContext D#>();
+            using var context = <#D DataContext D#>.Create();
 
 			MarkToInsert(context, entity);
 			context.SaveChanges();
@@ -972,7 +972,7 @@ namespace <#V DataNamespace V#>
 		/// <returns>삽입된 엔터티의 갯수</returns>
         public virtual int InsertMany(IEnumerable<T> entities)
 		{
-            using var context = new <#D DataContext D#>();
+            using var context = <#D DataContext D#>.Create();
 
 			MarkToInsertMany(context, entities);
 			int count = context.SaveChanges();
@@ -998,7 +998,7 @@ namespace <#V DataNamespace V#>
 		/// <returns>갱신된 엔터티의 갯수</returns>
         public virtual int Update(T entity)
 		{
-            using var context = new <#D DataContext D#>();
+            using var context = <#D DataContext D#>.Create();
 
 			MarkToUpdate(context, entity);
 			int count = context.SaveChanges();
@@ -1023,7 +1023,7 @@ namespace <#V DataNamespace V#>
 		/// <returns>갱신된 엔터티의 갯수</returns>
         public virtual int UpdateMany(IEnumerable<T> entities)
 		{
-            using var context = new <#D DataContext D#>();
+            using var context = <#D DataContext D#>.Create();
 
             MarkToUpdateMany(context, entities);
 			int count = context.SaveChanges();
@@ -1049,7 +1049,7 @@ namespace <#V DataNamespace V#>
 		/// <returns>삭제된 엔터티의 갯수</returns>
         public virtual int Delete(T entity)
 		{
-            using var context = new <#D DataContext D#>();
+            using var context = <#D DataContext D#>.Create();
 
             MarkToDelete(context, entity);
 			int count = context.SaveChanges();
@@ -1074,7 +1074,7 @@ namespace <#V DataNamespace V#>
 		/// <returns>삭제된 엔터티의 갯수</returns>
         public virtual int DeleteMany(IEnumerable<T> entities)
 		{
-            using var context = new <#D DataContext D#>();
+            using var context = <#D DataContext D#>.Create();
 			
 			MarkToDeleteMany(context, entities);
 			int count = context.SaveChanges();
@@ -1100,7 +1100,7 @@ namespace <#V DataNamespace V#>
 		/// <returns>삭제된 엔터티의 갯수</returns>
         public virtual int DeleteAll(Expression<Func<T, bool>> where)
 		{
-            using var context = new <#D DataContext D#>();
+            using var context = <#D DataContext D#>.Create();
 
 			var query = from item in context.Set<T>()
 						select item;
@@ -1144,7 +1144,7 @@ namespace <#V DataNamespace V#>
 		/// <returns>기본키가 일치하는 엔터티</returns>
         public virtual <#T Name T#> GetByKey(<#O PK:, :<#C Type C#> <#C CamelName C#> O#>)
 		{
-            using var context = new <#D DataContext D#>();
+            using var context = <#D DataContext D#>.Create();
 
             return context.Set<<#T Name T#>>().FirstOrDefault(x => <#O PK: && : x.<#C Name C#> == <#C CamelName C#> O#>);
 		}
@@ -1161,7 +1161,7 @@ namespace <#V DataNamespace V#>
 		/// <returns>존재 여부</returns>
         public virtual bool ExistsByKey(<#O PK:, :<#C Type C#> <#C CamelName C#> O#>)
 		{
-            using var context = new <#D DataContext D#>();
+            using var context = <#D DataContext D#>.Create();
 
 			return context.Set<<#T Name T#>>().Count(x => <#O PK: && : x.<#C Name C#> == <#C CamelName C#> O#>) > 0;
 		}
@@ -1178,7 +1178,7 @@ namespace <#V DataNamespace V#>
 		/// <returns>삭제된 엔터티의 갯수</returns>
         public virtual int DeleteByKey(<#O PK:, :<#C Type C#> <#C CamelName C#> O#>)
 		{
-            using var context = new <#D DataContext D#>();
+            using var context = <#D DataContext D#>.Create();
 
 			var query = from x in context.Set<<#T Name T#>>()
 			where <#O PK: && :x.<#C Name C#> == <#C CamelName C#> O#>
@@ -1204,7 +1204,7 @@ namespace <#V DataNamespace V#>
 		/// <returns>삽입된 엔터티</returns>
         public virtual <#T Name T#> InsertIfNotExist(<#T Name T#> entity)
 	    {
-            using var context = new <#D DataContext D#>();
+            using var context = <#D DataContext D#>.Create();
 
 	        if (context.Set<<#T Name T#>>().Count(x => <#O PK: && : x.<#C Name C#> == entity.<#C Name C#> O#>) > 0)
 	            return null;
@@ -1225,7 +1225,7 @@ namespace <#V DataNamespace V#>
 		/// <returns>삽입 혹은 갱신된 엔터티</returns>
         public virtual <#T Name T#> InsertOrUpdate(<#T Name T#> entity)
 	    {
-            using var context = new <#D DataContext D#>();
+            using var context = <#D DataContext D#>.Create();
             
 	        if (context.Set<<#T Name T#>>().Count(x => <#O PK: && : x.<#C Name C#> == entity.<#C Name C#> O#>) > 0)
 	        {
@@ -1257,7 +1257,7 @@ namespace <#V DataNamespace V#>
 		/// <returns><#C Name C#> 이(가) 일치하는 엔터티 컬렉션</returns>
         public virtual List<<#T Name T#>> GetBy<#C Name C#>(<#C Type C#> <#C CamelName C#>)
 		{
-            using var context = new <#D DataContext D#>();
+            using var context = <#D DataContext D#>.Create();
 
 			return context.Set<<#T Name T#>>().Where(x => x.<#C Name C#> == <#C CamelName C#>).ToList();
 		}
