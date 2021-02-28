@@ -5,6 +5,16 @@
   </PropertyGroup>
 <PropertyGroup>
     <LangVersion>latest</LangVersion>
+    <Authors>Taehyun Kim</Authors>
+    <Product>EF Core Code Generator</Product>
+    <PackageTags>Entity Framework Core EF Core Generator</PackageTags>
+    <Copyright>Copyright © Lovanpis 2021</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Description>EF Core 기반 프레임웍 생성기</Description>
+    <PackageProjectUrl>https://github.com/cplkimth/EFCoreCodeGenerator</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/cplkimth/EFCoreCodeGenerator.git</RepositoryUrl>
+    <PackageIcon>EFCoreCodeGenerator.png</PackageIcon>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
@@ -26,6 +36,13 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\documents\images\EFCoreCodeGenerator.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
