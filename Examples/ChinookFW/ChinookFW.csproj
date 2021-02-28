@@ -175,7 +175,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ChinookFW.Data\ChinookFW.Data.csproj">
-      <Project>{DF979E3C-22AA-4CD6-94EF-AF66CE2A9EB3}</Project>
+      <Project>{45c8c841-ac40-4ef1-a961-c14206230892}</Project>
       <Name>ChinookFW.Data</Name>
     </ProjectReference>
   </ItemGroup>
