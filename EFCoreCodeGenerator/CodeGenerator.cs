@@ -24,7 +24,7 @@ namespace EFCoreCodeGenerator
         public const string PackagePostfix = "json";
 
         private static DbContext _dbContext;
-        private static string _dataDirectoryPath;
+        private static string _dataProjectPath;
         private static string _templateDirectoryPath;
 
         private static readonly HashSet<string> _resourceKeys = new();
@@ -33,18 +33,19 @@ namespace EFCoreCodeGenerator
         ///     MP 코드를 생성한다.
         /// </summary>
         /// <param name="dbContext">DbContext 객체</param>
-        /// <param name="dataDirectoryPath">코드가 생성될 프로젝트의 경로 ex)D:\git\Chinook\Chinook.Data</param>
-        /// <param name="templateDirectoryPath">템플릿이 생성될 프로젝트의 경로. 생략하면 실행 디렉토리. ex)C:\git\UsingEntityFrameworkCore\Example\Chinook</param>
-        public static void Generate(DbContext dbContext, string dataDirectoryPath, string templateDirectoryPath = null)
+        /// <param name="dataProjectPath">코드가 생성될 프로젝트의 경로. ex)C:\git\EFCoreCodeGenerator\Examples\ChinookCore.Data</param>
+        /// <param name="templateProjectPath">템플릿이 생성될 프로젝트의 경로. ex)C:\git\EFCoreCodeGenerator\Examples\ChinookCore.MP</param>
+        public static void Generate(DbContext dbContext, string dataProjectPath, string templateProjectPath)
         {
             _dbContext = dbContext;
-            _dataDirectoryPath = dataDirectoryPath;
-            _templateDirectoryPath = templateDirectoryPath??=Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName;
-            _templateDirectoryPath = Path.Combine(_templateDirectoryPath, TemplateDirectory);
+            _dataProjectPath = dataProjectPath;
+            // _templateProjectPath = templateProjectPath??=Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName;
+            if (templateProjectPath != null)
+                _templateDirectoryPath = Path.Combine(templateProjectPath, TemplateDirectory);
 
             LoadResourceKeys();
 
-            Console.WriteLine($"Files will be generated on [{dataDirectoryPath}]");
+            Console.WriteLine($"Files will be generated on [{dataProjectPath}]");
 
             var package = LoadPackage();
             GeneratePackage(package);
@@ -65,7 +66,7 @@ namespace EFCoreCodeGenerator
 
         private static Package LoadPackage()
         {
-            var packageText = LoadResource(_resourceKeys.FirstOrDefault(x => x.EndsWith(PackagePostfix)));
+            var packageText = ReadTemplateText(_resourceKeys.FirstOrDefault(x => x.EndsWith(PackagePostfix)));
 
             if (packageText == null)
                 throw new FileNotFoundException("[Package].json file does NOT exist!");
@@ -81,7 +82,7 @@ namespace EFCoreCodeGenerator
             package.Variables.Add(new Variable
             {
                 Name = "DataDirectory",
-                Value = _dataDirectoryPath
+                Value = _dataProjectPath
             });
 
             return package;
@@ -93,7 +94,7 @@ namespace EFCoreCodeGenerator
 
             foreach (var resourceKey in _resourceKeys.Where(x => x.EndsWith(TemplatePostfix)))
             {
-                var templateText = LoadResource(resourceKey);
+                var templateText = ReadTemplateText(resourceKey);
                 Template template = Template.Load(templateText);
 
                 string pathToWrite = null;
@@ -101,7 +102,7 @@ namespace EFCoreCodeGenerator
 
                 if (template.Scope == TemplateScope.Database)
                 {
-                    pathToWrite = Path.Combine(_dataDirectoryPath, $"{TargetDirectory}", template.TargetPath);
+                    pathToWrite = Path.Combine(_dataProjectPath, $"{TargetDirectory}", template.TargetPath);
                     code = DataGenerator.Build(package, database, null, null, template.Body);
                     WriteFileIfNone(pathToWrite, code, template.Overwritable);
                 }
@@ -109,7 +110,7 @@ namespace EFCoreCodeGenerator
                 {
                     foreach (var table in database.Tables)
                     {
-                        pathToWrite = Path.Combine(_dataDirectoryPath, $"{TargetDirectory}", string.Format(template.TargetPath, table.Name));
+                        pathToWrite = Path.Combine(_dataProjectPath, $"{TargetDirectory}", string.Format(template.TargetPath, table.Name));
                         code = DataGenerator.Build(package, database, table, null, template.Body);
                         WriteFileIfNone(pathToWrite, code);
                     }
@@ -121,15 +122,15 @@ namespace EFCoreCodeGenerator
             }
         }
 
-        private static string LoadResource(string fileName)
+        private static string ReadTemplateText(string resourceKey)
         {
-            string path = Path.Combine(_templateDirectoryPath, fileName.Replace("_", "."));
+            string templatePath = Path.Combine(_templateDirectoryPath, resourceKey.Replace("_", "."));
 
-            var resource = (byte[])Resources.ResourceManager.GetObject(fileName, CultureInfo.CurrentCulture);
-            var code = Encoding.UTF8.GetString(resource);
-            WriteFileIfNone(path, code);
+            var resource = (byte[])Resources.ResourceManager.GetObject(resourceKey, CultureInfo.CurrentCulture);
+            var templateText = Encoding.UTF8.GetString(resource);
+            WriteFileIfNone(templatePath, templateText);
 
-            return File.ReadAllText(path);
+            return File.ReadAllText(templatePath);
         }
 
         private static void WriteFileIfNone(string path, string code, bool overwritable = false)

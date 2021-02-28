@@ -26,6 +26,7 @@
 
   <ItemGroup>
     <Folder Include="EF\" />
+    <Folder Include="templates\" />
   </ItemGroup>
 
   <ItemGroup>

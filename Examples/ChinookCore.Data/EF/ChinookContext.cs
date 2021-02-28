@@ -126,10 +126,5 @@ namespace ChinookCore.Data
             // 연결문자열 설정
             optionsBuilder.UseSqlServer("Data Source=.,3423;Initial Catalog=Chinook;Integrated Security=True");
         }
-
-        public static ChinookContext Create()
-        {
-            return new ChinookContext();
-        }
     }
 }

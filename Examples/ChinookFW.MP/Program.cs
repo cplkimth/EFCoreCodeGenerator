@@ -12,10 +12,11 @@ namespace ChinookFW.MP
     {
         static void Main(string[] args)
         {
+            // Console.WriteLine(Dao.Artist.GetCount());
 #if Linux
             MidnightPeachCore.CodeGenerator.Generate(new ChinookContext(), "/home/thkim/git/MidnightPeachCore/Example/Chinook.Data");
 #else
-            CodeGenerator.Generate(new ChinookContext(), @"C:\git\EFCoreCodeGenerator\Examples\ChinookFW.Data");            
+            CodeGenerator.Generate(new ChinookContext(), @"C:\git\EFCoreCodeGenerator\Examples\ChinookFW.Data", @"C:\git\EFCoreCodeGenerator\Examples\ChinookFW.MP");            
 #endif
         }
     }

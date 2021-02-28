@@ -11,7 +11,7 @@ namespace ChinookCore.UnitTest
         [TestInitialize()]
         public void Initialize()
         {
-            ChinookContextProcedures procedures = new ChinookContextProcedures(new ChinookContext());
+            ChinookContextProcedures procedures = new ChinookContextProcedures(ChinookContext.Create());
             procedures.InitializeAsync().Wait();
         }
 

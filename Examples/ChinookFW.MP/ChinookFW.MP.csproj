@@ -207,6 +207,11 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="templates\Data.jsonmp" />
+    <None Include="templates\Package.json" />
+    <None Include="templates\PartialData.jsonmp" />
+    <None Include="templates\PartialDbContext.jsonmp" />
+    <None Include="templates\PartialEntity.jsonmp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\EFCoreCodeGenerator\EFCoreCodeGenerator.csproj">

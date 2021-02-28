@@ -38,7 +38,7 @@ namespace ChinookFW.UnitTest
         [TestMethod]
         public void Album_Search()
         {
-            ChinookContextProcedures procedures = new ChinookContextProcedures(new ChinookContext());
+            ChinookContextProcedures procedures = new ChinookContextProcedures(ChinookContext.Create());
 
             var result = procedures.Album_SearchAsync(1, "For").Result;
             Assert.AreEqual(1, result.Length);

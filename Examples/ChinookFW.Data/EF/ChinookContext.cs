@@ -117,5 +117,14 @@ namespace ChinookFW.Data
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (optionsBuilder.IsConfigured)
+                return;
+
+            // 연결문자열 설정
+            optionsBuilder.UseSqlServer("Data Source=.,3423;Initial Catalog=Chinook;Integrated Security=True");
+        }
     }
 }

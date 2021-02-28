@@ -109,15 +109,5 @@ namespace EFCoreCodeGenerator.Properties {
                 return ((byte[])(obj));
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] ReadMe_jsonmp {
-            get {
-                object obj = ResourceManager.GetObject("ReadMe_jsonmp", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
     }
 }
