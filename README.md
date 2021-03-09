@@ -9,28 +9,36 @@ A code generator which helps you use well-structed Entity Framework Core
 `Data Source=(Localdb)\MSSQLLocalDB;Initial Catalog=Chinook;Integrated Security=True`
 
 1. Create a solution whose name is `Chinook` and a `Console Application` project whose name is also `Chinook` in Visual Studio.
+
 ![](./documents/images/00.png)
+
 ![](./documents/images/01.png)
 
 2. Add a `Class Library` project(`Chinook.Data`) to the solution.
+
 ![](./documents/images/03.png)
 
 3. Scaffold Entity Framework Core code from `Chinook` database using [EF Core Tools](https://docs.microsoft.com/en-us/ef/core/cli/dotnet#dotnet-ef-dbcontext-scaffold). but [EF Core Power Tools](https://marketplace.visualstudio.com/items?itemName=ErikEJ.EFCorePowerTools) is recommended coz it is more convenient
 
 4. Right click on `Chinook.Data` project and select `EF Core Power Tools -> Reverse Engineer`.
+
 ![](./documents/images/02.png)
 
 5. Select `Chinook` database and click OK.
+
 ![](./documents/images/04.png)
 
 6. Select all tables.
+
 ![](./documents/images/05.png)
 
 7. Enter values like following.
+
 ![](./documents/images/06.png)
   * DbContext class and entity classes will be generated in *EF* direcotry and their sub namespace will be *Data*
 
 8. In `Chinook` project, add project reference to `Chinook.Data` project.
+
 ![](./documents/images/07.png)
 
 9. Write following code in Program.cs of `Chinook` project to check Entity Framework Core is working. This code is example of printing count of Queen's album.
@@ -48,6 +56,7 @@ static void Main(string[] args)
 ```
 ## Quick Start II - EF Core Code Generator
 1. Add `EFCoreCodeGenerator` package reference to `Chinook` project.
+
 ![](./documents/images/08.png)
 
 2. Write following code in Program.cs of `Chinook` project to generate codes.
@@ -64,6 +73,7 @@ static void Main(string[] args)
   * "C:\t\Chinook\Chinook" is the location of Code Generation Template. I will explain about Code Generation Template later.
 
 3. Generated Codes are located in UEF directory of `Chinook.Data` project.
+
 ![](./documents/images/09.png)
 
 4. Now you can write Queen's-album-counting code as following.
