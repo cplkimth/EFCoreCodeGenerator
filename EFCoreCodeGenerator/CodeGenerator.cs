@@ -20,8 +20,8 @@ namespace EFCoreCodeGenerator
     {
         private const string TargetDirectory = "UEF";
         private const string TemplateDirectory = "templates";
-        public const string TemplatePostfix = "jsonmp";
-        public const string PackagePostfix = "json";
+        private const string TemplatePostfix = "jsonmp";
+        private const string PackagePostfix = "json";
 
         private static DbContext _dbContext;
         private static string _dataProjectPath;
