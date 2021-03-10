@@ -1,6 +1,6 @@
 # Entity Framework Core Code Generator
 
-A code generator which helps you use well-structed Entity Framework Core
+A code generator which helps you use well-structured Entity Framework Core
 
 ---------------------------------------
 ## Quick Start I (Entity Framework Core)
@@ -18,7 +18,7 @@ A code generator which helps you use well-structed Entity Framework Core
 
 ![](./documents/images/03.png)
 
-3. Scaffold Entity Framework Core code from `Chinook` database using [EF Core Tools](https://docs.microsoft.com/en-us/ef/core/cli/dotnet#dotnet-ef-dbcontext-scaffold). but [EF Core Power Tools](https://marketplace.visualstudio.com/items?itemName=ErikEJ.EFCorePowerTools) is recommended coz it is more convenient
+3. Scaffold Entity Framework Core code from `Chinook` database using [EF Core Tools](https://docs.microsoft.com/en-us/ef/core/cli/dotnet#dotnet-ef-dbcontext-scaffold). but [EF Core Power Tools](https://marketplace.visualstudio.com/items?itemName=ErikEJ.EFCorePowerTools) is recommended because it is more convenient
 
 4. Right click on `Chinook.Data` project and select `EF Core Power Tools -> Reverse Engineer`.
 
@@ -32,10 +32,10 @@ A code generator which helps you use well-structed Entity Framework Core
 
 ![](./documents/images/05.png)
 
-7. Enter values like following.
+7. Enter values like below image.
 
 ![](./documents/images/06.png)
-  * DbContext class and entity classes will be generated in *EF* direcotry and their sub namespace will be *Data*
+  * DbContext class and entity classes will be generated in *EF* direcotry and their sub namespace will be in *Data*
 
 8. In `Chinook` project, add project reference to `Chinook.Data` project.
 
@@ -72,7 +72,7 @@ static void Main(string[] args)
   * "C:\t\Chinook\Chinook.Data" is the location of ChinookContext class.
   * "C:\t\Chinook\Chinook" is the location of Code Generation Template. I will explain about Code Generation Template later.
 
-3. Generated Codes are located in UEF directory of `Chinook.Data` project.
+3. Generated codes are located in UEF directory of `Chinook.Data` project.
 
 ![](./documents/images/09.png)
 
