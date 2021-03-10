@@ -308,7 +308,7 @@ public List<Album> GetWithArtistName()
 ```
 
 ### Body
-* Code Generation Template uses a mini script language with its own grammer.
+* Code Generation Template uses a mini script language with its own grammar.
 * Followings are EBNF of the language
 ```
 template = {database | table loop | table | column loop | comment | variable | character} ;
@@ -324,4 +324,4 @@ variable = "<#V ", {character}, " V#>";
 comment = "<#- ", {character}, " -#>";
 character = [a-z] | [A-Z] | [0-9] | white space ;
 ```
-* A parser which understands above grammer is included.
+* A parser which understands above grammar is included.
