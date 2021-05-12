@@ -39,7 +39,6 @@ namespace EFCoreCodeGenerator
         {
             _dbContext = dbContext;
             _dataProjectPath = dataProjectPath;
-            // _templateProjectPath = templateProjectPath??=Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName;
             if (templateProjectPath != null)
                 _templateDirectoryPath = Path.Combine(templateProjectPath, TemplateDirectory);
 
@@ -126,9 +125,12 @@ namespace EFCoreCodeGenerator
         {
             string templatePath = Path.Combine(_templateDirectoryPath, resourceKey.Replace("_", "."));
 
-            var resource = (byte[])Resources.ResourceManager.GetObject(resourceKey, CultureInfo.CurrentCulture);
-            var templateText = Encoding.UTF8.GetString(resource);
-            WriteFileIfNone(templatePath, templateText);
+            if (File.Exists(templatePath) == false)
+            {
+                var resource = (byte[])Resources.ResourceManager.GetObject(resourceKey, CultureInfo.CurrentCulture);
+                var templateText = Encoding.UTF8.GetString(resource);
+                WriteFileIfNone(templatePath, templateText);
+            }
 
             return File.ReadAllText(templatePath);
         }
