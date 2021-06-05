@@ -124,7 +124,7 @@ namespace ChinookFW.Data
                 return;
 
             // 연결문자열 설정
-            optionsBuilder.UseSqlServer("Data Source=.,3423;Initial Catalog=Chinook;Integrated Security=True");
+            optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=Chinook;Integrated Security=True");
         }
     }
 }
