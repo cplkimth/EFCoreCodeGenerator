@@ -12,10 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="templates\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\EFCoreCodeGenerator\EFCoreCodeGenerator.csproj" />
   </ItemGroup>
 

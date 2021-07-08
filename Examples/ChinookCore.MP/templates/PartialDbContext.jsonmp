@@ -16,7 +16,7 @@ namespace <#V DataNamespace V#>
             DbContextOptionsBuilder<<#D DataContext D#>> builder = new DbContextOptionsBuilder<<#D DataContext D#>>();
             
             // 콘솔에 로그 출력
-            builder.UseLoggerFactory(<#D DataContext D#>LoggerFactory.GetInstance(LoggerType.Console));
+            // builder.UseLoggerFactory(<#D DataContext D#>LoggerFactory.GetInstance(LoggerType.Console));
 
             // 엔터티 상태를 트랙킹하지 않음
             builder.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);

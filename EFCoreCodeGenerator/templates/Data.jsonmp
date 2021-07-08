@@ -374,11 +374,11 @@ namespace <#V DataNamespace V#>
 	#endregion
 
 	#region Data
-	#region EntityData<T>
+	#region EntityDao<T>
 	[Data]
-	public abstract partial class EntityData<T> where T : Entity<T>, new()
+	public abstract partial class EntityDao<T> where T : Entity<T>, new()
 	{
-		internal EntityData() { }
+		internal EntityDao() { }
 
 		#region Create
 		/// <summary>
@@ -1130,7 +1130,7 @@ namespace <#V DataNamespace V#>
 	/// <summary>
 	/// <#T Name T#> 데이터 클래스
 	/// </summary>
-	public partial class <#T Name T#>Dao : EntityData<<#T Name T#>>
+	public partial class <#T Name T#>Dao : EntityDao<<#T Name T#>>
 	{
 		internal <#T Name T#>Dao() {}
 

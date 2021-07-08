@@ -16,7 +16,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EFCoreCodeGenerator
 {
-    public class CodeGenerator
+    public static class CodeGenerator
     {
         private const string TargetDirectory = "UEF";
         private const string TemplateDirectory = "templates";
