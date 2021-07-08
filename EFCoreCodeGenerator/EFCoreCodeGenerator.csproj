@@ -7,6 +7,7 @@
 	<PropertyGroup>
 		<Authors>Taehyun Kim</Authors>
 		<Product>EF Core Code Generator</Product>
+		<PackageId>EFCoreCodeGenerator</PackageId>
 		<PackageTags>Entity Framework Core EF Core Generator</PackageTags>
 		<Copyright>Copyright © Lovanpis 2021</Copyright>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -15,13 +16,13 @@
 		<RepositoryUrl>https://github.com/cplkimth/EFCoreCodeGenerator.git</RepositoryUrl>
 		<PackageIcon>EFCoreCodeGenerator.png</PackageIcon>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<Version>1.1.1</Version>
+		<Version>1.1.2</Version>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<AssemblyVersion>1.1.1.0</AssemblyVersion>
+		<AssemblyVersion>1.1.2.0</AssemblyVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.6" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.7" />
 		<PackageReference Include="System.Text.Json" Version="5.0.2" />
 	</ItemGroup>
 
