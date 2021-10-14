@@ -10,7 +10,7 @@ namespace ChinookCore.Data
     {
         public virtual List<Album> Search(string artistName, string trackName)
         {
-            using var context = ChinookContext.Create();
+            using var context = DbContextFactory.Create();
 
             var query = from x in context.Albums
                 select x;

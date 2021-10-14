@@ -121,14 +121,14 @@
   <data name="Data_jsonmp" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\templates\data.jsonmp;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="DbContextFactory_jsonmp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\templates\dbcontextfactory.jsonmp;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="Package_json" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\templates\package.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="PartialData_jsonmp" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\templates\partialdata.jsonmp;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="PartialDbContext_jsonmp" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\templates\partialdbcontext.jsonmp;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="PartialEntity_jsonmp" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\templates\partialentity.jsonmp;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>

@@ -73,6 +73,16 @@ namespace EFCoreCodeGenerator.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] DbContextFactory_jsonmp {
+            get {
+                object obj = ResourceManager.GetObject("DbContextFactory_jsonmp", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] Package_json {
             get {
                 object obj = ResourceManager.GetObject("Package_json", resourceCulture);
@@ -86,16 +96,6 @@ namespace EFCoreCodeGenerator.Properties {
         internal static byte[] PartialData_jsonmp {
             get {
                 object obj = ResourceManager.GetObject("PartialData_jsonmp", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] PartialDbContext_jsonmp {
-            get {
-                object obj = ResourceManager.GetObject("PartialDbContext_jsonmp", resourceCulture);
                 return ((byte[])(obj));
             }
         }
