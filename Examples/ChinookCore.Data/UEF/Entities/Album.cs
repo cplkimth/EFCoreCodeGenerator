@@ -4,11 +4,13 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
  
 #endregion
 
 namespace ChinookCore.Data
 {
+    [MetadataType(typeof(AlbumMetaData))]
     public partial class Album
     {
         [NotMapped]
@@ -22,4 +24,13 @@ namespace ChinookCore.Data
             value = $"{AlbumId} / {Title} / {ArtistName} / {TrackCount}";
         }     
     }
+
+    #region AlbumMetadata
+    public class AlbumMetaData
+    {
+        public int AlbumId {get; set;}
+		public int ArtistId {get; set;}
+		public string Title {get; set;}
+    }
+    #endregion
 }

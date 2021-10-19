@@ -20,7 +20,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\EFCoreCodeGenerator\EFCoreCodeGenerator.csproj" />
-    <ProjectReference Include="..\Examples\ChinookCore.Data\ChinookCore.Data.csproj" />
   </ItemGroup>
 
   <ItemGroup>
