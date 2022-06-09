@@ -12,7 +12,7 @@ namespace ChinookCore.UnitTest
         public void Initialize()
         {
             ChinookContextProcedures procedures = new ChinookContextProcedures(DbContextFactory.Create());
-            procedures.InitializeAsync().Wait();
+            // procedures.InitializeAsync().Wait();
         }
 
         [TestMethod]

@@ -1,0 +1,87 @@
+﻿{
+   "CodeGenerationMode": 2,
+   "ContextClassName": "ChinookContext",
+   "ContextNamespace": "Data",
+   "DefaultDacpacSchema": null,
+   "FilterSchemas": false,
+   "IncludeConnectionString": true,
+   "ModelNamespace": "Data",
+   "OutputContextPath": "_generated",
+   "OutputPath": "_generated",
+   "ProjectRootNamespace": "ChinookCore",
+   "Schemas": null,
+   "SelectedHandlebarsLanguage": 0,
+   "SelectedToBeGenerated": 0,
+   "Tables": [
+      {
+         "Name": "[dbo].[Album]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Artist]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Customer]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Employee]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Genre]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Invoice]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[InvoiceLine]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[MediaType]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Playlist]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[PlaylistTrack]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Track]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[usp_GetRecursiveEmployees]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[usp_GetSystemTime]",
+         "ObjectType": 1
+      }
+   ],
+   "UiHint": "hmcg1.Chinook.dbo",
+   "UseBoolPropertiesWithoutDefaultSql": false,
+   "UseDatabaseNames": false,
+   "UseDbContextSplitting": false,
+   "UseFluentApiOnly": false,
+   "UseHandleBars": false,
+   "UseHierarchyId": false,
+   "UseInflector": true,
+   "UseLegacyPluralizer": false,
+   "UseManyToManyEntity": false,
+   "UseNoConstructor": false,
+   "UseNoDefaultConstructor": false,
+   "UseNoNavigations": false,
+   "UseNoObjectFilter": false,
+   "UseNodaTime": false,
+   "UseNullableReferences": false,
+   "UseSchemaFolders": false,
+   "UseSpatial": false
+}

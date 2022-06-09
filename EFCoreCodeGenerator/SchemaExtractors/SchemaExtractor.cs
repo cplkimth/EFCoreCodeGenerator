@@ -1,4 +1,5 @@
 ﻿#region
+using System.Linq;
 using EFCoreCodeGenerator.Schema;
 using EFCoreCodeGenerator.Utilities;
 using Microsoft.EntityFrameworkCore;
@@ -34,7 +35,10 @@ namespace EFCoreCodeGenerator.SchemaExtractors
             var database = new Database(databaseName);
             database.DataContext = dbContext.GetType().Name;
 
-            foreach (var entityType in dbContext.Model.GetEntityTypes())
+            // 기본키가 없는 타입을 제외. (프로시져의 반환 타입 등)
+            var tables = dbContext.Model.GetEntityTypes().Where(x => x.FindPrimaryKey() != null);
+
+            foreach (var entityType in tables)
             {
                 var table = new Table(database, entityType.ClrType.Name);
 

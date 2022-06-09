@@ -16,6 +16,9 @@ namespace ChinookCore.MP
 #else
             CodeGenerator.Generate(new ChinookContext(), @"C:\git\EFCoreCodeGenerator\Examples\ChinookCore.Data", @"C:\git\EFCoreCodeGenerator\Examples\ChinookCore.MP");          
 #endif
+
+            Console.WriteLine("press any key to exit.");
+            Console.ReadKey();
         }
     }
 }
