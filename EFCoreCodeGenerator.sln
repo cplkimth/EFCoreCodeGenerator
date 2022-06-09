@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31019.35
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32519.379
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFCoreCodeGenerator", "EFCoreCodeGenerator\EFCoreCodeGenerator.csproj", "{6255D760-E490-4139-90F0-EC5ED342BA38}"
 EndProject
@@ -16,13 +16,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "documents", "documents", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "images", "images", "{25066835-8799-4B0E-9765-CFFE666A096D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChinookCore.Data", "Examples\ChinookCore.Data\ChinookCore.Data.csproj", "{EC104658-8605-48AE-A71C-DEE9B3EE05FD}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChinookCore.MP", "Examples\ChinookCore.MP\ChinookCore.MP.csproj", "{4B8CF25A-0A9B-4B8E-B085-FE0BA315E509}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChinookCore", "Examples\ChinookCore\ChinookCore.csproj", "{77741EF3-7AED-4B25-8B6E-B7A9DE06F53C}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChinookCore.UnitTest", "Examples\ChinookCore.UnitTest\ChinookCore.UnitTest.csproj", "{3F509C2B-D759-4529-85F5-4802515600F5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,32 +32,17 @@ Global
 		{D86C0F9C-C322-4D7D-8141-FE79A5579051}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D86C0F9C-C322-4D7D-8141-FE79A5579051}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D86C0F9C-C322-4D7D-8141-FE79A5579051}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EC104658-8605-48AE-A71C-DEE9B3EE05FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EC104658-8605-48AE-A71C-DEE9B3EE05FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EC104658-8605-48AE-A71C-DEE9B3EE05FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EC104658-8605-48AE-A71C-DEE9B3EE05FD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4B8CF25A-0A9B-4B8E-B085-FE0BA315E509}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4B8CF25A-0A9B-4B8E-B085-FE0BA315E509}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4B8CF25A-0A9B-4B8E-B085-FE0BA315E509}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4B8CF25A-0A9B-4B8E-B085-FE0BA315E509}.Release|Any CPU.Build.0 = Release|Any CPU
-		{77741EF3-7AED-4B25-8B6E-B7A9DE06F53C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{77741EF3-7AED-4B25-8B6E-B7A9DE06F53C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{77741EF3-7AED-4B25-8B6E-B7A9DE06F53C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{77741EF3-7AED-4B25-8B6E-B7A9DE06F53C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3F509C2B-D759-4529-85F5-4802515600F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3F509C2B-D759-4529-85F5-4802515600F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3F509C2B-D759-4529-85F5-4802515600F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3F509C2B-D759-4529-85F5-4802515600F5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{25066835-8799-4B0E-9765-CFFE666A096D} = {F05E9A56-AE46-4BD1-8353-709C6152D7E1}
-		{EC104658-8605-48AE-A71C-DEE9B3EE05FD} = {B1863499-44A1-42C3-ADC5-24E1C6648D14}
 		{4B8CF25A-0A9B-4B8E-B085-FE0BA315E509} = {B1863499-44A1-42C3-ADC5-24E1C6648D14}
-		{77741EF3-7AED-4B25-8B6E-B7A9DE06F53C} = {B1863499-44A1-42C3-ADC5-24E1C6648D14}
-		{3F509C2B-D759-4529-85F5-4802515600F5} = {B1863499-44A1-42C3-ADC5-24E1C6648D14}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {75246F73-D910-416B-BEC3-9BF6D94CE3C9}

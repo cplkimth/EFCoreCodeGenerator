@@ -18,7 +18,7 @@ namespace EFCoreCodeGenerator
 {
     public static class CodeGenerator
     {
-        private const string TargetDirectory = "UEF";
+        private const string TargetDirectory = "";
         private const string TemplateDirectory = "templates";
         private const string TemplatePostfix = "jsonmp";
         private const string PackagePostfix = "json";

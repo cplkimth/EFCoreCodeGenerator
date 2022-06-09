@@ -11,6 +11,9 @@ namespace Chinook
         static void Main(string[] args)
         {
             Console.WriteLine(Dao.Artist.GetCount());
+
+            Console.WriteLine("press any key to exit.");
+            Console.ReadKey();
         }
     }
 }
