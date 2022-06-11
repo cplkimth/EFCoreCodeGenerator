@@ -9,6 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChinookCore", "Examples\Chi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChinookCore.UnitTest", "Examples\ChinookCore.UnitTest\ChinookCore.UnitTest.csproj", "{3F509C2B-D759-4529-85F5-4802515600F5}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Files", "Files", "{E7B374AD-A5B7-4F16-A460-6B05C954E724}"
+	ProjectSection(SolutionItems) = preProject
+		files\Chinook.bak = files\Chinook.bak
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
