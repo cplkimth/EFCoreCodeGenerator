@@ -9,7 +9,7 @@ namespace EFCoreCodeGenerator.Elements
 {
     public class Package
     {
-        public List<Variable> Variables { get; } = new List<Variable>();
+        public List<Variable> Variables { get; set; } = new List<Variable>();
 
         [JsonIgnore]
         public string this[string variableName]
