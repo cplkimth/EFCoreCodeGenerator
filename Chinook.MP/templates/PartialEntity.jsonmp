@@ -1,0 +1,21 @@
+{
+	"Version":1,
+	"Scope":1,
+	"TargetPath":"Entities/{0}.cs",
+	"Overwritable": false
+}
+*** body starts here ***
+#region using
+using System;
+using System.Linq;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
+ 
+#endregion
+
+namespace <#V DataNamespace V#>;
+
+public partial class <#T PascalName T#>
+{
+}

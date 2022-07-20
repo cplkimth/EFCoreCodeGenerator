@@ -1,5 +1,5 @@
 ﻿using System;
-using ChinookCore.Data;
+using Chinook.Data;
 using EFCoreCodeGenerator.Schema;
 using EFCoreCodeGenerator.SchemaExtractors;
 using EFCoreCodeGenerator.Utilities;

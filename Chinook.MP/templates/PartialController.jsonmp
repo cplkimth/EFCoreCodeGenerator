@@ -1,0 +1,17 @@
+{
+	"Version":1,
+	"Scope":1,
+	"TargetPath":"C:/git/EFCoreCodeGenerator/Chinook.WebApi/Controllers/{0}Controller.cs",
+	"Overwritable": false
+}
+*** body starts here ***
+#region using
+using <#V DataNamespace V#>;
+using Microsoft.AspNetCore.Mvc;
+#endregion
+
+namespace <#V ControllerNamespace V#>;
+
+public partial class <#T Name T#>Controller
+{
+}
