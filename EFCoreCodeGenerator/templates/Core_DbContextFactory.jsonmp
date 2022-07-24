@@ -1,0 +1,39 @@
+{
+	"Version":1,
+	"Scope":0,
+	"TargetPath":"DbContextFactory.cs",
+	"Overwritable": false
+}
+*** body starts here ***
+#region
+using System;
+using Microsoft.EntityFrameworkCore;
+#endregion
+
+namespace <#V DataNamespace V#>
+{
+    public partial class DbContextFactory
+    {
+        // TODO : Type ConnectionString here
+        // public static string ConnectionString => "";
+
+        public static <#D DataContext D#> Create()
+        {
+            DbContextOptionsBuilder<<#D DataContext D#>> builder = new DbContextOptionsBuilder<<#D DataContext D#>>();
+
+            OnConfigure(builder);
+            
+            // 콘솔에 로그 출력
+            // builder.UseLoggerFactory(<#D DataContext D#>LoggerFactory.GetInstance(LoggerType.Console));
+
+            // 엔터티 상태를 트랙킹하지 않음
+            builder.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+
+            builder.UseSqlServer(ConnectionString);
+
+            return new <#D DataContext D#>(builder.Options);
+        }
+
+        static partial void OnConfigure(DbContextOptionsBuilder<<#D DataContext D#>> builder);
+    }
+}

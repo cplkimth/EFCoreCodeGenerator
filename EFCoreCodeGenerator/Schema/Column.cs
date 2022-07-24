@@ -1,6 +1,8 @@
 #region
 #endregion
 
+using System.Text.Json.Serialization;
+
 namespace EFCoreCodeGenerator.Schema
 {
     public class Column : SchemaElement
@@ -12,6 +14,7 @@ namespace EFCoreCodeGenerator.Schema
             Table.Columns.Add(this);
         }
 
+        [JsonIgnore]
         public Table Table { get; set; }
 
         public string Type { get; set; }
@@ -21,7 +24,10 @@ namespace EFCoreCodeGenerator.Schema
         public bool Identity { get; set; }
 
         public bool ForeignKey { get; set; }
+        
+        public bool Nullable { get; set; }
 
+        [JsonIgnore]
         public bool IsCamelName => char.IsLower(Name[0]);
 
         public override string ToString()

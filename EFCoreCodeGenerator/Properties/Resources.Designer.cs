@@ -19,7 +19,7 @@ namespace EFCoreCodeGenerator.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -63,9 +63,9 @@ namespace EFCoreCodeGenerator.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] Data_jsonmp {
+        internal static byte[] Core_Data {
             get {
-                object obj = ResourceManager.GetObject("Data_jsonmp", resourceCulture);
+                object obj = ResourceManager.GetObject("Core_Data", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace EFCoreCodeGenerator.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] DbContextFactory_jsonmp {
+        internal static byte[] Core_DbContextFactory {
             get {
-                object obj = ResourceManager.GetObject("DbContextFactory_jsonmp", resourceCulture);
+                object obj = ResourceManager.GetObject("Core_DbContextFactory", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -83,9 +83,9 @@ namespace EFCoreCodeGenerator.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] Package_json {
+        internal static byte[] EF6_Data {
             get {
-                object obj = ResourceManager.GetObject("Package_json", resourceCulture);
+                object obj = ResourceManager.GetObject("EF6_Data", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -93,9 +93,9 @@ namespace EFCoreCodeGenerator.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] PartialData_jsonmp {
+        internal static byte[] EF6_DbContextFactory {
             get {
-                object obj = ResourceManager.GetObject("PartialData_jsonmp", resourceCulture);
+                object obj = ResourceManager.GetObject("EF6_DbContextFactory", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -103,9 +103,29 @@ namespace EFCoreCodeGenerator.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] PartialEntity_jsonmp {
+        internal static byte[] Package {
             get {
-                object obj = ResourceManager.GetObject("PartialEntity_jsonmp", resourceCulture);
+                object obj = ResourceManager.GetObject("Package", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] PartialData {
+            get {
+                object obj = ResourceManager.GetObject("PartialData", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] PartialEntity {
+            get {
+                object obj = ResourceManager.GetObject("PartialEntity", resourceCulture);
                 return ((byte[])(obj));
             }
         }

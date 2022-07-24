@@ -1,0 +1,79 @@
+﻿{
+   "CodeGenerationMode": 2,
+   "ContextClassName": "ChinookContext",
+   "ContextNamespace": "Data",
+   "DefaultDacpacSchema": null,
+   "FilterSchemas": false,
+   "IncludeConnectionString": true,
+   "ModelNamespace": "Data",
+   "OutputContextPath": "EF",
+   "OutputPath": "EF",
+   "ProjectRootNamespace": "Chinook",
+   "Schemas": null,
+   "SelectedHandlebarsLanguage": 0,
+   "SelectedToBeGenerated": 0,
+   "Tables": [
+      {
+         "Name": "[dbo].[Album]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Artist]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Company]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Playlist]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[PlaylistTrack]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[PlaylistTrackHistory]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Track]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[AlbumView]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[dbo].[Album_Search]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[Initialize]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[Track_Search]",
+         "ObjectType": 1
+      }
+   ],
+   "UiHint": "hmcg1.Chinook.dbo",
+   "UseBoolPropertiesWithoutDefaultSql": false,
+   "UseDatabaseNames": false,
+   "UseDbContextSplitting": false,
+   "UseFluentApiOnly": true,
+   "UseHandleBars": false,
+   "UseHierarchyId": false,
+   "UseInflector": true,
+   "UseLegacyPluralizer": false,
+   "UseManyToManyEntity": false,
+   "UseNoConstructor": false,
+   "UseNoDefaultConstructor": false,
+   "UseNoNavigations": false,
+   "UseNoObjectFilter": false,
+   "UseNodaTime": false,
+   "UseNullableReferences": false,
+   "UseSchemaFolders": false,
+   "UseSpatial": false
+}

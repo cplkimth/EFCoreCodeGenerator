@@ -1,5 +1,6 @@
 #region
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 #endregion
 
 namespace EFCoreCodeGenerator.Schema
@@ -14,6 +15,7 @@ namespace EFCoreCodeGenerator.Schema
             Columns = new List<Column>();
         }
 
+        [JsonIgnore]
         public Database Database { get; }
 
         public List<Column> Columns { get; }

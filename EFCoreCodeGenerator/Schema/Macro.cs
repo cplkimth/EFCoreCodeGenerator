@@ -1,6 +1,6 @@
 namespace EFCoreCodeGenerator.Schema
 {
-    internal class Macro
+    public class Macro
     {
         public string Value { get; set; }
 

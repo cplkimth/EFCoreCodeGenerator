@@ -1,0 +1,666 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ChinookModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Album">
+          <Key>
+            <PropertyRef Name="AlbumId" />
+          </Key>
+          <Property Name="AlbumId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="160" Nullable="false" />
+          <Property Name="ArtistId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Artist">
+          <Key>
+            <PropertyRef Name="ArtistId" />
+          </Key>
+          <Property Name="ArtistId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="120" />
+          <Property Name="CompanyId" Type="int" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="CompanyId" />
+          </Key>
+          <Property Name="CompanyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="120" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Playlist">
+          <Key>
+            <PropertyRef Name="PlaylistId" />
+          </Key>
+          <Property Name="PlaylistId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="120" />
+        </EntityType>
+        <EntityType Name="PlaylistTrack">
+          <Key>
+            <PropertyRef Name="PlaylistId" />
+            <PropertyRef Name="TrackId" />
+          </Key>
+          <Property Name="PlaylistId" Type="int" Nullable="false" />
+          <Property Name="TrackId" Type="int" Nullable="false" />
+          <Property Name="Dummy" Type="bit" />
+        </EntityType>
+        <EntityType Name="PlaylistTrackHistory">
+          <Key>
+            <PropertyRef Name="PlaylistId" />
+            <PropertyRef Name="TrackId" />
+            <PropertyRef Name="WrittenAt" />
+          </Key>
+          <Property Name="PlaylistId" Type="int" Nullable="false" />
+          <Property Name="TrackId" Type="int" Nullable="false" />
+          <Property Name="WrittenAt" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Track">
+          <Key>
+            <PropertyRef Name="TrackId" />
+          </Key>
+          <Property Name="TrackId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="AlbumId" Type="int" />
+          <Property Name="BitCol" Type="bit" Nullable="false" />
+          <Property Name="BitColNull" Type="bit" />
+          <Property Name="TinyIntCol" Type="tinyint" Nullable="false" />
+          <Property Name="TinyIntColNull" Type="tinyint" />
+          <Property Name="SmallIntCol" Type="smallint" Nullable="false" />
+          <Property Name="SmallIntColNull" Type="smallint" />
+          <Property Name="BigIntCol" Type="bigint" Nullable="false" />
+          <Property Name="BigIntColNull" Type="bigint" />
+          <Property Name="CharCol" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="CharColNull" Type="char" MaxLength="10" />
+          <Property Name="VarCharCol" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="VarCharColNull" Type="varchar" MaxLength="50" />
+          <Property Name="NcharCol" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="NcharColNull" Type="nchar" MaxLength="10" />
+          <Property Name="NvarCharCol" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NvarCharColNull" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="BinaryCol" Type="binary" MaxLength="50" Nullable="false" />
+          <Property Name="BinaryColNull" Type="binary" MaxLength="50" />
+          <Property Name="DateCol" Type="date" Nullable="false" />
+          <Property Name="DateColNull" Type="date" />
+          <Property Name="DateTimeCol" Type="datetime" Nullable="false" />
+          <Property Name="DateTimeColNull" Type="datetime" />
+          <Property Name="SmallDateTimeCol" Type="smalldatetime" Nullable="false" />
+          <Property Name="SmallDateTimeColNull" Type="smalldatetime" />
+          <Property Name="DecimalCol" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="DecimalColNull" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="FloatCol" Type="float" Nullable="false" />
+          <Property Name="FloatColNull" Type="float" />
+          <Property Name="RealCol" Type="real" Nullable="false" />
+          <Property Name="RealColNull" Type="real" />
+          <Property Name="SmallMoneyCol" Type="smallmoney" Nullable="false" />
+          <Property Name="SmallMoneyColNull" Type="smallmoney" />
+          <Property Name="TimeStampCol" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="TimeCol" Type="time" Precision="7" Nullable="false" />
+          <Property Name="TimeColNull" Type="time" Precision="7" />
+          <Property Name="GuidCol" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="GuidColNull" Type="uniqueidentifier" />
+          <Property Name="VarBinaryCol" Type="varbinary" MaxLength="50" Nullable="false" />
+          <Property Name="VarBinaryColNull" Type="varbinary" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Chinook.dbo.AlbumView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="AlbumView">
+          <Key>
+            <PropertyRef Name="AlbumId" />
+            <PropertyRef Name="Title" />
+            <PropertyRef Name="ArtistId" />
+          </Key>
+          <Property Name="AlbumId" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="160" Nullable="false" />
+          <Property Name="ArtistId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="120" />
+        </EntityType>
+        <Association Name="FK_AlbumArtistId">
+          <End Role="Artist" Type="Self.Artist" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Album" Type="Self.Album" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Artist">
+              <PropertyRef Name="ArtistId" />
+            </Principal>
+            <Dependent Role="Album">
+              <PropertyRef Name="ArtistId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Artist_Company">
+          <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+          <End Role="Artist" Type="Self.Artist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyId" />
+            </Principal>
+            <Dependent Role="Artist">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PlaylistTrackHistory_PlaylistTrack">
+          <End Role="PlaylistTrack" Type="Self.PlaylistTrack" Multiplicity="1" />
+          <End Role="PlaylistTrackHistory" Type="Self.PlaylistTrackHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PlaylistTrack">
+              <PropertyRef Name="PlaylistId" />
+              <PropertyRef Name="TrackId" />
+            </Principal>
+            <Dependent Role="PlaylistTrackHistory">
+              <PropertyRef Name="PlaylistId" />
+              <PropertyRef Name="TrackId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PlaylistTrackPlaylistId">
+          <End Role="Playlist" Type="Self.Playlist" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PlaylistTrack" Type="Self.PlaylistTrack" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Playlist">
+              <PropertyRef Name="PlaylistId" />
+            </Principal>
+            <Dependent Role="PlaylistTrack">
+              <PropertyRef Name="PlaylistId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PlaylistTrackTrackId">
+          <End Role="Track" Type="Self.Track" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PlaylistTrack" Type="Self.PlaylistTrack" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Track">
+              <PropertyRef Name="TrackId" />
+            </Principal>
+            <Dependent Role="PlaylistTrack">
+              <PropertyRef Name="TrackId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TrackAlbumId">
+          <End Role="Album" Type="Self.Album" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Track" Type="Self.Track" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Album">
+              <PropertyRef Name="AlbumId" />
+            </Principal>
+            <Dependent Role="Track">
+              <PropertyRef Name="AlbumId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="Album_Search" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ArtistId" Type="int" Mode="In" />
+          <Parameter Name="Title" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Initialize" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Track_Search" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Name" Type="nvarchar" Mode="In" />
+          <Parameter Name="ArtistId" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="ChinookModelStoreContainer">
+          <EntitySet Name="Album" EntityType="Self.Album" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Artist" EntityType="Self.Artist" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Playlist" EntityType="Self.Playlist" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PlaylistTrack" EntityType="Self.PlaylistTrack" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PlaylistTrackHistory" EntityType="Self.PlaylistTrackHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Track" EntityType="Self.Track" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AlbumView" EntityType="Self.AlbumView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [AlbumView].[AlbumId] AS [AlbumId], 
+    [AlbumView].[Title] AS [Title], 
+    [AlbumView].[ArtistId] AS [ArtistId], 
+    [AlbumView].[Name] AS [Name]
+    FROM [dbo].[AlbumView] AS [AlbumView]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_AlbumArtistId" Association="Self.FK_AlbumArtistId">
+            <End Role="Artist" EntitySet="Artist" />
+            <End Role="Album" EntitySet="Album" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Artist_Company" Association="Self.FK_Artist_Company">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="Artist" EntitySet="Artist" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlaylistTrackHistory_PlaylistTrack" Association="Self.FK_PlaylistTrackHistory_PlaylistTrack">
+            <End Role="PlaylistTrack" EntitySet="PlaylistTrack" />
+            <End Role="PlaylistTrackHistory" EntitySet="PlaylistTrackHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlaylistTrackPlaylistId" Association="Self.FK_PlaylistTrackPlaylistId">
+            <End Role="Playlist" EntitySet="Playlist" />
+            <End Role="PlaylistTrack" EntitySet="PlaylistTrack" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlaylistTrackTrackId" Association="Self.FK_PlaylistTrackTrackId">
+            <End Role="Track" EntitySet="Track" />
+            <End Role="PlaylistTrack" EntitySet="PlaylistTrack" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TrackAlbumId" Association="Self.FK_TrackAlbumId">
+            <End Role="Album" EntitySet="Album" />
+            <End Role="Track" EntitySet="Track" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ChinookModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Album">
+          <Key>
+            <PropertyRef Name="AlbumId" />
+          </Key>
+          <Property Name="AlbumId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="160" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ArtistId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Artist" Relationship="Self.FK_AlbumArtistId" FromRole="Album" ToRole="Artist" />
+          <NavigationProperty Name="Tracks" Relationship="Self.FK_TrackAlbumId" FromRole="Album" ToRole="Track" />
+        </EntityType>
+        <EntityType Name="Artist">
+          <Key>
+            <PropertyRef Name="ArtistId" />
+          </Key>
+          <Property Name="ArtistId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="120" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyId" Type="Int32" />
+          <NavigationProperty Name="Albums" Relationship="Self.FK_AlbumArtistId" FromRole="Artist" ToRole="Album" />
+          <NavigationProperty Name="Company" Relationship="Self.FK_Artist_Company" FromRole="Artist" ToRole="Company" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="CompanyId" />
+          </Key>
+          <Property Name="CompanyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="120" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Artists" Relationship="Self.FK_Artist_Company" FromRole="Company" ToRole="Artist" />
+        </EntityType>
+        <EntityType Name="Playlist">
+          <Key>
+            <PropertyRef Name="PlaylistId" />
+          </Key>
+          <Property Name="PlaylistId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="120" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PlaylistTracks" Relationship="Self.FK_PlaylistTrackPlaylistId" FromRole="Playlist" ToRole="PlaylistTrack" />
+        </EntityType>
+        <EntityType Name="PlaylistTrack">
+          <Key>
+            <PropertyRef Name="PlaylistId" />
+            <PropertyRef Name="TrackId" />
+          </Key>
+          <Property Name="PlaylistId" Type="Int32" Nullable="false" />
+          <Property Name="TrackId" Type="Int32" Nullable="false" />
+          <Property Name="Dummy" Type="Boolean" />
+          <NavigationProperty Name="Playlist" Relationship="Self.FK_PlaylistTrackPlaylistId" FromRole="PlaylistTrack" ToRole="Playlist" />
+          <NavigationProperty Name="PlaylistTrackHistories" Relationship="Self.FK_PlaylistTrackHistory_PlaylistTrack" FromRole="PlaylistTrack" ToRole="PlaylistTrackHistory" />
+          <NavigationProperty Name="Track" Relationship="Self.FK_PlaylistTrackTrackId" FromRole="PlaylistTrack" ToRole="Track" />
+        </EntityType>
+        <EntityType Name="PlaylistTrackHistory">
+          <Key>
+            <PropertyRef Name="PlaylistId" />
+            <PropertyRef Name="TrackId" />
+            <PropertyRef Name="WrittenAt" />
+          </Key>
+          <Property Name="PlaylistId" Type="Int32" Nullable="false" />
+          <Property Name="TrackId" Type="Int32" Nullable="false" />
+          <Property Name="WrittenAt" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="PlaylistTrack" Relationship="Self.FK_PlaylistTrackHistory_PlaylistTrack" FromRole="PlaylistTrackHistory" ToRole="PlaylistTrack" />
+        </EntityType>
+        <EntityType Name="Track">
+          <Key>
+            <PropertyRef Name="TrackId" />
+          </Key>
+          <Property Name="TrackId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AlbumId" Type="Int32" />
+          <Property Name="BitCol" Type="Boolean" Nullable="false" />
+          <Property Name="BitColNull" Type="Boolean" />
+          <Property Name="TinyIntCol" Type="Byte" Nullable="false" />
+          <Property Name="TinyIntColNull" Type="Byte" />
+          <Property Name="SmallIntCol" Type="Int16" Nullable="false" />
+          <Property Name="SmallIntColNull" Type="Int16" />
+          <Property Name="BigIntCol" Type="Int64" Nullable="false" />
+          <Property Name="BigIntColNull" Type="Int64" />
+          <Property Name="CharCol" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="CharColNull" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="VarCharCol" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="VarCharColNull" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NcharCol" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="NcharColNull" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="NvarCharCol" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NvarCharColNull" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BinaryCol" Type="Binary" MaxLength="50" FixedLength="true" Nullable="false" />
+          <Property Name="BinaryColNull" Type="Binary" MaxLength="50" FixedLength="true" />
+          <Property Name="DateCol" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DateColNull" Type="DateTime" Precision="0" />
+          <Property Name="DateTimeCol" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateTimeColNull" Type="DateTime" Precision="3" />
+          <Property Name="SmallDateTimeCol" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="SmallDateTimeColNull" Type="DateTime" Precision="0" />
+          <Property Name="DecimalCol" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="DecimalColNull" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="FloatCol" Type="Double" Nullable="false" />
+          <Property Name="FloatColNull" Type="Double" />
+          <Property Name="RealCol" Type="Single" Nullable="false" />
+          <Property Name="RealColNull" Type="Single" />
+          <Property Name="SmallMoneyCol" Type="Decimal" Precision="10" Scale="4" Nullable="false" />
+          <Property Name="SmallMoneyColNull" Type="Decimal" Precision="10" Scale="4" />
+          <Property Name="TimeStampCol" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="TimeCol" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="TimeColNull" Type="Time" Precision="7" />
+          <Property Name="GuidCol" Type="Guid" Nullable="false" />
+          <Property Name="GuidColNull" Type="Guid" />
+          <Property Name="VarBinaryCol" Type="Binary" MaxLength="50" FixedLength="false" Nullable="false" />
+          <Property Name="VarBinaryColNull" Type="Binary" MaxLength="50" FixedLength="false" />
+          <NavigationProperty Name="Album" Relationship="Self.FK_TrackAlbumId" FromRole="Track" ToRole="Album" />
+          <NavigationProperty Name="PlaylistTracks" Relationship="Self.FK_PlaylistTrackTrackId" FromRole="Track" ToRole="PlaylistTrack" />
+        </EntityType>
+        <EntityType Name="AlbumView">
+          <Key>
+            <PropertyRef Name="AlbumId" />
+            <PropertyRef Name="Title" />
+            <PropertyRef Name="ArtistId" />
+          </Key>
+          <Property Name="AlbumId" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="160" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ArtistId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="120" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_AlbumArtistId">
+          <End Role="Artist" Type="Self.Artist" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Album" Type="Self.Album" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Artist">
+              <PropertyRef Name="ArtistId" />
+            </Principal>
+            <Dependent Role="Album">
+              <PropertyRef Name="ArtistId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TrackAlbumId">
+          <End Role="Album" Type="Self.Album" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Track" Type="Self.Track" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Album">
+              <PropertyRef Name="AlbumId" />
+            </Principal>
+            <Dependent Role="Track">
+              <PropertyRef Name="AlbumId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Artist_Company">
+          <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+          <End Role="Artist" Type="Self.Artist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyId" />
+            </Principal>
+            <Dependent Role="Artist">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PlaylistTrackPlaylistId">
+          <End Role="Playlist" Type="Self.Playlist" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PlaylistTrack" Type="Self.PlaylistTrack" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Playlist">
+              <PropertyRef Name="PlaylistId" />
+            </Principal>
+            <Dependent Role="PlaylistTrack">
+              <PropertyRef Name="PlaylistId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PlaylistTrackHistory_PlaylistTrack">
+          <End Role="PlaylistTrack" Type="Self.PlaylistTrack" Multiplicity="1" />
+          <End Role="PlaylistTrackHistory" Type="Self.PlaylistTrackHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PlaylistTrack">
+              <PropertyRef Name="PlaylistId" />
+              <PropertyRef Name="TrackId" />
+            </Principal>
+            <Dependent Role="PlaylistTrackHistory">
+              <PropertyRef Name="PlaylistId" />
+              <PropertyRef Name="TrackId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PlaylistTrackTrackId">
+          <End Role="Track" Type="Self.Track" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PlaylistTrack" Type="Self.PlaylistTrack" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Track">
+              <PropertyRef Name="TrackId" />
+            </Principal>
+            <Dependent Role="PlaylistTrack">
+              <PropertyRef Name="TrackId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ChinookEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Albums" EntityType="Self.Album" />
+          <EntitySet Name="Artists" EntityType="Self.Artist" />
+          <EntitySet Name="Companies" EntityType="Self.Company" />
+          <EntitySet Name="Playlists" EntityType="Self.Playlist" />
+          <EntitySet Name="PlaylistTracks" EntityType="Self.PlaylistTrack" />
+          <EntitySet Name="PlaylistTrackHistories" EntityType="Self.PlaylistTrackHistory" />
+          <EntitySet Name="Tracks" EntityType="Self.Track" />
+          <EntitySet Name="AlbumViews" EntityType="Self.AlbumView" />
+          <AssociationSet Name="FK_AlbumArtistId" Association="Self.FK_AlbumArtistId">
+            <End Role="Artist" EntitySet="Artists" />
+            <End Role="Album" EntitySet="Albums" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TrackAlbumId" Association="Self.FK_TrackAlbumId">
+            <End Role="Album" EntitySet="Albums" />
+            <End Role="Track" EntitySet="Tracks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Artist_Company" Association="Self.FK_Artist_Company">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="Artist" EntitySet="Artists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlaylistTrackPlaylistId" Association="Self.FK_PlaylistTrackPlaylistId">
+            <End Role="Playlist" EntitySet="Playlists" />
+            <End Role="PlaylistTrack" EntitySet="PlaylistTracks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlaylistTrackHistory_PlaylistTrack" Association="Self.FK_PlaylistTrackHistory_PlaylistTrack">
+            <End Role="PlaylistTrack" EntitySet="PlaylistTracks" />
+            <End Role="PlaylistTrackHistory" EntitySet="PlaylistTrackHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlaylistTrackTrackId" Association="Self.FK_PlaylistTrackTrackId">
+            <End Role="Track" EntitySet="Tracks" />
+            <End Role="PlaylistTrack" EntitySet="PlaylistTracks" />
+          </AssociationSet>
+          <FunctionImport Name="Album_Search" ReturnType="Collection(ChinookModel.Album_Search_Result)">
+            <Parameter Name="ArtistId" Mode="In" Type="Int32" />
+            <Parameter Name="Title" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Initialize" />
+          <FunctionImport Name="Track_Search" ReturnType="Collection(ChinookModel.Track_Search_Result)">
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="ArtistId" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="Album_Search_Result">
+          <Property Type="Int32" Name="AlbumId" Nullable="false" />
+          <Property Type="String" Name="Title" Nullable="false" MaxLength="160" />
+          <Property Type="Int32" Name="ArtistId" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="Track_Search_Result">
+          <Property Type="Int32" Name="TrackId" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="200" />
+          <Property Type="Int32" Name="AlbumId" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ChinookModelStoreContainer" CdmEntityContainer="ChinookEntities">
+          <EntitySetMapping Name="Albums">
+            <EntityTypeMapping TypeName="ChinookModel.Album">
+              <MappingFragment StoreEntitySet="Album">
+                <ScalarProperty Name="AlbumId" ColumnName="AlbumId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ArtistId" ColumnName="ArtistId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Artists">
+            <EntityTypeMapping TypeName="ChinookModel.Artist">
+              <MappingFragment StoreEntitySet="Artist">
+                <ScalarProperty Name="ArtistId" ColumnName="ArtistId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Companies">
+            <EntityTypeMapping TypeName="ChinookModel.Company">
+              <MappingFragment StoreEntitySet="Company">
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Playlists">
+            <EntityTypeMapping TypeName="ChinookModel.Playlist">
+              <MappingFragment StoreEntitySet="Playlist">
+                <ScalarProperty Name="PlaylistId" ColumnName="PlaylistId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PlaylistTracks">
+            <EntityTypeMapping TypeName="ChinookModel.PlaylistTrack">
+              <MappingFragment StoreEntitySet="PlaylistTrack">
+                <ScalarProperty Name="PlaylistId" ColumnName="PlaylistId" />
+                <ScalarProperty Name="TrackId" ColumnName="TrackId" />
+                <ScalarProperty Name="Dummy" ColumnName="Dummy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PlaylistTrackHistories">
+            <EntityTypeMapping TypeName="ChinookModel.PlaylistTrackHistory">
+              <MappingFragment StoreEntitySet="PlaylistTrackHistory">
+                <ScalarProperty Name="PlaylistId" ColumnName="PlaylistId" />
+                <ScalarProperty Name="TrackId" ColumnName="TrackId" />
+                <ScalarProperty Name="WrittenAt" ColumnName="WrittenAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tracks">
+            <EntityTypeMapping TypeName="ChinookModel.Track">
+              <MappingFragment StoreEntitySet="Track">
+                <ScalarProperty Name="TrackId" ColumnName="TrackId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AlbumId" ColumnName="AlbumId" />
+                <ScalarProperty Name="BitCol" ColumnName="BitCol" />
+                <ScalarProperty Name="BitColNull" ColumnName="BitColNull" />
+                <ScalarProperty Name="TinyIntCol" ColumnName="TinyIntCol" />
+                <ScalarProperty Name="TinyIntColNull" ColumnName="TinyIntColNull" />
+                <ScalarProperty Name="SmallIntCol" ColumnName="SmallIntCol" />
+                <ScalarProperty Name="SmallIntColNull" ColumnName="SmallIntColNull" />
+                <ScalarProperty Name="BigIntCol" ColumnName="BigIntCol" />
+                <ScalarProperty Name="BigIntColNull" ColumnName="BigIntColNull" />
+                <ScalarProperty Name="CharCol" ColumnName="CharCol" />
+                <ScalarProperty Name="CharColNull" ColumnName="CharColNull" />
+                <ScalarProperty Name="VarCharCol" ColumnName="VarCharCol" />
+                <ScalarProperty Name="VarCharColNull" ColumnName="VarCharColNull" />
+                <ScalarProperty Name="NcharCol" ColumnName="NcharCol" />
+                <ScalarProperty Name="NcharColNull" ColumnName="NcharColNull" />
+                <ScalarProperty Name="NvarCharCol" ColumnName="NvarCharCol" />
+                <ScalarProperty Name="NvarCharColNull" ColumnName="NvarCharColNull" />
+                <ScalarProperty Name="BinaryCol" ColumnName="BinaryCol" />
+                <ScalarProperty Name="BinaryColNull" ColumnName="BinaryColNull" />
+                <ScalarProperty Name="DateCol" ColumnName="DateCol" />
+                <ScalarProperty Name="DateColNull" ColumnName="DateColNull" />
+                <ScalarProperty Name="DateTimeCol" ColumnName="DateTimeCol" />
+                <ScalarProperty Name="DateTimeColNull" ColumnName="DateTimeColNull" />
+                <ScalarProperty Name="SmallDateTimeCol" ColumnName="SmallDateTimeCol" />
+                <ScalarProperty Name="SmallDateTimeColNull" ColumnName="SmallDateTimeColNull" />
+                <ScalarProperty Name="DecimalCol" ColumnName="DecimalCol" />
+                <ScalarProperty Name="DecimalColNull" ColumnName="DecimalColNull" />
+                <ScalarProperty Name="FloatCol" ColumnName="FloatCol" />
+                <ScalarProperty Name="FloatColNull" ColumnName="FloatColNull" />
+                <ScalarProperty Name="RealCol" ColumnName="RealCol" />
+                <ScalarProperty Name="RealColNull" ColumnName="RealColNull" />
+                <ScalarProperty Name="SmallMoneyCol" ColumnName="SmallMoneyCol" />
+                <ScalarProperty Name="SmallMoneyColNull" ColumnName="SmallMoneyColNull" />
+                <ScalarProperty Name="TimeStampCol" ColumnName="TimeStampCol" />
+                <ScalarProperty Name="TimeCol" ColumnName="TimeCol" />
+                <ScalarProperty Name="TimeColNull" ColumnName="TimeColNull" />
+                <ScalarProperty Name="GuidCol" ColumnName="GuidCol" />
+                <ScalarProperty Name="GuidColNull" ColumnName="GuidColNull" />
+                <ScalarProperty Name="VarBinaryCol" ColumnName="VarBinaryCol" />
+                <ScalarProperty Name="VarBinaryColNull" ColumnName="VarBinaryColNull" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AlbumViews">
+            <EntityTypeMapping TypeName="ChinookModel.AlbumView">
+              <MappingFragment StoreEntitySet="AlbumView">
+                <ScalarProperty Name="AlbumId" ColumnName="AlbumId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ArtistId" ColumnName="ArtistId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Album_Search" FunctionName="ChinookModel.Store.Album_Search">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ChinookModel.Album_Search_Result">
+                <ScalarProperty Name="AlbumId" ColumnName="AlbumId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ArtistId" ColumnName="ArtistId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Initialize" FunctionName="ChinookModel.Store.Initialize" />
+          <FunctionImportMapping FunctionImportName="Track_Search" FunctionName="ChinookModel.Store.Track_Search">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ChinookModel.Track_Search_Result">
+                <ScalarProperty Name="TrackId" ColumnName="TrackId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AlbumId" ColumnName="AlbumId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

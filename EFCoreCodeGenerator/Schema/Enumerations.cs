@@ -1,6 +1,6 @@
 namespace EFCoreCodeGenerator.Schema
 {
-    internal enum LoopType
+    public enum LoopType
     {
         /// <summary>
         /// All

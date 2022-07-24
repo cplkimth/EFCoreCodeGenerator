@@ -1,6 +1,6 @@
 #region
 using System;
-using EFCoreCodeGenerator.Utilities;
+using System.Text.Json.Serialization;
 #endregion
 
 namespace EFCoreCodeGenerator.Schema
@@ -11,22 +11,22 @@ namespace EFCoreCodeGenerator.Schema
     [Serializable]
     public abstract class SchemaElement
     {
-        protected readonly string _name;
-
         protected SchemaElement()
         {
         }
 
         protected SchemaElement(string name)
         {
-            _name = name;
+            Name = name.ToIdentifier();
         }
 
-        public virtual string Name => _name.ToIdentifier();
+        public string Name { get; set; }
 
-        public virtual string PascalName => ToPascalName(_name);
+        [JsonIgnore]
+        public string PascalName => ToPascalName(Name);
 
-        public virtual string CamelName => ToCamelName(_name).ToIdentifier();
+        [JsonIgnore]
+        public string CamelName => ToCamelName(Name).ToIdentifier();
 
         public override string ToString()
         {

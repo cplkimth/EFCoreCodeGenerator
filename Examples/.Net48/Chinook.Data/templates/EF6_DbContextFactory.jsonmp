@@ -1,0 +1,38 @@
+{
+	"Version":1,
+	"Scope":0,
+	"TargetPath":"DbContextFactory.cs",
+	"Overwritable": false
+}
+*** body starts here ***
+#region
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Text;
+#endregion
+
+namespace <#V DataNamespace V#>
+{
+    public static partial class DbContextFactory
+    {
+        static DbContextFactory()
+        {
+            // TODO : Type ConnectionString here
+            // RawConnectionString = "";
+        }
+
+        public static string RawConnectionString { get; }
+
+        static partial void GetConnectionStringCore(ref string connectionString)
+        {
+            connectionString = "metadata=res://*/<#D Name D#>.csdl|res://*/<#D Name D#>.ssdl|res://*/<#D Name D#>.msl;provider=System.Data.SqlClient;provider connection string=\"" + RawConnectionString + ";App=EntityFramework\"";
+        }
+
+        static partial void CreateCore(<#D DataContext D#> context)
+        {
+            context.Database.Log = x => Debug.WriteLine(x);
+        }
+    }
+}

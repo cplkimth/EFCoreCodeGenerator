@@ -1,0 +1,50 @@
+{
+	"Version":1,
+	"Scope":0,
+	"TargetPath":"../Chinook.WebApiClient/ApiClients/ApiClient.g.cs",
+	"Overwritable": true
+}
+*** body starts here ***
+using System.Text.Json;
+
+namespace Chinook.WebApiClient;
+
+public partial class ApiClient
+{
+    public const string Authorization = "Authorization";
+    public const string Bearer = "Bearer";
+
+    public static string JwtToken { get; set; }
+
+    public static string BaseAddress { get; set; }
+
+    #region clients
+    <#A AL:[N]:public static <#T Name T#>Client <#T Name T#> => new <#T Name T#>Client(BaseAddress); A#>
+    #endregion
+
+    public static void AddAuthorizationToken(HttpClient client)
+    {
+        client.DefaultRequestHeaders.Add(Authorization, $"{Bearer} {JwtToken}");
+    }
+}
+
+public partial class BaseClient
+{
+    partial void UseJsonSerializerOptions(JsonSerializerOptions settings);
+
+    protected virtual void SetJsonSerializerOptions(JsonSerializerOptions settings)
+    {
+        UseJsonSerializerOptions(settings);
+    }
+}
+
+#region clients
+<#A AL:[N][N]:
+public partial class <#T Name T#>Client
+{
+    partial void PrepareRequest(HttpClient client, HttpRequestMessage request, string url) => ApiClient.AddAuthorizationToken(client);
+
+    partial void UpdateJsonSerializerSettings(JsonSerializerOptions settings) => SetJsonSerializerOptions(settings);
+}
+A#>
+#endregion

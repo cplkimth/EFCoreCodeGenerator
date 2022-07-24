@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="858ab4e3d5b54fd08a1e58d0d7aed82b" Name="Diagram1">
+        <EntityTypeShape EntityType="ChinookModel.Album" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChinookModel.Artist" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChinookModel.Company" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChinookModel.Playlist" Width="1.5" PointX="7.5" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChinookModel.PlaylistTrack" Width="1.5" PointX="9.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChinookModel.PlaylistTrackHistory" Width="1.5" PointX="12" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChinookModel.Track" Width="1.5" PointX="7.5" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChinookModel.AlbumView" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="ChinookModel.FK_AlbumArtistId" ManuallyRouted="false" />
+        <AssociationConnector Association="ChinookModel.FK_TrackAlbumId" ManuallyRouted="false" />
+        <AssociationConnector Association="ChinookModel.FK_Artist_Company" ManuallyRouted="false" />
+        <AssociationConnector Association="ChinookModel.FK_PlaylistTrackPlaylistId" ManuallyRouted="false" />
+        <AssociationConnector Association="ChinookModel.FK_PlaylistTrackHistory_PlaylistTrack" ManuallyRouted="false" />
+        <AssociationConnector Association="ChinookModel.FK_PlaylistTrackTrackId" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,93 @@
+{
+	"Version":1,
+	"Scope":0,
+	"TargetPath":"../Chinook.WebApi/Controllers/Controller.g.cs",
+	"Overwritable": true
+}
+*** body starts here ***
+#region using
+using <#V DataNamespace V#>;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+#endregion
+
+namespace <#V ControllerNamespace V#>;
+
+<#A AL:[N][N]:
+#region <#T Name T#>Controller
+[Route("api/[controller]")]
+[ApiController]
+[Produces("application/json")]
+[Authorize]
+public partial class <#T Name T#>Controller : ControllerBase
+{
+    [HttpGet]
+    public async Task<List<<#T Name T#>>> GetAsync()
+    {
+        return await Dao.<#T Name T#>.GetAsync();
+    }
+
+    [HttpGet("<#O PK:/:{<#C CamelName C#>} O#>")]
+    public async Task<<#T Name T#>> GetByKeyAsync(<#O PK:, :<#C Type C#> <#C CamelName C#> O#>)
+    {
+        return await Dao.<#T Name T#>.GetByKeyAsync(<#O PK:, :<#C CamelName C#> O#>);
+    }
+
+    [HttpGet("first")]
+    public async Task<<#T Name T#>> GetFirstAsync()
+    {
+        return await Dao.<#T Name T#>.GetFirstAsync();
+    }
+
+    [HttpGet("count")]
+    public async Task<int> GetCountAsync()
+    {
+        return await Dao.<#T Name T#>.GetCountAsync();
+    }
+
+    [HttpPost]
+    public async Task<<#T Name T#>> InsertAsync(<#T Name T#> entity)
+    {
+        return await Dao.<#T Name T#>.InsertAsync(entity);
+    }
+
+    [HttpPut]
+    public async Task<int> UpdateAsync(<#T Name T#> entity)
+    {
+        return await Dao.<#T Name T#>.UpdateAsync(entity);
+    }
+
+    [HttpDelete("<#O PK:/:{<#C CamelName C#>} O#>")]
+    public async Task<int> DeleteByKeyAsync(<#O PK:, :<#C Type C#> <#C CamelName C#> O#>)
+    {
+        return await Dao.<#T Name T#>.DeleteByKeyAsync(<#O PK:, :<#C CamelName C#> O#>);
+    }
+}
+#endregion
+A#>
+
+#region ControllerHelper
+public static class ControllerHelper
+{
+    public static string GetSubClaimValue(this IEnumerable<Claim> claims) => GetSubClaimValue(claims, x => x);
+    
+    public static T GetSubClaimValue<T>(this IEnumerable<Claim> claims, Func<string, T> typeConverter)
+    {
+        var claim = GetClaimValue(claims, JwtRegisteredClaimNames.Sub);
+
+        if (claim == null)
+            return default;
+
+        return typeConverter(claim);
+    }
+
+    public static string GetClaimValue(this IEnumerable<Claim> claims, string type)
+    {
+        var claim = claims.FirstOrDefault(x => x.Type == type || x.Properties.Any(y => y.Value == type));
+
+        return claim?.Value;
+    }
+}
+#endregion
