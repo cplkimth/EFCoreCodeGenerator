@@ -13,7 +13,7 @@ namespace Chinook.WebApi.Controllers;
 [Route("api/[controller]")]
 [ApiController]
 [Produces("application/json")]
-[Authorize]
+
 public partial class AlbumController : ControllerBase
 {
     [HttpGet]
@@ -64,7 +64,7 @@ public partial class AlbumController : ControllerBase
 [Route("api/[controller]")]
 [ApiController]
 [Produces("application/json")]
-[Authorize]
+
 public partial class ArtistController : ControllerBase
 {
     [HttpGet]
@@ -115,7 +115,7 @@ public partial class ArtistController : ControllerBase
 [Route("api/[controller]")]
 [ApiController]
 [Produces("application/json")]
-[Authorize]
+
 public partial class CompanyController : ControllerBase
 {
     [HttpGet]
@@ -166,7 +166,7 @@ public partial class CompanyController : ControllerBase
 [Route("api/[controller]")]
 [ApiController]
 [Produces("application/json")]
-[Authorize]
+
 public partial class PlaylistController : ControllerBase
 {
     [HttpGet]
@@ -217,7 +217,7 @@ public partial class PlaylistController : ControllerBase
 [Route("api/[controller]")]
 [ApiController]
 [Produces("application/json")]
-[Authorize]
+
 public partial class PlaylistTrackController : ControllerBase
 {
     [HttpGet]
@@ -268,7 +268,7 @@ public partial class PlaylistTrackController : ControllerBase
 [Route("api/[controller]")]
 [ApiController]
 [Produces("application/json")]
-[Authorize]
+
 public partial class PlaylistTrackHistoryController : ControllerBase
 {
     [HttpGet]
@@ -319,7 +319,7 @@ public partial class PlaylistTrackHistoryController : ControllerBase
 [Route("api/[controller]")]
 [ApiController]
 [Produces("application/json")]
-[Authorize]
+
 public partial class TrackController : ControllerBase
 {
     [HttpGet]

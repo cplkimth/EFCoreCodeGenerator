@@ -1,4 +1,5 @@
 ﻿#region
+using System;
 using System.Linq;
 using EFCoreCodeGenerator.Schema;
 using EFCoreCodeGenerator.Utilities;
@@ -48,12 +49,25 @@ namespace EFCoreCodeGenerator.SchemaExtractors
                     column.Type = p.ClrType.ToClrName();
                     column.PrimaryKey = p.IsPrimaryKey();
                     column.ForeignKey = p.IsForeignKey();
-                    column.Identity = p.ValueGenerated == ValueGenerated.OnAdd;
+                    column.Identity = IsIdentityColumn(p);
                     column.Nullable = p.IsNullable;
                 }
             }
 
             return database;
+        }
+
+        private bool IsIdentityColumn(IProperty property)
+        {
+            try
+            {
+                var annotation = property.GetAnnotation("SqlServer:ValueGenerationStrategy");
+                return (SqlServerValueGenerationStrategy) annotation.Value == SqlServerValueGenerationStrategy.IdentityColumn;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }
