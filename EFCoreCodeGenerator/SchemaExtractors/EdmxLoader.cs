@@ -92,7 +92,6 @@ public class EdmxLoader
 
             Entities = itemCollection
                 .OfType<EntityType>()
-                .OrderBy(c => c.Name)
                 .ToList();
 
             EntityContainer = itemCollection.OfType<EntityContainer>().FirstOrDefault();
