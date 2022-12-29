@@ -1,10 +1,4 @@
-{
-	"Version":1,
-	"Scope":0,
-	"TargetPath":"Entities/Entity.cs",
-	"Overwritable": false
-}
-*** body starts here ***
+
 #region using
 using System;
 using System.Linq;
@@ -14,7 +8,7 @@ using System.ComponentModel.DataAnnotations;
  
 #endregion
 
-namespace <#V DataNamespace V#>;
+namespace Chinook.Data;
 
 public partial class Entity<T>
 {

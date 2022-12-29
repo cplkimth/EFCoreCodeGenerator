@@ -113,9 +113,19 @@ namespace EFCoreCodeGenerator.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] PartialData {
+        internal static byte[] PartialDao {
             get {
-                object obj = ResourceManager.GetObject("PartialData", resourceCulture);
+                object obj = ResourceManager.GetObject("PartialDao", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] PartialDaoT {
+            get {
+                object obj = ResourceManager.GetObject("PartialDaoT", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -126,6 +136,16 @@ namespace EFCoreCodeGenerator.Properties {
         internal static byte[] PartialEntity {
             get {
                 object obj = ResourceManager.GetObject("PartialEntity", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] PartialEntityT {
+            get {
+                object obj = ResourceManager.GetObject("PartialEntityT", resourceCulture);
                 return ((byte[])(obj));
             }
         }

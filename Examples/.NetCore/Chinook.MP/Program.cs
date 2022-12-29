@@ -1,4 +1,4 @@
 ﻿using Chinook.Data;
 using EFCoreCodeGenerator;
 
-CodeGenerator.Generate(@"C:\git\EFCoreCodeGenerator\Examples\.NetCore\Chinook.Data", new ChinookContext());
+CodeGenerator.Generate(@"d:\git\EFCoreCodeGenerator\Examples\.NetCore\Chinook.Data", new ChinookContext());

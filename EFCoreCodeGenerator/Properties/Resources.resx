@@ -133,10 +133,16 @@
   <data name="Package" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\templates\package.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="PartialData" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\templates\partialdata.jsonmp;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="PartialDao" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\templates\partialdao.jsonmp;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PartialDaoT" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\templates\partialdaot.jsonmp;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="PartialEntity" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\templates\partialentity.jsonmp;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PartialEntityT" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\templates\partialentityt.jsonmp;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

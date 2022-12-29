@@ -88,6 +88,7 @@
     <Compile Include="Dao\AlbumViewDao.cs" />
     <Compile Include="Dao\ArtistDao.cs" />
     <Compile Include="Dao\CompanyDao.cs" />
+    <Compile Include="Dao\EntityDao.cs" />
     <Compile Include="Dao\PlaylistDao.cs" />
     <Compile Include="Dao\PlaylistTrackDao.cs" />
     <Compile Include="Dao\PlaylistTrackHistoryDao.cs" />
@@ -98,11 +99,11 @@
     <Compile Include="Entities\AlbumView.cs" />
     <Compile Include="Entities\Artist.cs" />
     <Compile Include="Entities\Company.cs" />
+    <Compile Include="Entities\Entity.cs" />
     <Compile Include="Entities\Playlist.cs" />
     <Compile Include="Entities\PlaylistTrack.cs" />
     <Compile Include="Entities\PlaylistTrackHistory.cs" />
     <Compile Include="Entities\Track.cs" />
-    <Compile Include="EntityDao.cs" />
     <Compile Include="Playlist.cs">
       <DependentUpon>Chinook.tt</DependentUpon>
     </Compile>
@@ -133,8 +134,10 @@
     <None Include="templates\EF6_Data.jsonmp" />
     <None Include="templates\EF6_DbContextFactory.jsonmp" />
     <None Include="templates\Package.json" />
-    <None Include="templates\PartialData.jsonmp" />
+    <None Include="templates\PartialDao.jsonmp" />
+    <None Include="templates\PartialDaoT.jsonmp" />
     <None Include="templates\PartialEntity.jsonmp" />
+    <None Include="templates\PartialEntityT.jsonmp" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Chinook.Context.tt">

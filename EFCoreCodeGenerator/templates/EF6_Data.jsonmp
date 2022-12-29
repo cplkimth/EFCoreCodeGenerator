@@ -212,7 +212,7 @@ namespace <#V DataNamespace V#>
 	    /// <summary>
 	    /// 객체에 감사정보를 기입한다. 보통 ModifiedAt, ModifiedBy 등의 속성을 기록함.
 	    /// </summary>
-        public partial void WriteAuditInfo();
+        internal virtual partial void WriteAuditInfo();
 	}
 
 	#endregion
@@ -928,14 +928,14 @@ namespace <#V DataNamespace V#>
 		/// </summary>
 		/// <param name="entity">엔티티</param>
 		/// <param name="logType">로그 타입</param>
-		partial void WriteSingleLog(T entity, LogType logType);
+		protected virtual partial void OnSaved(T entity, LogType logType);
 
 		/// <summary>
 		/// 엔티티 컬렉션의 로그를 기록한다.
 		/// </summary>
 		/// <param name="entities">엔티티 컬렉션</param>
 		/// <param name="logType">로그 타입</param>
-		partial void WriteMultipleLog(IEnumerable<T> entities, LogType logType);
+		protected virtual partial void OnSaved(IEnumerable<T> entities, LogType logType);
 		#endregion
 
 		#region Insert / Update / Delete
@@ -956,7 +956,7 @@ namespace <#V DataNamespace V#>
 
 			context.SaveChanges();
 
-			WriteSingleLog(entity, LogType.Insert);
+			OnSaved(entity, LogType.Insert);
 
 			return entity;
 		}
@@ -989,7 +989,7 @@ namespace <#V DataNamespace V#>
 
 			int count = context.SaveChanges();
 
-			WriteMultipleLog(entities, LogType.Insert);
+			OnSaved(entities, LogType.Insert);
 
 			return count;
 		}
@@ -1014,7 +1014,7 @@ namespace <#V DataNamespace V#>
 
 			int count = context.SaveChanges();
 
-			WriteSingleLog(entity, LogType.Update);
+			OnSaved(entity, LogType.Update);
 
 			return count;
 		}
@@ -1047,7 +1047,7 @@ namespace <#V DataNamespace V#>
 
 			int count = context.SaveChanges();
 
-			WriteMultipleLog(entities, LogType.Update);
+			OnSaved(entities, LogType.Update);
 
 			return count;
 		}
@@ -1067,7 +1067,7 @@ namespace <#V DataNamespace V#>
             MarkToDelete(context, entity);
 			int count = context.SaveChanges();
 
-			WriteSingleLog(entity, LogType.Delete);
+			OnSaved(entity, LogType.Delete);
 			
 			return count;
 		}
@@ -1092,7 +1092,7 @@ namespace <#V DataNamespace V#>
 			MarkToDeleteMany(context, entities);
 			int count = context.SaveChanges();
 
-			WriteMultipleLog(entities, LogType.Delete);
+			OnSaved(entities, LogType.Delete);
 
 			return count;
 		}
@@ -1127,7 +1127,7 @@ namespace <#V DataNamespace V#>
 
 			int count = context.SaveChanges();
 
-			WriteMultipleLog(entities, LogType.Delete);
+			OnSaved(entities, LogType.Delete);
 
 			return count;
 		}
@@ -1296,7 +1296,7 @@ namespace <#V DataNamespace V#>
 	/// <summary>
 	/// 엔티티를 추가/수정/삭제 할 때 기록하는 로그의 종류
 	/// </summary>
-	internal enum LogType
+	public enum LogType
 	{
 		/// <summary>
 		/// 엔티티 삽입

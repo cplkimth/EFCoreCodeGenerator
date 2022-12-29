@@ -1,7 +1,7 @@
 {
 	"Version":1,
 	"Scope":0,
-	"TargetPath":"ef.g.cs",
+	"TargetPath":"data.g.cs",
 	"Overwritable": true
 }
 *** body starts here ***
@@ -1480,7 +1480,7 @@ internal class <#D DataContext D#>LoggerFactory : LoggerFactory
         public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)
         {
             _writer.Open();
-            _writer.WriteLine($"[{_counters[_writer.UniqueName]++:N0}] {DateTime.Now:s}");
+            _writer.WriteLine($"[{++_counters[_writer.UniqueName]:N0}] {DateTime.Now:s}");
             _writer.WriteLine(formatter(state, exception));
             _writer.WriteLine("--------------------------------------------------");
             _writer.WriteLine(Environment.NewLine);
