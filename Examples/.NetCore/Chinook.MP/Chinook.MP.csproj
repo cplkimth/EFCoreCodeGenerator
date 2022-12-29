@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\EFCoreCodeGenerator\EFCoreCodeGenerator.csproj" />
     <ProjectReference Include="C:\git\EFCoreCodeGenerator\EFCoreCodeGenerator\EFCoreCodeGenerator.csproj" />
   </ItemGroup>
 
