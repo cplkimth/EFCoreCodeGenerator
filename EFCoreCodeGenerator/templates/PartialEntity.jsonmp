@@ -14,17 +14,16 @@ using System.ComponentModel.DataAnnotations;
  
 #endregion
 
-namespace <#V DataNamespace V#>
-{
-    [MetadataType(typeof(<#T PascalName T#>MetaData))]
-    public partial class <#T PascalName T#>
-    {
-    }
+namespace <#V DataNamespace V#>;
 
-    #region <#T PascalName T#>Metadata
-    public class <#T PascalName T#>MetaData
-    {
-        <#O AL:[N][T][T]:public <#C Type C#> <#C Name C#> {get; set;} O#>
-    }
-    #endregion
+#region <#T PascalName T#>Metadata
+public class <#T PascalName T#>MetaData
+{
+    <#O AL:[N][T][T]:public <#C Type C#> <#C Name C#> {get; set;} O#>
+}
+#endregion
+
+[MetadataType(typeof(<#T PascalName T#>MetaData))]
+public partial class <#T PascalName T#>
+{
 }

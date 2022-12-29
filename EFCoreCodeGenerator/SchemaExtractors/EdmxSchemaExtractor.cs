@@ -1,4 +1,5 @@
 ﻿#region
+using System.Collections.Generic;
 using System.Data.Entity.Core.Metadata.Edm;
 using System.Linq;
 using EFCoreCodeGenerator.Schema;
@@ -10,7 +11,7 @@ namespace EFCoreCodeGenerator.SchemaExtractors
     {
         #region singleton
         private static EdmxSchemaExtractor _instance;
-
+        
         public static EdmxSchemaExtractor Instance
         {
             get
@@ -26,6 +27,8 @@ namespace EFCoreCodeGenerator.SchemaExtractors
         }
         #endregion
 
+        private Dictionary<string, HashSet<string>> _keySets;
+
         public Database Extract(string edmxPath)
         {
             var container = new EdmxLoader(edmxPath);
@@ -37,6 +40,8 @@ namespace EFCoreCodeGenerator.SchemaExtractors
             Database database = new Database(databaseName);
             database.DataContext = container.EntityContainer.Name;
 
+            LoadKeySets(container.Entities);
+
             foreach (var entity in container.Entities)
             {
                 // View 제거
@@ -45,16 +50,14 @@ namespace EFCoreCodeGenerator.SchemaExtractors
 
                 Table table = new Table(database, entity.Name);
 
-                var keyNames = entity.KeyProperties.Select(x => x.Name).ToHashSet();
-
                 foreach (var property in entity.Properties)
                 {
                     Column column = new Column(table, property.Name);
-                    column.PrimaryKey = keyNames.Contains(property.Name);
+                    column.PrimaryKey = _keySets[entity.Name].Contains(property.Name);
                     column.Type = property.PrimitiveType.ClrEquivalentType.Name;
                     column.Nullable = property.Nullable;
-                    column.ForeignKey = false;
-                    column.Identity = false; //property.IsStoreGeneratedComputed;
+                    column.ForeignKey = IsForeignKey(entity, property.Name);
+                    column.Identity = property.StoreGeneratedPattern == StoreGeneratedPattern.Identity;
 
                     if (property.Nullable && property.PrimitiveType.ClrEquivalentType.IsValueType)
                         column.Type += "?";
@@ -62,6 +65,25 @@ namespace EFCoreCodeGenerator.SchemaExtractors
             }
 
             return database;
+        }
+
+        private bool IsForeignKey(EntityType entity, string propertyName)
+        {
+            if (entity.DeclaredNavigationProperties.Count == 0)
+                return false;
+
+            return entity.DeclaredNavigationProperties.Any(x => _keySets.ContainsKey(x.Name) && _keySets[x.Name].Contains(propertyName));
+        }
+
+        private void LoadKeySets(List<EntityType> tables)
+        {
+            _keySets = new();
+            foreach (var table in tables)
+            {
+                _keySets.Add(table.Name, new HashSet<string>());
+                foreach (var key in table.KeyProperties)
+                    _keySets[table.Name].Add(key.Name);
+            }
         }
     }
 }
