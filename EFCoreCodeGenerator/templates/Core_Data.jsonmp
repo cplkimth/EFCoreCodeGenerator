@@ -216,7 +216,7 @@ public abstract partial class Entity<T> : UntypedEntity, IEditableObject where T
 	/// <summary>
 	/// 객체에 감사정보를 기입한다. 보통 ModifiedAt, ModifiedBy 등의 속성을 기록함.
 	/// </summary>
-    public partial void WriteAuditInfo();
+    protected internal virtual partial void WriteAuditInfo();
 }
 
 #endregion
