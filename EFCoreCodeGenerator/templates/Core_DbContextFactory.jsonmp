@@ -6,33 +6,50 @@
 }
 *** body starts here ***
 #region
-using System;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 #endregion
 
-namespace <#V DataNamespace V#>
+namespace <#V DataNamespace V#>;
+
+public class DbContextFactory
 {
-    public partial class DbContextFactory
+    public static string ConnectionString => ""; // TODO : Type ConnectionString here
+
+    private static PooledDbContextFactory<<#D DataContext D#>>? _factory;
+
+    public static <#D DataContext D#> Create()
     {
-        public static string ConnectionString => ""; // TODO : Type ConnectionString here
+        if (_factory == null)
+            InitializeFactory();
 
-        public static <#D DataContext D#> Create()
-        {
-            DbContextOptionsBuilder<<#D DataContext D#>> builder = new DbContextOptionsBuilder<<#D DataContext D#>>();
+        return _factory!.CreateDbContext();
+    }
 
-            OnConfigure(builder);
-            
-            // 콘솔에 로그 출력
-            // builder.UseLoggerFactory(<#D DataContext D#>LoggerFactory.GetInstance(LogPath.Console));
+    private static void InitializeFactory()
+    {
+        var optionsBuilder = new DbContextOptionsBuilder<<#D DataContext D#>>();
 
-            // 엔터티 상태를 트랙킹하지 않음
-            builder.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+        // 콘솔에 로그 출력
+#if DEBUG
+        optionsBuilder.UseLoggerFactory(<#D DataContext D#>LoggerFactory.GetInstance(
+            nameof(LogPath.Console),
+            nameof(LogPath.Debug),
+            @"<#D DataContext D#>.log"));
+#endif
 
-            builder.UseSqlServer(ConnectionString);
+        // 엔터티 상태를 트랙킹하지 않음
+        optionsBuilder.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
 
-            return new <#D DataContext D#>(builder.Options);
-        }
+        // QuerySplittingBehavior
+        var querySplittingBehavior = QuerySplittingBehavior.SplitQuery;
 
-        static partial void OnConfigure(DbContextOptionsBuilder<<#D DataContext D#>> builder);
+        var options = optionsBuilder
+            .UseSqlServer(
+                ConnectionString,
+                x => x.UseQuerySplittingBehavior(querySplittingBehavior))
+            .Options;
+
+        _factory = new PooledDbContextFactory<<#D DataContext D#>>(options);
     }
 }
