@@ -1,0 +1,512 @@
+﻿{
+  "DataContext": "ChinookContext",
+  "Tables": [
+    {
+      "Columns": [
+        {
+          "Type": "int",
+          "PrimaryKey": true,
+          "Identity": true,
+          "ForeignKey": false,
+          "Nullable": false,
+          "Name": "AlbumId"
+        },
+        {
+          "Type": "int",
+          "PrimaryKey": false,
+          "Identity": false,
+          "ForeignKey": true,
+          "Nullable": false,
+          "Name": "ArtistId"
+        },
+        {
+          "Type": "string",
+          "PrimaryKey": false,
+          "Identity": false,
+          "ForeignKey": false,
+          "Nullable": false,
+          "Name": "Title"
+        }
+      ],
+      "TableType": 0,
+      "Name": "Album"
+    },
+    {
+      "Columns": [
+        {
+          "Type": "int",
+          "PrimaryKey": true,
+          "Identity": true,
+          "ForeignKey": false,
+          "Nullable": false,
+          "Name": "ArtistId"
+        },
+        {
+          "Type": "int?",
+          "PrimaryKey": false,
+          "Identity": false,
+          "ForeignKey": true,
+          "Nullable": true,
+          "Name": "CompanyId"
+        },
+        {
+          "Type": "string",
+          "PrimaryKey": false,
+          "Identity": false,
+          "ForeignKey": false,
+          "Nullable": true,
+          "Name": "Name"
+        }
+      ],
+      "TableType": 0,
+      "Name": "Artist"
+    },
+    {
+      "Columns": [
+        {
+          "Type": "int",
+          "PrimaryKey": true,
+          "Identity": true,
+          "ForeignKey": false,
+          "Nullable": false,
+          "Name": "CompanyId"
+        },
+        {
+          "Type": "string",
+          "PrimaryKey": false,
+          "Identity": false,
+          "ForeignKey": false,
+          "Nullable": false,
+          "Name": "Name"
+        }
+      ],
+      "TableType": 0,
+      "Name": "Company"
+    },
+    {
+      "Columns": [
+        {
+          "Type": "int",
+          "PrimaryKey": true,
+          "Identity": true,
+          "ForeignKey": false,
+          "Nullable": false,
+          "Name": "PlaylistId"
+        },
+        {
+          "Type": "string",
+          "PrimaryKey": false,
+          "Identity": false,
+          "ForeignKey": false,
+          "Nullable": true,
+          "Name": "Name"
+        }
+      ],
+      "TableType": 0,
+      "Name": "Playlist"
+    },
+    {
+      "Columns": [
+        {
+          "Type": "int",
+          "PrimaryKey": true,
+          "Identity": false,
+          "ForeignKey": true,
+          "Nullable": false,
+          "Name": "PlaylistId"
+        },
+        {
+          "Type": "int",
+          "PrimaryKey": true,
+          "Identity": false,
+          "ForeignKey": true,
+          "Nullable": false,
+          "Name": "TrackId"
+        },
+        {
+          "Type": "bool?",
+          "PrimaryKey": false,
+          "Identity": false,
+          "ForeignKey": false,
+          "Nullable": true,
+          "Name": "Dummy"
+        }
+      ],
+      "TableType": 0,
+      "Name": "PlaylistTrack"
+    },
+    {
+      "Columns": [
+        {
+          "Type": "int",
+          "PrimaryKey": true,
+          "Identity": false,
+          "ForeignKey": true,
+          "Nullable": false,
+          "Name": "PlaylistId"
+        },
+        {
+          "Type": "int",
+          "PrimaryKey": true,
+          "Identity": false,
+          "ForeignKey": true,
+          "Nullable": false,
+          "Name": "TrackId"
+        },
+        {
+          "Type": "DateTime",
+          "PrimaryKey": true,
+          "Identity": false,
+          "ForeignKey": false,
+          "Nullable": false,
+          "Name": "WrittenAt"
+        }
+      ],
+      "TableType": 0,
+      "Name": "PlaylistTrackHistory"
+    },
+    {
+      "Columns": [
+        {
+          "Type": "int",
+          "PrimaryKey": true,
+          "Identity": true,
+          "ForeignKey": false,
+          "Nullable": false,
+          "Name": "TrackId"
+        },
+        {
+          "Type": "int?",
+          "PrimaryKey": false,
+          "Identity": false,
+          "ForeignKey": true,
+          "Nullable": true,
+          "Name": "AlbumId"
+        },
+        {
+          "Type": "long",
+          "PrimaryKey": false,
+          "Identity": false,
+          "ForeignKey": false,
+          "Nullable": false,
+          "Name": "BigIntCol"
+        },
+        {
+          "Type": "long?",
+          "PrimaryKey": false,
+          "Identity": false,
+          "ForeignKey": false,
+          "Nullable": true,
+          "Name": "BigIntColNull"
+        },
+        {
+          "Type": "byte[]",
+          "PrimaryKey": false,
+          "Identity": false,
+          "ForeignKey": false,
+          "Nullable": false,
+          "Name": "BinaryCol"
+        },
+        {
+          "Type": "byte[]",
+          "PrimaryKey": false,
+          "Identity": false,
+          "ForeignKey": false,
+          "Nullable": true,
+          "Name": "BinaryColNull"
+        },
+        {
+          "Type": "bool",
+          "PrimaryKey": false,
+          "Identity": false,
+          "ForeignKey": false,
+          "Nullable": false,
+          "Name": "BitCol"
+        },
+        {
+          "Type": "bool?",
+          "PrimaryKey": false,
+          "Identity": false,
+          "ForeignKey": false,
+          "Nullable": true,
+          "Name": "BitColNull"
+        },
+        {
+          "Type": "string",
+          "PrimaryKey": false,
+          "Identity": false,
+          "ForeignKey": false,
+          "Nullable": false,
+          "Name": "CharCol"
+        },
+        {
+          "Type": "string",
+          "PrimaryKey": false,
+          "Identity": false,
+          "ForeignKey": false,
+          "Nullable": true,
+          "Name": "CharColNull"
+        },
+        {
+          "Type": "DateTime",
+          "PrimaryKey": false,
+          "Identity": false,
+          "ForeignKey": false,
+          "Nullable": false,
+          "Name": "DateCol"
+        },
+        {
+          "Type": "DateTime?",
+          "PrimaryKey": false,
+          "Identity": false,
+          "ForeignKey": false,
+          "Nullable": true,
+          "Name": "DateColNull"
+        },
+        {
+          "Type": "DateTime",
+          "PrimaryKey": false,
+          "Identity": false,
+          "ForeignKey": false,
+          "Nullable": false,
+          "Name": "DateTimeCol"
+        },
+        {
+          "Type": "DateTime?",
+          "PrimaryKey": false,
+          "Identity": false,
+          "ForeignKey": false,
+          "Nullable": true,
+          "Name": "DateTimeColNull"
+        },
+        {
+          "Type": "decimal",
+          "PrimaryKey": false,
+          "Identity": false,
+          "ForeignKey": false,
+          "Nullable": false,
+          "Name": "DecimalCol"
+        },
+        {
+          "Type": "decimal?",
+          "PrimaryKey": false,
+          "Identity": false,
+          "ForeignKey": false,
+          "Nullable": true,
+          "Name": "DecimalColNull"
+        },
+        {
+          "Type": "double",
+          "PrimaryKey": false,
+          "Identity": false,
+          "ForeignKey": false,
+          "Nullable": false,
+          "Name": "FloatCol"
+        },
+        {
+          "Type": "double?",
+          "PrimaryKey": false,
+          "Identity": false,
+          "ForeignKey": false,
+          "Nullable": true,
+          "Name": "FloatColNull"
+        },
+        {
+          "Type": "Guid",
+          "PrimaryKey": false,
+          "Identity": false,
+          "ForeignKey": false,
+          "Nullable": false,
+          "Name": "GuidCol"
+        },
+        {
+          "Type": "Guid?",
+          "PrimaryKey": false,
+          "Identity": false,
+          "ForeignKey": false,
+          "Nullable": true,
+          "Name": "GuidColNull"
+        },
+        {
+          "Type": "string",
+          "PrimaryKey": false,
+          "Identity": false,
+          "ForeignKey": false,
+          "Nullable": false,
+          "Name": "Name"
+        },
+        {
+          "Type": "string",
+          "PrimaryKey": false,
+          "Identity": false,
+          "ForeignKey": false,
+          "Nullable": false,
+          "Name": "NcharCol"
+        },
+        {
+          "Type": "string",
+          "PrimaryKey": false,
+          "Identity": false,
+          "ForeignKey": false,
+          "Nullable": true,
+          "Name": "NcharColNull"
+        },
+        {
+          "Type": "string",
+          "PrimaryKey": false,
+          "Identity": false,
+          "ForeignKey": false,
+          "Nullable": false,
+          "Name": "NvarCharCol"
+        },
+        {
+          "Type": "string",
+          "PrimaryKey": false,
+          "Identity": false,
+          "ForeignKey": false,
+          "Nullable": false,
+          "Name": "NvarCharColNull"
+        },
+        {
+          "Type": "float",
+          "PrimaryKey": false,
+          "Identity": false,
+          "ForeignKey": false,
+          "Nullable": false,
+          "Name": "RealCol"
+        },
+        {
+          "Type": "float?",
+          "PrimaryKey": false,
+          "Identity": false,
+          "ForeignKey": false,
+          "Nullable": true,
+          "Name": "RealColNull"
+        },
+        {
+          "Type": "DateTime",
+          "PrimaryKey": false,
+          "Identity": false,
+          "ForeignKey": false,
+          "Nullable": false,
+          "Name": "SmallDateTimeCol"
+        },
+        {
+          "Type": "DateTime?",
+          "PrimaryKey": false,
+          "Identity": false,
+          "ForeignKey": false,
+          "Nullable": true,
+          "Name": "SmallDateTimeColNull"
+        },
+        {
+          "Type": "short",
+          "PrimaryKey": false,
+          "Identity": false,
+          "ForeignKey": false,
+          "Nullable": false,
+          "Name": "SmallIntCol"
+        },
+        {
+          "Type": "short?",
+          "PrimaryKey": false,
+          "Identity": false,
+          "ForeignKey": false,
+          "Nullable": true,
+          "Name": "SmallIntColNull"
+        },
+        {
+          "Type": "decimal",
+          "PrimaryKey": false,
+          "Identity": false,
+          "ForeignKey": false,
+          "Nullable": false,
+          "Name": "SmallMoneyCol"
+        },
+        {
+          "Type": "decimal?",
+          "PrimaryKey": false,
+          "Identity": false,
+          "ForeignKey": false,
+          "Nullable": true,
+          "Name": "SmallMoneyColNull"
+        },
+        {
+          "Type": "TimeSpan",
+          "PrimaryKey": false,
+          "Identity": false,
+          "ForeignKey": false,
+          "Nullable": false,
+          "Name": "TimeCol"
+        },
+        {
+          "Type": "TimeSpan?",
+          "PrimaryKey": false,
+          "Identity": false,
+          "ForeignKey": false,
+          "Nullable": true,
+          "Name": "TimeColNull"
+        },
+        {
+          "Type": "byte[]",
+          "PrimaryKey": false,
+          "Identity": false,
+          "ForeignKey": false,
+          "Nullable": false,
+          "Name": "TimeStampCol"
+        },
+        {
+          "Type": "byte",
+          "PrimaryKey": false,
+          "Identity": false,
+          "ForeignKey": false,
+          "Nullable": false,
+          "Name": "TinyIntCol"
+        },
+        {
+          "Type": "byte?",
+          "PrimaryKey": false,
+          "Identity": false,
+          "ForeignKey": false,
+          "Nullable": true,
+          "Name": "TinyIntColNull"
+        },
+        {
+          "Type": "byte[]",
+          "PrimaryKey": false,
+          "Identity": false,
+          "ForeignKey": false,
+          "Nullable": false,
+          "Name": "VarBinaryCol"
+        },
+        {
+          "Type": "byte[]",
+          "PrimaryKey": false,
+          "Identity": false,
+          "ForeignKey": false,
+          "Nullable": true,
+          "Name": "VarBinaryColNull"
+        },
+        {
+          "Type": "string",
+          "PrimaryKey": false,
+          "Identity": false,
+          "ForeignKey": false,
+          "Nullable": false,
+          "Name": "VarCharCol"
+        },
+        {
+          "Type": "string",
+          "PrimaryKey": false,
+          "Identity": false,
+          "ForeignKey": false,
+          "Nullable": true,
+          "Name": "VarCharColNull"
+        }
+      ],
+      "TableType": 0,
+      "Name": "Track"
+    }
+  ],
+  "Name": "Chinook"
+}

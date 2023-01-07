@@ -1,56 +1,55 @@
-namespace EFCoreCodeGenerator.Schema
+namespace EFCoreCodeGenerator.Schema;
+
+public enum LoopType
 {
-    public enum LoopType
-    {
-        /// <summary>
-        /// All
-        /// </summary>
-        AL,
+    /// <summary>
+    ///     All
+    /// </summary>
+    AL,
 
-        /// <summary>
-        /// Table
-        /// </summary>
-        TB,
+    /// <summary>
+    ///     Table
+    /// </summary>
+    TB,
 
-        /// <summary>
-        /// View
-        /// </summary>
-        VW,
+    /// <summary>
+    ///     View
+    /// </summary>
+    VW,
 
-        /// <summary>
-        /// Primary Key
-        /// </summary>
-        PK,
+    /// <summary>
+    ///     Primary Key
+    /// </summary>
+    PK,
 
-        /// <summary>
-        /// Non Primary Key
-        /// </summary>
-        NP,
+    /// <summary>
+    ///     Non Primary Key
+    /// </summary>
+    NP,
 
-        /// <summary>
-        /// Foreign Key
-        /// </summary>
-        FK,
+    /// <summary>
+    ///     Foreign Key
+    /// </summary>
+    FK,
 
-        /// <summary>
-        /// Foreign Key
-        /// </summary>
-        NF,
+    /// <summary>
+    ///     Foreign Key
+    /// </summary>
+    NF,
 
-        /// <summary>
-        /// Increament
-        /// </summary>
-        IN,
+    /// <summary>
+    ///     Increament
+    /// </summary>
+    IN,
 
-        /// <summary>
-        /// Non Increament
-        /// </summary>
-        NI,
-    }
+    /// <summary>
+    ///     Non Increament
+    /// </summary>
+    NI
+}
 
-    public enum TableType
-    {
-        Table,
-        View
-    }
+public enum TableType
+{
+    Table,
+    View
 }

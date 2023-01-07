@@ -1,44 +1,45 @@
-#region
+#region usings
 using System.Collections.Generic;
 using System.Text;
 #endregion
 
-namespace EFCoreCodeGenerator.Schema
+namespace EFCoreCodeGenerator.Schema;
+
+public class Database : SchemaElement
 {
-    public class Database : SchemaElement
+    public Database()
     {
-        public Database(string name)
-            : base(name)
-        {
-            Tables = new List<Table>();
-        }
+    }
 
-        public string DataContext { get; set; }
+    public Database(string name) : base(name)
+    {
+    }
 
-        public List<Table> Tables { get; private set; }
+    public string DataContext { get; set; }
 
-        public void SortTables()
-        {
-            Tables.Sort(CompareTables);
-        }
+    public List<Table> Tables { get; set; } = new();
 
-        private int CompareTables(Table x, Table y)
-        {
-            if (x.TableType != y.TableType)
-                return x.TableType.CompareTo(y.TableType);
+    public void SortTables()
+    {
+        Tables.Sort(CompareTables);
+    }
 
-            return x.Name.CompareTo(y.Name);
-        }
+    private int CompareTables(Table x, Table y)
+    {
+        if (x.TableType != y.TableType)
+            return x.TableType.CompareTo(y.TableType);
 
-        public override string ToString()
-        {
-            StringBuilder buffer = new StringBuilder();
-            buffer.AppendLine(Name);
-            foreach (Table table in Tables)
-                buffer.AppendLine("\t" + table);
-            buffer.AppendLine();
+        return x.Name.CompareTo(y.Name);
+    }
 
-            return buffer.ToString();
-        }
+    public override string ToString()
+    {
+        var buffer = new StringBuilder();
+        buffer.AppendLine(Name);
+        foreach (var table in Tables)
+            buffer.AppendLine("\t" + table);
+        buffer.AppendLine();
+
+        return buffer.ToString();
     }
 }

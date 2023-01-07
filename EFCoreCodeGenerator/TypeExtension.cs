@@ -7,7 +7,7 @@ namespace EFCoreCodeGenerator.Schema
 {
     public static class TypeExtension
     {
-        private static readonly Dictionary<Type, string> _types = new Dictionary<Type, string>();
+        private static readonly Dictionary<Type, string> _types = new();
 
         static TypeExtension()
         {
@@ -58,7 +58,33 @@ namespace EFCoreCodeGenerator.Schema
 
         public static string ToClrName(this string typeName)
         {
-            return ToClrName(Type.GetType(typeName));
+            if (typeName is "Byte[]")
+                return "byte[]";
+
+            var nonNullName = typeName.EndsWith("?") ? typeName[..^1] : typeName;
+            
+            var name = nonNullName switch
+            {
+                nameof(Boolean) => "bool",
+                nameof(SByte) => "sbyte",
+                nameof(Byte) => "byte",
+                nameof(Int16) => "short",
+                nameof(UInt16) => "ushort",
+                nameof(Int32) => "int",
+                nameof(UInt32) => "uint",
+                nameof(Int64) => "long",
+                nameof(UInt64) => "ulong",
+                nameof(Single) => "float",
+                nameof(Double) => "double",
+                nameof(Decimal) => "decimal",
+                nameof(String) => "string",
+                _ => nonNullName
+            };
+
+            if (typeName.EndsWith("?"))
+                name += "?";
+
+            return name;
         }
 
         public static string ToClrName(this Type type)

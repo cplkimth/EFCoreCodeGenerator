@@ -10,6 +10,7 @@ using System.Text.Json;
 using EFCoreCodeGenerator.Elements;
 using EFCoreCodeGenerator.Generators;
 using EFCoreCodeGenerator.Properties;
+using EFCoreCodeGenerator.Schema;
 using EFCoreCodeGenerator.SchemaExtractors;
 using Microsoft.EntityFrameworkCore;
 #endregion
@@ -27,10 +28,11 @@ public static class CodeGenerator
 
     private static DbContext _dbContext;
 
-    private static string _edmxPath;
     private static string _dataNamespace;
 
     private static string _templateDirectoryPath;
+
+    private static SchemaExtractor _schemaExtractor;
 
     // private static readonly HashSet<string> _resourceKeys = new();
 
@@ -40,7 +42,8 @@ public static class CodeGenerator
     /// <param name="dataProjectPath">Data 코드가 생성될 프로젝트의 경로. ex)C:\git\EFCoreCodeGenerator\Examples\ChinookCore.Data</param>
     /// <param name="dbContext">DbContext 객체</param>
     /// <param name="templateDirectory">템플릿이 생성될 프로젝트의 경로. ex)C:\git\EFCoreCodeGenerator\Examples\ChinookCore.MP</param>
-    public static void Generate(string dataProjectPath, DbContext dbContext, string templateDirectory = "templates") => GenerateCore(dataProjectPath, dbContext, null, templateDirectory);
+    public static void Generate(string dataProjectPath, DbContext dbContext, string templateDirectory = "templates") 
+        => GenerateCore(dataProjectPath, dbContext, null, templateDirectory, null);
 
     /// <summary>
     ///     MP 코드를 생성한다.
@@ -48,16 +51,39 @@ public static class CodeGenerator
     /// <param name="dataProjectPath">Data 코드가 생성될 프로젝트의 경로. ex)C:\git\EFCoreCodeGenerator\Examples\ChinookCore.Data</param>
     /// <param name="dataNamespace">데이터 프로젝트 네임스페이스</param>
     /// <param name="templateDirectory">템플릿이 생성될 프로젝트의 경로. ex)C:\git\EFCoreCodeGenerator\Examples\ChinookCore.MP</param>
-    public static void Generate(string dataProjectPath, string dataNamespace, string templateDirectory = "templates") => GenerateCore(dataProjectPath, null, dataNamespace, templateDirectory);
+    public static void Generate(string dataProjectPath, string dataNamespace, string templateDirectory = "templates") 
+        => GenerateCore(dataProjectPath, null, dataNamespace, templateDirectory, null);
 
-    private static void GenerateCore(string dataProjectPath, DbContext dbContext, string dataNamespace, string templateDirectory = "templates")
+    /// <summary>
+    ///     MP 코드를 생성한다.
+    /// </summary>
+    /// <param name="dataProjectPath">Data 코드가 생성될 프로젝트의 경로. ex)C:\git\EFCoreCodeGenerator\Examples\ChinookCore.Data</param>
+    /// <param name="dataNamespace">데이터 프로젝트 네임스페이스</param>
+    /// <param name="jsonPath">스키마 JSON 파일 경로</param>
+    /// <param name="templateDirectory">템플릿이 생성될 프로젝트의 경로. ex)C:\git\EFCoreCodeGenerator\Examples\ChinookCore.MP</param>
+    public static void GenerateFromJson(string dataProjectPath, string dataNamespace, string jsonPath, string templateDirectory = "templates") 
+        => GenerateCore(dataProjectPath, null, dataNamespace, templateDirectory, jsonPath);
+
+    private static void GenerateCore(string dataProjectPath, DbContext dbContext, string dataNamespace, string templateDirectory, string jsonPath)
     {
         _dataProjectPath = dataProjectPath;
         _dataNamespace = dataNamespace;
         _templateDirectoryPath = Path.Combine(_dataProjectPath, templateDirectory);
 
-        _dbContext = dbContext;
-        _edmxPath = Directory.GetFiles(_dataProjectPath, "*.edmx").FirstOrDefault();
+        if (dbContext != null)
+        {
+            _dbContext = dbContext;
+            _schemaExtractor = new DbContextSchemaExtractor(_dbContext);
+        }
+        else if (jsonPath != null)
+        {
+            _schemaExtractor = new JsonFileSchemaExtractor(jsonPath);
+        }
+        else
+        {
+            var edmxPath = Directory.GetFiles(_dataProjectPath, "*.edmx").FirstOrDefault();
+            _schemaExtractor = new EdmxSchemaExtractor(edmxPath);
+        }
 
         _version = _dbContext switch
         {
@@ -67,8 +93,7 @@ public static class CodeGenerator
 
         Console.WriteLine($"Files will be generated on [{dataProjectPath}]");
         Console.WriteLine($"with templates in [{_templateDirectoryPath}]");
-        string source = _dbContext != null ? _dbContext.ToString() : Path.GetFileName(_edmxPath);
-        Console.WriteLine($"using [{source}]");
+        Console.WriteLine($"using {_schemaExtractor.GetType().Name}.");
 
         Console.WriteLine("Generaing templates ...");
         WriteTemplateText();
@@ -142,11 +167,7 @@ public static class CodeGenerator
 
     private static void InflatePackage(Package package)
     {
-        var database = _dbContext switch
-        {
-            null => EdmxSchemaExtractor.Instance.Extract(_edmxPath),
-            _ => DbContextSchemaExtractor.Instance.Extract(_dbContext)
-        };
+        var database = _schemaExtractor.Extract();
 
         var templatePathes = Directory.GetFiles(_templateDirectoryPath, TemplatePostfix);
         foreach (var templatePath in templatePathes)
