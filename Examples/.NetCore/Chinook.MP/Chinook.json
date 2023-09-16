@@ -1,0 +1,156 @@
+{
+  "$id": "1",
+  "Tables": {
+    "$id": "2",
+    "$values": [
+      {
+        "$id": "3",
+        "Columns": {
+          "$id": "4",
+          "$values": [
+            {
+              "$id": "5",
+              "Table": {
+                "$ref": "3"
+              },
+              "Type": "int",
+              "PK": true,
+              "ID": true,
+              "FK": false,
+              "Null": false,
+              "Name": "AlbumId"
+            },
+            {
+              "$id": "6",
+              "Table": {
+                "$ref": "3"
+              },
+              "Type": "string",
+              "PK": false,
+              "ID": false,
+              "FK": false,
+              "Null": false,
+              "Name": "Title"
+            },
+            {
+              "$id": "7",
+              "Table": {
+                "$ref": "3"
+              },
+              "Type": "int",
+              "PK": false,
+              "ID": false,
+              "FK": true,
+              "Null": false,
+              "Name": "ArtistId"
+            }
+          ]
+        },
+        "Name": "Album"
+      },
+      {
+        "$id": "8",
+        "Columns": {
+          "$id": "9",
+          "$values": [
+            {
+              "$id": "10",
+              "Table": {
+                "$ref": "8"
+              },
+              "Type": "int",
+              "PK": true,
+              "ID": true,
+              "FK": false,
+              "Null": false,
+              "Name": "TrackId"
+            },
+            {
+              "$id": "11",
+              "Table": {
+                "$ref": "8"
+              },
+              "Type": "string",
+              "PK": false,
+              "ID": false,
+              "FK": false,
+              "Null": false,
+              "Name": "Name"
+            },
+            {
+              "$id": "12",
+              "Table": {
+                "$ref": "8"
+              },
+              "Type": "int",
+              "PK": false,
+              "ID": false,
+              "FK": true,
+              "Null": false,
+              "Name": "AlbumId"
+            },
+            {
+              "$id": "13",
+              "Table": {
+                "$ref": "8"
+              },
+              "Type": "Guid?",
+              "PK": false,
+              "ID": false,
+              "FK": false,
+              "Null": true,
+              "Name": "GuidColNull"
+            }
+          ]
+        },
+        "Name": "Track"
+      },
+      {
+        "$id": "14",
+        "Columns": {
+          "$id": "15",
+          "$values": [
+            {
+              "$id": "16",
+              "Table": {
+                "$ref": "14"
+              },
+              "Type": "int",
+              "PK": true,
+              "ID": false,
+              "FK": true,
+              "Null": false,
+              "Name": "PlaylistId"
+            },
+            {
+              "$id": "17",
+              "Table": {
+                "$ref": "14"
+              },
+              "Type": "int",
+              "PK": true,
+              "ID": false,
+              "FK": true,
+              "Null": false,
+              "Name": "TrackId"
+            },
+            {
+              "$id": "18",
+              "Table": {
+                "$ref": "14"
+              },
+              "Type": "string",
+              "PK": false,
+              "ID": false,
+              "FK": false,
+              "Null": false,
+              "Name": "Memo"
+            }
+          ]
+        },
+        "Name": "PlaylistTrack"
+      }
+    ]
+  },
+  "Name": "Chinook"
+}

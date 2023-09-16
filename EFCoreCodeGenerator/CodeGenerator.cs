@@ -96,7 +96,7 @@ public static class CodeGenerator
         Console.WriteLine($"using {_schemaExtractor.GetType().Name}.");
 
         Console.WriteLine("Generaing templates ...");
-        WriteTemplateText();
+        // WriteTemplateText();
 
         Console.WriteLine("Loading package");
         var package = LoadPackage();
@@ -169,9 +169,12 @@ public static class CodeGenerator
     {
         var database = _schemaExtractor.Extract();
 
-        var templatePathes = Directory.GetFiles(_templateDirectoryPath, TemplatePostfix);
+        var templatePathes = Directory.GetFiles(_templateDirectoryPath, TemplatePostfix, SearchOption.AllDirectories);
         foreach (var templatePath in templatePathes)
         {
+            if (Path.GetFileName(templatePath).StartsWith("_"))
+                continue;
+
             var templateText = File.ReadAllText(templatePath);
             Template template = Template.Load(templateText);
 

@@ -40,7 +40,7 @@ public enum LoopType
     /// <summary>
     ///     Increament
     /// </summary>
-    IN,
+    ID,
 
     /// <summary>
     ///     Non Increament

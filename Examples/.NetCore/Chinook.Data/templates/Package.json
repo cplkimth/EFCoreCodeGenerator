@@ -3,6 +3,14 @@
     {
       "Name": "ControllerNamespace",
       "Value": "Chinook.WebApi.Controllers"
+    },
+    {
+      "Name": "Solution",
+      "Value": "Chinook"
+    },
+    {
+      "Name": "DataProject",
+      "Value": "Data"
     }
   ]
 }

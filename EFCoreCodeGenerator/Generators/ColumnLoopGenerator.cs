@@ -33,7 +33,7 @@ namespace EFCoreCodeGenerator.Generators
                     columns = _table.Columns.FindAll(x => x.PrimaryKey == false);
                     break;
 
-                case LoopType.IN:
+                case LoopType.ID:
                     columns = _table.Columns.FindAll(x => x.Identity);
                     break;
 

@@ -12,7 +12,23 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\EFCoreCodeGeneratorV2\EFCoreCodeGeneratorV2.csproj" />
     <ProjectReference Include="..\..\..\EFCoreCodeGenerator\EFCoreCodeGenerator.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="templates\GlobalColumnTest.jsonmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="templates\ColumnTest.jsonmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="templates\TableTest.jsonmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="templates\variables.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

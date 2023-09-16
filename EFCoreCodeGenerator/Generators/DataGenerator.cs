@@ -65,7 +65,7 @@ namespace EFCoreCodeGenerator.Generators
                 }
             }
 
-            return buffer.ToString();
+            return buffer.ToString().Trim();
         }
 
         #region private methods

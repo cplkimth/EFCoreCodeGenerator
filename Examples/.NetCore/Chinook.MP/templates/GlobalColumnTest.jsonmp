@@ -1,0 +1,28 @@
+{
+	"Version":2,
+	"Scope":0,
+	"TargetPath":"D:/git/EFCoreCodeGenerator/Examples/.NetCore/Chinook.Data/tests/GlobalColumnTest.g.cs",
+	"Overwritable": true
+}
+*** body starts here ***
+namespace `DataProjectNamespace`;
+`T:`N`:
+public partial class `Name`Global
+{
+	// A
+	`A:`N`:public `Type` A_`CamelName` {get; set;} ``
+
+	// P
+	`A:`N`:public `Type` P_`CamelName` {get; set;} ``
+
+	// F
+	`A:`N`:public `Type` F_`CamelName` {get; set;} ``
+
+	// I
+	`A:`N`:public `Type` I_`CamelName` {get; set;} ``
+
+	// N
+	`A:`N`:public `Type` N_`CamelName` {get; set;} ``
+} ``
+
+// `T:`T`: // `Name` ``
