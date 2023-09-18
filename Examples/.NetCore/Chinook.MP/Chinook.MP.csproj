@@ -17,13 +17,25 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="templates\GlobalColumnTest.jsonmp">
+    <None Update="templates\Database.jsonmp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="templates\ColumnTest.jsonmp">
+    <None Update="templates\GlobalTableTest.jsonmp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="templates\TableTest.jsonmp">
+    <None Update="templates\GlobalColumnTest2.jsonmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="templates\Table.jsonmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="templates\__GlobalColumnTest.jsonmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="templates\__ColumnTest.jsonmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="templates\__TableTest.jsonmp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="templates\variables.json">

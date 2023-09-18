@@ -80,21 +80,21 @@ public static class CodeGenerator
 
             if (template.Scope == TemplateScope.Database)
             {
-                InflatePackageCore(template, database, null);
+                InflatePackageCore(template, database.Tables.ToArray());
             }
             else if (template.Scope == TemplateScope.Table)
             {
                 foreach (var table in database.Tables)
-                    InflatePackageCore(template, database, table);
+                    InflatePackageCore(template, table);
             }
         }
     }
 
-    private static void InflatePackageCore(Template template, Database database, Table tale)
+    private static void InflatePackageCore(Template template, params Table[] tables)
     {
-        var code = Generator.Generate(template.Body, database, tale);
+        var code = Generator.Generate(template.Body, tables);
                         
-        var pathToWrite = GetPathToWrite(template.TargetPath, tale?.Name??"");
+        var pathToWrite = GetPathToWrite(template.TargetPath, tables.Length > 0 ? tables[0].Name : "");
         WriteFileIfNone(pathToWrite, code, template.Overwritable);
         
         Console.WriteLine($"  => {Path.GetFileName(pathToWrite)}");

@@ -23,6 +23,6 @@ public partial class `Name`Global
 
 	// N
 	`A:`N`:public `Type` N_`CamelName` {get; set;} ``
-} ``
+} ```
 
-// `T:`T`: // `Name` ``
+// `T:`T`: // `Name` ```

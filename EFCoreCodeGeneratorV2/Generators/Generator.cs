@@ -6,56 +6,84 @@ namespace EFCoreCodeGeneratorV2.Generators;
 
 public static class Generator
 {
-    public static string Generate(string input, Database database, Table table)
+    public static string Generate(string template, params Table[] tables)
     {
-        StringBuilder builder = new (input);
+        StringBuilder builder = new (template);
 
         VariableManager.Instance.Fill(builder);
 
-        PerTable(input, table, builder);
-        
-        input = builder.ToString();
-        builder  = new (input);
-        PerDatabase(input, database, builder);
+        var tableMatches = Regex.Matches(template, "`T(.*?)T`", RegexOptions.Singleline);
+        foreach (Match tableMatch in tableMatches)
+        {
+            var replaced = PerTables(tableMatch.Groups[1].Value, tables);
+
+            builder.Replace(tableMatch.Value, replaced);
+        }
+
+#if DEBUG
+        Console.WriteLine(builder.ToString());
+#endif
 
         return builder.ToString();
     }
 
-    private static void PerTable(string input, Table table, StringBuilder builder)
+    private static string PerTables(string template, Table[] tables)
     {
-        var matches = Regex.Matches(input, "`(!??)([APFIN]):(.*?):(.*?)``", RegexOptions.Singleline);
-        foreach (Match match in matches)
+        StringBuilder builder = new();
+
+        foreach (var table in tables)
         {
-            var criteria = $"{match.Groups[1].Value}{match.Groups[2].Value}";
-            var columns = table.Search(criteria);
+            var replaced = PerTable(template, table);
 
-            List<string> lines = columns.ConvertAll(x => ReplaceColumn(x, match.Groups[4].Value));
-            var separator = BuildSeparator(match.Groups[3].Value);
-            var replacedText = string.Join(separator, lines);
+            replaced = ReplaceTable(replaced, table);
 
-            builder.Replace(match.Value, replacedText);
+            builder.AppendLine(replaced);
         }
+
+        return builder.ToString();
     }
 
-    private static void PerDatabase(string input, Database database, StringBuilder builder)
+    private static string PerTable(string template, Table table)
     {
-        var matches = Regex.Matches(input, "`T:(.*?):(.*?)``", RegexOptions.Singleline);
+        StringBuilder builder = new(template);
+
+        var columnMatches = Regex.Matches(template, "`(!??)([APFIN]):(.*?):(.*?)``", RegexOptions.Singleline);
+        foreach (Match columnMatch in columnMatches)
+        {
+            var criteria = $"{columnMatch.Groups[1].Value}{columnMatch.Groups[2].Value}";
+            var columns = table.Search(criteria);
+
+            List<string> lines = columns.ConvertAll(x => ReplaceColumn(x, columnMatch.Groups[4].Value));
+            var separator = BuildSeparator(columnMatch.Groups[3].Value);
+            var replacedText = string.Join(separator, lines);
+
+            builder.Replace(columnMatch.Value, replacedText);
+        }
+
+        return builder.ToString();
+    }
+
+    private static string PerDatabase(string template, Table[] tables)
+    {
+        StringBuilder builder = new(template);
+
+        var matches = Regex.Matches(template, "`T:(.*?):(.*?)``", RegexOptions.Singleline);
         foreach (Match match in matches)
         {
-            var tables = database.Tables;
-        
-            List<string> lines = tables.ConvertAll(x => ReplaceTable(x, match.Groups[2].Value));
+            List<string> lines = tables.ToList().ConvertAll(x => ReplaceTable(match.Groups[2].Value, x));
             var separator = BuildSeparator(match.Groups[1].Value);
             var replacedText = string.Join(separator, lines);
         
             builder.Replace(match.Value, replacedText);
         }
+
+        return builder.ToString();
     }
 
     private static string BuildSeparator(string template) 
         => template
-        .Replace("`N`", Environment.NewLine)
-        .Replace("`T`", "\t");
+        .Replace("[N]", Environment.NewLine)
+        .Replace("[T]", "\t");
 
     private static void ReplaceBaseModel(BaseModel baseModel, StringBuilder builder)
     {
@@ -64,7 +92,7 @@ public static class Generator
         builder.Replace("`CamelName`", baseModel.CamelName);
     }
 
-    private static string ReplaceTable(Table table, string template)
+    private static string ReplaceTable(string template, Table table)
     {
         StringBuilder builder = new(template);
         ReplaceBaseModel(table, builder);

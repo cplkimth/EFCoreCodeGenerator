@@ -1,0 +1,20 @@
+{
+	"Version":2,
+	"Scope":1,
+	"TargetPath":"D:/git/EFCoreCodeGenerator/Examples/.NetCore/Chinook.Data/tests/`Name`.g.cs",
+	"Overwritable": true
+}
+*** body starts here ***
+`T
+public partial class _`Name`
+{
+	// A : 
+	`A::public `Type` _`Name` {get; set;}
+	``
+	// P : 
+	`P::public `Type` _`Name`Key {get; set;}
+	``
+}
+T`
+
+`T public partial class _`Name` {} T`
