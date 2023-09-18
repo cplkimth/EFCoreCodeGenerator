@@ -1,6 +1,7 @@
 ﻿#region usings
 using System;
-using EFCoreCodeGenerator.Schema;
+using EFCoreCodeGenerator.Models;
+using EFCoreCodeGenerator.Utilities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 #endregion
 
@@ -13,11 +14,11 @@ public abstract class SchemaExtractorTests
     protected const string AlbumId = "AlbumId";
     protected const string ArtistId = "ArtistId";
 
-    protected static Database _database;
+    protected static Table[] _database;
 
-    protected Table Album => _database.Tables.Find(x => x.Name == AlbumTable);
-    protected Table Track => _database.Tables.Find(x => x.Name == "Track");
-    protected Table PlaylistTrack => _database.Tables.Find(x => x.Name == "PlaylistTrack");
+    protected Table Album => Array.Find(_database, x => x.Name == AlbumTable);
+    protected Table Track => Array.Find(_database, x => x.Name == "Track");
+    protected Table PlaylistTrack => Array.Find(_database, x => x.Name == "PlaylistTrack");
 
     [TestMethod]
     public void 테이블이_존재()
@@ -28,13 +29,13 @@ public abstract class SchemaExtractorTests
     [TestMethod]
     public void PK()
     {
-        Assert.AreEqual(AlbumPk, Album.Columns.Find(x => x.PrimaryKey).Name);
+        Assert.AreEqual(AlbumPk, Album.Columns.Find(x => x.PK).Name);
     }
 
     [TestMethod]
     public void 다중_PK()
     {
-        var pks = PlaylistTrack.Columns.FindAll(x => x.PrimaryKey);
+        var pks = PlaylistTrack.Columns.FindAll(x => x.PK);
 
         Assert.IsTrue(pks.Exists(x => x.Name == "PlaylistId"));
         Assert.IsTrue(pks.Exists(x => x.Name == "TrackId"));
@@ -43,22 +44,19 @@ public abstract class SchemaExtractorTests
     [TestMethod]
     public void Identity()
     {
-        if (GetType().Name == nameof(EdmxSchemaExtractorTests))
-            return;
-
-        Assert.AreEqual(AlbumId, Album.Columns.Find(x => x.Identity).Name);
+        Assert.AreEqual(AlbumId, Album.Columns.Find(x => x.ID).Name);
     }
 
     [TestMethod]
     public void FK()
     {
-        Assert.AreEqual(ArtistId, Album.Columns.Find(x => x.ForeignKey).Name);
+        Assert.AreEqual(ArtistId, Album.Columns.Find(x => x.FK).Name);
     }
 
     [TestMethod]
     public void 다중_FK()
     {
-        var fks = PlaylistTrack.Columns.FindAll(x => x.ForeignKey);
+        var fks = PlaylistTrack.Columns.FindAll(x => x.FK);
 
         Assert.IsTrue(fks.Exists(x => x.Name == "PlaylistId"));
         Assert.IsTrue(fks.Exists(x => x.Name == "TrackId"));

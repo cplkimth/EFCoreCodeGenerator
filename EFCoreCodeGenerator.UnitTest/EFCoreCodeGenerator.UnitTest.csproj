@@ -19,7 +19,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\EFCoreCodeGenerator\EFCoreCodeGenerator.csproj" />
-    <ProjectReference Include="D:\git\EFCoreCodeGenerator\Examples\.NetCore\Chinook.MP\Chinook.MP.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -12,7 +12,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Elements\" />
+    <Folder Include="Exceptions\" />
     <Folder Include="Generators\" />
+    <Folder Include="Models\" />
+    <Folder Include="SchemaExtractors\" />
   </ItemGroup>
 
 </Project>

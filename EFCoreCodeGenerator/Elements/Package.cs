@@ -1,44 +1,41 @@
-﻿#region
+﻿#region usings
 using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using EFCoreCodeGenerator.Exceptions;
 #endregion
 
-namespace EFCoreCodeGenerator.Elements
+namespace EFCoreCodeGenerator.Elements;
+
+public class Package
 {
-    public class Package
+    public Dictionary<string, string> Variables { get; set; } = new();
+
+    [JsonIgnore]
+    public string this[string variableName]
     {
-        public List<Variable> Variables { get; set; } = new List<Variable>();
-
-        [JsonIgnore]
-        public string this[string variableName]
+        get
         {
-            get
+            switch (variableName)
             {
-                switch (variableName)
-                {
-                    case "GeneratedTime":
-                        return DateTime.Now.ToString();
+                case "GeneratedTime":
+                    return DateTime.Now.ToString();
 
-                    case "BeginOnView":
-                    case "BeginOnNoCache":
-                    case "BeginOnVoidReturn":
-                        return "/*";
+                case "BeginOnView":
+                case "BeginOnNoCache":
+                case "BeginOnVoidReturn":
+                    return "/*";
 
-                    case "EndOnView":
-                    case "EndOnNoCache":
-                    case "EndOnVoidReturn":
-                        return "*/";
-                }
-
-                Variable variable = Variables.Find(x => x.Name == variableName);
-
-                if (variable == null)
-                    throw new VariableNotExistException(variableName);
-
-                return variable.Value;
+                case "EndOnView":
+                case "EndOnNoCache":
+                case "EndOnVoidReturn":
+                    return "*/";
             }
+
+            if (Variables.ContainsKey(variableName))
+                return Variables[variableName];
+
+            throw new VariableNotExistException(variableName);
         }
     }
 }

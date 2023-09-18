@@ -12,7 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\EFCoreCodeGeneratorV2\EFCoreCodeGeneratorV2.csproj" />
     <ProjectReference Include="..\..\..\EFCoreCodeGenerator\EFCoreCodeGenerator.csproj" />
   </ItemGroup>
 

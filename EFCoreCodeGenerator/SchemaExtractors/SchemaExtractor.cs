@@ -1,11 +1,11 @@
 ﻿#region usings
-using System.Text.Json;
-using EFCoreCodeGenerator.Schema;
 #endregion
+
+using EFCoreCodeGenerator.Models;
 
 namespace EFCoreCodeGenerator.SchemaExtractors;
 
 public abstract class SchemaExtractor
 {
-    public abstract Database Extract();
+    public abstract Table[] Extract();
 }

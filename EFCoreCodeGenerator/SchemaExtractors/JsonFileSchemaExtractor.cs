@@ -1,7 +1,8 @@
 ﻿#region usings
 using System.IO;
 using System.Text.Json;
-using EFCoreCodeGenerator.Schema;
+using System.Text.Json.Serialization;
+using EFCoreCodeGenerator.Models;
 #endregion
 
 namespace EFCoreCodeGenerator.SchemaExtractors;
@@ -15,11 +16,16 @@ public class JsonFileSchemaExtractor : SchemaExtractor
         _jsonFilePath = jsonFilePath;
     }
 
-    public override Database Extract()
+    public override Table[] Extract()
     {
         var json = File.ReadAllText(_jsonFilePath);
-        var database = JsonSerializer.Deserialize<Database>(json);
 
-        return database;
+        JsonSerializerOptions options = new()
+                                        {
+                                            ReferenceHandler = ReferenceHandler.Preserve
+                                        };
+        var tables = JsonSerializer.Deserialize<Table[]>(json, options);
+
+        return tables;
     }
 }
