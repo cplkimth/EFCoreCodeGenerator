@@ -1,0 +1,25 @@
+{
+	"Version":2,
+	"Scope":0,
+	"TargetPath":"`DataProjectDirectory`/Entities/Entity.cs",
+	"Overwritable": false
+}
+*** body starts here ***
+#region using
+using System;
+using System.Linq;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
+ 
+#endregion
+
+namespace `DataProjectNamespace`;
+
+public partial class Entity<T>
+{
+    public partial void WriteAuditInfo()
+    {
+		// TODO : 객체에 감사정보를 기입한다. 보통 ModifiedAt, ModifiedBy 등의 속성을 기록함.
+    }
+}

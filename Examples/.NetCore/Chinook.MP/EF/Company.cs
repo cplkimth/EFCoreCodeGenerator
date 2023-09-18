@@ -3,18 +3,11 @@
 using System;
 using System.Collections.Generic;
 
-namespace Chinook.Data
+namespace Chinook.Data;
+
+public partial class Company
 {
-    public partial class Company
-    {
-        public Company()
-        {
-            Artists = new HashSet<Artist>();
-        }
+    public int CompanyId { get; set; }
 
-        public int CompanyId { get; set; }
-        public string Name { get; set; }
-
-        public virtual ICollection<Artist> Artists { get; set; }
-    }
+    public string Name { get; set; }
 }

@@ -16,16 +16,15 @@
 		<RepositoryUrl>https://github.com/cplkimth/EFCoreCodeGenerator.git</RepositoryUrl>
 		<PackageIcon>EFCoreCodeGenerator.png</PackageIcon>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<Version>3.1.0</Version>
+		<Version>4.0.0</Version>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 		<AssemblyVersion></AssemblyVersion>
 		<FileVersion></FileVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="EntityFramework" Version="6.4.4" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.1" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.1" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.11" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.11" />
 	</ItemGroup>
 
 	<ItemGroup>

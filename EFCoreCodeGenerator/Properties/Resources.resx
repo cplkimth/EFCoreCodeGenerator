@@ -118,31 +118,25 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="Core_Data" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\templates\core_data.jsonmp;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="Data" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\templates\Data.jsonmp;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="Core_DbContextFactory" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\templates\core_dbcontextfactory.jsonmp;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="DbContextFactory" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\templates\DbContextFactory.jsonmp;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="EF6_Data" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\templates\ef6_data.jsonmp;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="Entity" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\templates\Entity.jsonmp;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="EF6_DbContextFactory" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\templates\ef6_dbcontextfactory.jsonmp;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Package" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\templates\package.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="EntityDao" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\templates\EntityDao.jsonmp;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="PartialDao" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\templates\partialdao.jsonmp;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="PartialDaoT" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\templates\partialdaot.jsonmp;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>..\templates\PartialDao.jsonmp;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="PartialEntity" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\templates\partialentity.jsonmp;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>..\templates\PartialEntity.jsonmp;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="PartialEntityT" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\templates\partialentityt.jsonmp;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="Variables" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\templates\Variables.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

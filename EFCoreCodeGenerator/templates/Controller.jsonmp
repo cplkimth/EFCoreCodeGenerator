@@ -1,0 +1,93 @@
+{
+	"Version":2,
+	"Scope":0,
+	"TargetPath":"../Chinook.WebApi/Controllers/Controller.g.cs",
+	"Overwritable": true
+}
+*** body starts here ***
+#region using
+using `DataProjectNamespace`;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+#endregion
+
+namespace `ControllerProjectNamespace`;
+
+`T
+#region `Name`Controller
+[Route("api/[controller]")]
+[ApiController]
+[Produces("application/json")]
+[Authorize]
+public partial class `Name`Controller : ControllerBase
+{
+    [HttpGet]
+    public async Task<List<`Name`>> GetAsync()
+    {
+        return await Dao.`Name`.GetAsync();
+    }
+
+    [HttpGet("`P:/:{`CamelName`} ``")]
+    public async Task<`Name`> GetByKeyAsync(`P:, :`Type` `CamelName` ``)
+    {
+        return await Dao.`Name`.GetByKeyAsync(`P:, :`CamelName` ``);
+    }
+
+    [HttpGet("first")]
+    public async Task<`Name`> GetFirstAsync()
+    {
+        return await Dao.`Name`.GetFirstAsync();
+    }
+
+    [HttpGet("count")]
+    public async Task<int> GetCountAsync()
+    {
+        return await Dao.`Name`.GetCountAsync();
+    }
+
+    [HttpPost]
+    public async Task<`Name`> InsertAsync(`Name` entity)
+    {
+        return await Dao.`Name`.InsertAsync(entity);
+    }
+
+    [HttpPut]
+    public async Task<int> UpdateAsync(`Name` entity)
+    {
+        return await Dao.`Name`.UpdateAsync(entity);
+    }
+
+    [HttpDelete("`P:/:{`CamelName`} ``")]
+    public async Task<int> DeleteByKeyAsync(`P:, :`Type` `CamelName` ``)
+    {
+        return await Dao.`Name`.DeleteByKeyAsync(`P:, :`CamelName` ``);
+    }
+}
+#endregion
+T`
+
+#region ControllerHelper
+public static class ControllerHelper
+{
+    public static string GetSubClaimValue(this IEnumerable<Claim> claims) => GetSubClaimValue(claims, x => x);
+    
+    public static T GetSubClaimValue<T>(this IEnumerable<Claim> claims, Func<string, T> typeConverter)
+    {
+        var claim = GetClaimValue(claims, JwtRegisteredClaimNames.Sub);
+
+        if (claim == null)
+            return default;
+
+        return typeConverter(claim);
+    }
+
+    public static string GetClaimValue(this IEnumerable<Claim> claims, string type)
+    {
+        var claim = claims.FirstOrDefault(x => x.Type == type || x.Properties.Any(y => y.Value == type));
+
+        return claim?.Value;
+    }
+}
+#endregion

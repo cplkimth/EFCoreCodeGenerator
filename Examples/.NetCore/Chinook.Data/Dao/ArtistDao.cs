@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 #endregion
 
-namespace Chinook.Data
+namespace Chinook.Data;
+
+
+public partial class ArtistDao
 {
-    public partial class ArtistDao
-    {
-        
-    }
 }
+

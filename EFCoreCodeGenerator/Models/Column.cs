@@ -18,4 +18,6 @@ public class Column : BaseModel
     public bool ID { get; init; }
     public bool FK { get; init; }
     public bool Null { get; init; }
+
+    public string TableName { get; init; }
 }

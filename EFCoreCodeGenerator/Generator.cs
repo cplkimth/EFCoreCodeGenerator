@@ -19,6 +19,9 @@ public static class Generator
         {
             var replaced = InflateTables(tableMatch.Groups[1].Value, tables);
 
+#if DEBUG
+            Console.WriteLine(replaced);
+#endif
             builder.Replace(tableMatch.Value, replaced);
         }
 
@@ -91,6 +94,7 @@ public static class Generator
         ReplaceBaseModel(column, builder);
 
         builder.Replace("`Type`", column.Type);
+        builder.Replace("`TableName`", column.TableName);
 
         return builder.ToString();
     }

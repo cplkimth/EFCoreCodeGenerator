@@ -37,7 +37,8 @@ public class DbContextSchemaExtractor : SchemaExtractor
                                  PK = p.IsPrimaryKey(),
                                  FK  = p.IsForeignKey(),
                                  ID = IsIdentityColumn(p),
-                                 Null = p.IsNullable
+                                 Null = p.IsNullable,
+                                 TableName = entityType.ClrType.Name
                              };
                 table.Columns.Add(column);
             }

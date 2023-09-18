@@ -15,5 +15,7 @@ namespace Chinook.Data
         Task<List<Album_SearchResult>> Album_SearchAsync(int? ArtistId, string Title, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default);
         Task<int> InitializeAsync(OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default);
         Task<List<Track_SearchResult>> Track_SearchAsync(string Name, int? ArtistId, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default);
+        Task<int> usp_GetMaxIdAsync(string Entity, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default);
+        Task<List<usp_GetSystemTimeResult>> usp_GetSystemTimeAsync(OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default);
     }
 }

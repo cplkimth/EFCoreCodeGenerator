@@ -3,14 +3,17 @@
 using System;
 using System.Collections.Generic;
 
-namespace Chinook.Data
-{
-    public partial class PlaylistTrackHistory
-    {
-        public int PlaylistId { get; set; }
-        public int TrackId { get; set; }
-        public DateTime WrittenAt { get; set; }
+namespace Chinook.Data;
 
-        public virtual PlaylistTrack PlaylistTrack { get; set; }
-    }
+public partial class PlaylistTrackHistory
+{
+    public int PlaylistId { get; set; }
+
+    public int TrackId { get; set; }
+
+    public DateTime WrittenAt { get; set; }
+
+    public string Memo { get; set; }
+
+    public virtual PlaylistTrack PlaylistTrack { get; set; }
 }

@@ -1,53 +1,68 @@
 ﻿#region usings
 using System;
+using System.Collections.Generic;
+using System.Collections;
+using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Text.Json;
 using System.Text.RegularExpressions;
 using EFCoreCodeGenerator.Elements;
 using EFCoreCodeGenerator.Models;
+using EFCoreCodeGenerator.Properties;
 using EFCoreCodeGenerator.SchemaExtractors;
 using EFCoreCodeGenerator.Utilities;
 using Microsoft.EntityFrameworkCore;
+using System.Runtime.CompilerServices;
 #endregion
 
 namespace EFCoreCodeGenerator;
 
 public static class CodeGenerator
 {
-    private const string TemplatePostfix = "*.jsonmp";
+    private const string TemplatePostfix = ".jsonmp";
+    
+    private static string _templateDirectoryPath;
 
-    private const string DefaultTmplateDirectory = "templates";
+    private static string _solutionDirectoryPath;
 
-    private static string _templateDirectory;
-
-    private static string _solutionDirectory;
-
-    public static string Generate(DbContext dbContext, string templateDirectory = DefaultTmplateDirectory)
+    public static string Generate(DbContext dbContext, [CallerFilePath] string templateDirectoryPath = null)
     {
         var schemaExtractor = new DbContextSchemaExtractor(dbContext);
 
-        return GenerateCore(schemaExtractor, templateDirectory, dbContext);
+        return GenerateCore(schemaExtractor, templateDirectoryPath, dbContext);
     }
 
-    public static string Generate(string modelFilePath, string templateDirectory = DefaultTmplateDirectory)
+    public static string Generate(string modelFilePath, [CallerFilePath] string templateDirectoryPath = null)
     {
         var schemaExtractor = new JsonFileSchemaExtractor(modelFilePath);
 
-        return GenerateCore(schemaExtractor, templateDirectory, null);
+        return GenerateCore(schemaExtractor, templateDirectoryPath, null);
     }
 
-    private static string GenerateCore(SchemaExtractor schemaExtractor, string templateDirectory, DbContext dbContext)
+    private static string GenerateCore(SchemaExtractor schemaExtractor, string templateDirectoryPath, DbContext dbContext)
     {
-        _templateDirectory = templateDirectory;
-        _solutionDirectory = Utility.GetSolutionRoot().FullName;
+        if (Directory.Exists(templateDirectoryPath) == false)
+        {
+            _templateDirectoryPath = Utility.GetTemplateDirectory(templateDirectoryPath);
 
-        VariableManager.Instance.Inialize(_templateDirectory, dbContext);
+            if (Directory.Exists(_templateDirectoryPath) == false)
+            {
+                Console.WriteLine("Generaing templates ...");
+                WriteTemplateText();
+            }
+        }
+        else
+        {
+            _templateDirectoryPath = templateDirectoryPath;
+        }
+
+        _solutionDirectoryPath = Utility.GetSolutionRoot().FullName;
+
+        VariableManager.Instance.Inialize(_templateDirectoryPath, dbContext);
 
         var tables = schemaExtractor.Extract();
-
-        Console.WriteLine("Generaing templates ...");
-        // WriteTemplateText();
 
         Console.WriteLine("Inflating templates ...");
         InflatePackage(tables);
@@ -57,11 +72,41 @@ public static class CodeGenerator
         return JsonSerializer.Serialize(tables);
     }
 
+    private static void WriteTemplateText()
+    {
+        var resourceKeys = new HashSet<string>();
+
+        foreach (DictionaryEntry entry in Resources.ResourceManager.GetResourceSet(CultureInfo.CurrentCulture, true, true))
+        {
+            var fileName = (string)entry.Key;
+            resourceKeys.Add(fileName);
+        }
+
+        foreach (var resourceKey in resourceKeys)
+        {
+            string extension = resourceKey switch
+            {
+                "Variables" => ".json",
+                _ => TemplatePostfix
+            };
+            string templatePath = Path.Combine(_templateDirectoryPath, resourceKey) + extension;
+
+            if (File.Exists(templatePath))
+                continue;
+
+            var resource = (byte[])Resources.ResourceManager.GetObject(resourceKey, CultureInfo.CurrentCulture);
+            var templateText = Encoding.UTF8.GetString(resource);
+            WriteFileIfNone(templatePath, templateText, false);
+
+            Console.WriteLine($"\t[{Path.GetFileNameWithoutExtension(templatePath)}] has generated at {templatePath}.");
+        }
+    }
+
     private static void InflatePackage(Table[] tables)
     {
         var templatePathes = Directory
-            .GetFiles(_templateDirectory, TemplatePostfix, SearchOption.AllDirectories)
-            .Where(x => Path.GetFileName((string) x).StartsWith("_") == false);
+            .GetFiles(_templateDirectoryPath, $"*{TemplatePostfix}", SearchOption.AllDirectories)
+            .Where(x => Path.GetFileName(x).StartsWith("_") == false);
 
         foreach (var templatePath in templatePathes)
         {
@@ -102,7 +147,7 @@ public static class CodeGenerator
         if (pathToWrite.Contains(":") || pathToWrite.StartsWith("/"))
             return pathToWrite;
 
-        return Path.Combine(_solutionDirectory, pathToWrite);
+        return Path.Combine(_solutionDirectoryPath, pathToWrite);
     }
 
     private static void WriteFileIfNone(string path, string code, bool overwritable)

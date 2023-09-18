@@ -3,20 +3,17 @@
 using System;
 using System.Collections.Generic;
 
-namespace Chinook.Data
+namespace Chinook.Data;
+
+public partial class Album
 {
-    public partial class Album
-    {
-        public Album()
-        {
-            Tracks = new HashSet<Track>();
-        }
+    public int AlbumId { get; set; }
 
-        public int AlbumId { get; set; }
-        public string Title { get; set; }
-        public int ArtistId { get; set; }
+    public string Title { get; set; }
 
-        public virtual Artist Artist { get; set; }
-        public virtual ICollection<Track> Tracks { get; set; }
-    }
+    public int ArtistId { get; set; }
+
+    public virtual Artist Artist { get; set; }
+
+    public virtual ICollection<Track> Tracks { get; set; } = new List<Track>();
 }

@@ -8,18 +8,19 @@ using System.ComponentModel.DataAnnotations;
  
 #endregion
 
-namespace Chinook.Data
-{
-    [MetadataType(typeof(PlaylistMetaData))]
-    public partial class Playlist
-    {
-    }
+namespace Chinook.Data;
 
-    #region PlaylistMetadata
-    public class PlaylistMetaData
-    {
-        public int PlaylistId {get; set;}
-		public string Name {get; set;}
-    }
-    #endregion
+
+#region PlaylistMetadata
+public class PlaylistMetaData
+{
+    public int PlaylistId {get; set;} 
+		public string Name {get; set;} 
 }
+#endregion
+
+[MetadataType(typeof(PlaylistMetaData))]
+public partial class Playlist
+{
+}
+

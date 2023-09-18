@@ -8,18 +8,19 @@ using System.ComponentModel.DataAnnotations;
  
 #endregion
 
-namespace Chinook.Data
-{
-    [MetadataType(typeof(CompanyMetaData))]
-    public partial class Company
-    {
-    }
+namespace Chinook.Data;
 
-    #region CompanyMetadata
-    public class CompanyMetaData
-    {
-        public int CompanyId {get; set;}
-		public string Name {get; set;}
-    }
-    #endregion
+
+#region CompanyMetadata
+public class CompanyMetaData
+{
+    public int CompanyId {get; set;} 
+		public string Name {get; set;} 
 }
+#endregion
+
+[MetadataType(typeof(CompanyMetaData))]
+public partial class Company
+{
+}
+

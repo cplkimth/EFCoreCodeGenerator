@@ -3,21 +3,19 @@
 using System;
 using System.Collections.Generic;
 
-namespace Chinook.Data
+namespace Chinook.Data;
+
+public partial class PlaylistTrack
 {
-    public partial class PlaylistTrack
-    {
-        public PlaylistTrack()
-        {
-            PlaylistTrackHistories = new HashSet<PlaylistTrackHistory>();
-        }
+    public int PlaylistId { get; set; }
 
-        public int PlaylistId { get; set; }
-        public int TrackId { get; set; }
-        public bool? Dummy { get; set; }
+    public int TrackId { get; set; }
 
-        public virtual Playlist Playlist { get; set; }
-        public virtual Track Track { get; set; }
-        public virtual ICollection<PlaylistTrackHistory> PlaylistTrackHistories { get; set; }
-    }
+    public string Memo { get; set; }
+
+    public virtual Playlist Playlist { get; set; }
+
+    public virtual ICollection<PlaylistTrackHistory> PlaylistTrackHistories { get; set; } = new List<PlaylistTrackHistory>();
+
+    public virtual Track Track { get; set; }
 }

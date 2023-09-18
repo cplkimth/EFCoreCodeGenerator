@@ -36,6 +36,7 @@ namespace Chinook.Data
         {
             modelBuilder.Entity<Album_SearchResult>().HasNoKey().ToView(null);
             modelBuilder.Entity<Track_SearchResult>().HasNoKey().ToView(null);
+            modelBuilder.Entity<usp_GetSystemTimeResult>().HasNoKey().ToView(null);
         }
     }
 
@@ -128,6 +129,53 @@ namespace Chinook.Data
                 parameterreturnValue,
             };
             var _ = await _context.SqlQueryAsync<Track_SearchResult>("EXEC @returnValue = [dbo].[Track_Search] @Name, @ArtistId", sqlParameters, cancellationToken);
+
+            returnValue?.SetValue(parameterreturnValue.Value);
+
+            return _;
+        }
+
+        public virtual async Task<int> usp_GetMaxIdAsync(string Entity, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default)
+        {
+            var parameterreturnValue = new SqlParameter
+            {
+                ParameterName = "returnValue",
+                Direction = System.Data.ParameterDirection.Output,
+                SqlDbType = System.Data.SqlDbType.Int,
+            };
+
+            var sqlParameters = new []
+            {
+                new SqlParameter
+                {
+                    ParameterName = "Entity",
+                    Size = 200,
+                    Value = Entity ?? Convert.DBNull,
+                    SqlDbType = System.Data.SqlDbType.NVarChar,
+                },
+                parameterreturnValue,
+            };
+            var _ = await _context.Database.ExecuteSqlRawAsync("EXEC @returnValue = [dbo].[usp_GetMaxId] @Entity", sqlParameters, cancellationToken);
+
+            returnValue?.SetValue(parameterreturnValue.Value);
+
+            return _;
+        }
+
+        public virtual async Task<List<usp_GetSystemTimeResult>> usp_GetSystemTimeAsync(OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default)
+        {
+            var parameterreturnValue = new SqlParameter
+            {
+                ParameterName = "returnValue",
+                Direction = System.Data.ParameterDirection.Output,
+                SqlDbType = System.Data.SqlDbType.Int,
+            };
+
+            var sqlParameters = new []
+            {
+                parameterreturnValue,
+            };
+            var _ = await _context.SqlQueryAsync<usp_GetSystemTimeResult>("EXEC @returnValue = [dbo].[usp_GetSystemTime]", sqlParameters, cancellationToken);
 
             returnValue?.SetValue(parameterreturnValue.Value);
 

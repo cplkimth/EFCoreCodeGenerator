@@ -6,6 +6,8 @@ namespace EFCoreCodeGenerator.Utilities;
 
 public static class Utility
 {
+    private const string DefaultTemplateDirectory = "templates";
+
     public static DirectoryInfo GetSolutionRoot(string currentPath = null)
     {
         var directory = new DirectoryInfo(currentPath ?? Directory.GetCurrentDirectory());
@@ -25,5 +27,22 @@ public static class Utility
             return true;
 
         return false;
+    }
+
+    public static string GetTemplateDirectory(string templateDirectoryPath)
+    {
+        var current = new FileInfo(templateDirectoryPath).Directory;
+
+        while (true)
+        {
+            var projectFile  = current.GetFiles("*.csproj").FirstOrDefault();
+
+            if (projectFile != null)
+                break;
+
+            current = current.Parent;
+        }
+
+        return Path.Combine(current.FullName, DefaultTemplateDirectory);
     }
 }

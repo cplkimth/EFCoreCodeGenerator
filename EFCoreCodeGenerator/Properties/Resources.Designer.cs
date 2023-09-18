@@ -63,9 +63,9 @@ namespace EFCoreCodeGenerator.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] Core_Data {
+        internal static byte[] Data {
             get {
-                object obj = ResourceManager.GetObject("Core_Data", resourceCulture);
+                object obj = ResourceManager.GetObject("Data", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace EFCoreCodeGenerator.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] Core_DbContextFactory {
+        internal static byte[] DbContextFactory {
             get {
-                object obj = ResourceManager.GetObject("Core_DbContextFactory", resourceCulture);
+                object obj = ResourceManager.GetObject("DbContextFactory", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -83,9 +83,9 @@ namespace EFCoreCodeGenerator.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] EF6_Data {
+        internal static byte[] Entity {
             get {
-                object obj = ResourceManager.GetObject("EF6_Data", resourceCulture);
+                object obj = ResourceManager.GetObject("Entity", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -93,19 +93,9 @@ namespace EFCoreCodeGenerator.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] EF6_DbContextFactory {
+        internal static byte[] EntityDao {
             get {
-                object obj = ResourceManager.GetObject("EF6_DbContextFactory", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] Package {
-            get {
-                object obj = ResourceManager.GetObject("Package", resourceCulture);
+                object obj = ResourceManager.GetObject("EntityDao", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -123,16 +113,6 @@ namespace EFCoreCodeGenerator.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] PartialDaoT {
-            get {
-                object obj = ResourceManager.GetObject("PartialDaoT", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
         internal static byte[] PartialEntity {
             get {
                 object obj = ResourceManager.GetObject("PartialEntity", resourceCulture);
@@ -143,9 +123,9 @@ namespace EFCoreCodeGenerator.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] PartialEntityT {
+        internal static byte[] Variables {
             get {
-                object obj = ResourceManager.GetObject("PartialEntityT", resourceCulture);
+                object obj = ResourceManager.GetObject("Variables", resourceCulture);
                 return ((byte[])(obj));
             }
         }

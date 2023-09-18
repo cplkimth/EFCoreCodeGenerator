@@ -7,6 +7,7 @@
         "ID": true,
         "FK": false,
         "Null": false,
+        "TableName": "Album",
         "Name": "AlbumId"
       },
       {
@@ -15,6 +16,7 @@
         "ID": false,
         "FK": true,
         "Null": false,
+        "TableName": "Album",
         "Name": "ArtistId"
       },
       {
@@ -23,6 +25,7 @@
         "ID": false,
         "FK": false,
         "Null": false,
+        "TableName": "Album",
         "Name": "Title"
       }
     ],
@@ -36,6 +39,7 @@
         "ID": true,
         "FK": false,
         "Null": false,
+        "TableName": "Artist",
         "Name": "ArtistId"
       },
       {
@@ -44,6 +48,7 @@
         "ID": false,
         "FK": true,
         "Null": true,
+        "TableName": "Artist",
         "Name": "CompanyId"
       },
       {
@@ -52,6 +57,7 @@
         "ID": false,
         "FK": false,
         "Null": true,
+        "TableName": "Artist",
         "Name": "Name"
       }
     ],
@@ -65,6 +71,7 @@
         "ID": true,
         "FK": false,
         "Null": false,
+        "TableName": "Company",
         "Name": "CompanyId"
       },
       {
@@ -73,6 +80,7 @@
         "ID": false,
         "FK": false,
         "Null": false,
+        "TableName": "Company",
         "Name": "Name"
       }
     ],
@@ -86,6 +94,7 @@
         "ID": true,
         "FK": false,
         "Null": false,
+        "TableName": "Playlist",
         "Name": "PlaylistId"
       },
       {
@@ -94,6 +103,7 @@
         "ID": false,
         "FK": false,
         "Null": true,
+        "TableName": "Playlist",
         "Name": "Name"
       }
     ],
@@ -107,6 +117,7 @@
         "ID": false,
         "FK": true,
         "Null": false,
+        "TableName": "PlaylistTrack",
         "Name": "PlaylistId"
       },
       {
@@ -115,6 +126,7 @@
         "ID": false,
         "FK": true,
         "Null": false,
+        "TableName": "PlaylistTrack",
         "Name": "TrackId"
       },
       {
@@ -123,6 +135,7 @@
         "ID": false,
         "FK": false,
         "Null": true,
+        "TableName": "PlaylistTrack",
         "Name": "Dummy"
       }
     ],
@@ -136,6 +149,7 @@
         "ID": false,
         "FK": true,
         "Null": false,
+        "TableName": "PlaylistTrackHistory",
         "Name": "PlaylistId"
       },
       {
@@ -144,6 +158,7 @@
         "ID": false,
         "FK": true,
         "Null": false,
+        "TableName": "PlaylistTrackHistory",
         "Name": "TrackId"
       },
       {
@@ -152,6 +167,7 @@
         "ID": false,
         "FK": false,
         "Null": false,
+        "TableName": "PlaylistTrackHistory",
         "Name": "WrittenAt"
       }
     ],
@@ -165,6 +181,7 @@
         "ID": true,
         "FK": false,
         "Null": false,
+        "TableName": "Track",
         "Name": "TrackId"
       },
       {
@@ -173,6 +190,7 @@
         "ID": false,
         "FK": true,
         "Null": true,
+        "TableName": "Track",
         "Name": "AlbumId"
       },
       {
@@ -181,6 +199,7 @@
         "ID": false,
         "FK": false,
         "Null": false,
+        "TableName": "Track",
         "Name": "BigIntCol"
       },
       {
@@ -189,6 +208,7 @@
         "ID": false,
         "FK": false,
         "Null": true,
+        "TableName": "Track",
         "Name": "BigIntColNull"
       },
       {
@@ -197,6 +217,7 @@
         "ID": false,
         "FK": false,
         "Null": false,
+        "TableName": "Track",
         "Name": "BinaryCol"
       },
       {
@@ -205,6 +226,7 @@
         "ID": false,
         "FK": false,
         "Null": true,
+        "TableName": "Track",
         "Name": "BinaryColNull"
       },
       {
@@ -213,6 +235,7 @@
         "ID": false,
         "FK": false,
         "Null": false,
+        "TableName": "Track",
         "Name": "BitCol"
       },
       {
@@ -221,6 +244,7 @@
         "ID": false,
         "FK": false,
         "Null": true,
+        "TableName": "Track",
         "Name": "BitColNull"
       },
       {
@@ -229,6 +253,7 @@
         "ID": false,
         "FK": false,
         "Null": false,
+        "TableName": "Track",
         "Name": "CharCol"
       },
       {
@@ -237,6 +262,7 @@
         "ID": false,
         "FK": false,
         "Null": true,
+        "TableName": "Track",
         "Name": "CharColNull"
       },
       {
@@ -245,6 +271,7 @@
         "ID": false,
         "FK": false,
         "Null": false,
+        "TableName": "Track",
         "Name": "DateCol"
       },
       {
@@ -253,6 +280,7 @@
         "ID": false,
         "FK": false,
         "Null": true,
+        "TableName": "Track",
         "Name": "DateColNull"
       },
       {
@@ -261,6 +289,7 @@
         "ID": false,
         "FK": false,
         "Null": false,
+        "TableName": "Track",
         "Name": "DateTimeCol"
       },
       {
@@ -269,6 +298,7 @@
         "ID": false,
         "FK": false,
         "Null": true,
+        "TableName": "Track",
         "Name": "DateTimeColNull"
       },
       {
@@ -277,6 +307,7 @@
         "ID": false,
         "FK": false,
         "Null": false,
+        "TableName": "Track",
         "Name": "DecimalCol"
       },
       {
@@ -285,6 +316,7 @@
         "ID": false,
         "FK": false,
         "Null": true,
+        "TableName": "Track",
         "Name": "DecimalColNull"
       },
       {
@@ -293,6 +325,7 @@
         "ID": false,
         "FK": false,
         "Null": false,
+        "TableName": "Track",
         "Name": "FloatCol"
       },
       {
@@ -301,6 +334,7 @@
         "ID": false,
         "FK": false,
         "Null": true,
+        "TableName": "Track",
         "Name": "FloatColNull"
       },
       {
@@ -309,6 +343,7 @@
         "ID": false,
         "FK": false,
         "Null": false,
+        "TableName": "Track",
         "Name": "GuidCol"
       },
       {
@@ -317,6 +352,7 @@
         "ID": false,
         "FK": false,
         "Null": true,
+        "TableName": "Track",
         "Name": "GuidColNull"
       },
       {
@@ -325,6 +361,7 @@
         "ID": false,
         "FK": false,
         "Null": false,
+        "TableName": "Track",
         "Name": "Name"
       },
       {
@@ -333,6 +370,7 @@
         "ID": false,
         "FK": false,
         "Null": false,
+        "TableName": "Track",
         "Name": "NcharCol"
       },
       {
@@ -341,6 +379,7 @@
         "ID": false,
         "FK": false,
         "Null": true,
+        "TableName": "Track",
         "Name": "NcharColNull"
       },
       {
@@ -349,6 +388,7 @@
         "ID": false,
         "FK": false,
         "Null": false,
+        "TableName": "Track",
         "Name": "NvarCharCol"
       },
       {
@@ -357,6 +397,7 @@
         "ID": false,
         "FK": false,
         "Null": false,
+        "TableName": "Track",
         "Name": "NvarCharColNull"
       },
       {
@@ -365,6 +406,7 @@
         "ID": false,
         "FK": false,
         "Null": false,
+        "TableName": "Track",
         "Name": "RealCol"
       },
       {
@@ -373,6 +415,7 @@
         "ID": false,
         "FK": false,
         "Null": true,
+        "TableName": "Track",
         "Name": "RealColNull"
       },
       {
@@ -381,6 +424,7 @@
         "ID": false,
         "FK": false,
         "Null": false,
+        "TableName": "Track",
         "Name": "SmallDateTimeCol"
       },
       {
@@ -389,6 +433,7 @@
         "ID": false,
         "FK": false,
         "Null": true,
+        "TableName": "Track",
         "Name": "SmallDateTimeColNull"
       },
       {
@@ -397,6 +442,7 @@
         "ID": false,
         "FK": false,
         "Null": false,
+        "TableName": "Track",
         "Name": "SmallIntCol"
       },
       {
@@ -405,6 +451,7 @@
         "ID": false,
         "FK": false,
         "Null": true,
+        "TableName": "Track",
         "Name": "SmallIntColNull"
       },
       {
@@ -413,6 +460,7 @@
         "ID": false,
         "FK": false,
         "Null": false,
+        "TableName": "Track",
         "Name": "SmallMoneyCol"
       },
       {
@@ -421,6 +469,7 @@
         "ID": false,
         "FK": false,
         "Null": true,
+        "TableName": "Track",
         "Name": "SmallMoneyColNull"
       },
       {
@@ -429,6 +478,7 @@
         "ID": false,
         "FK": false,
         "Null": false,
+        "TableName": "Track",
         "Name": "TimeCol"
       },
       {
@@ -437,6 +487,7 @@
         "ID": false,
         "FK": false,
         "Null": true,
+        "TableName": "Track",
         "Name": "TimeColNull"
       },
       {
@@ -445,6 +496,7 @@
         "ID": false,
         "FK": false,
         "Null": false,
+        "TableName": "Track",
         "Name": "TimeStampCol"
       },
       {
@@ -453,6 +505,7 @@
         "ID": false,
         "FK": false,
         "Null": false,
+        "TableName": "Track",
         "Name": "TinyIntCol"
       },
       {
@@ -461,6 +514,7 @@
         "ID": false,
         "FK": false,
         "Null": true,
+        "TableName": "Track",
         "Name": "TinyIntColNull"
       },
       {
@@ -469,6 +523,7 @@
         "ID": false,
         "FK": false,
         "Null": false,
+        "TableName": "Track",
         "Name": "VarBinaryCol"
       },
       {
@@ -477,6 +532,7 @@
         "ID": false,
         "FK": false,
         "Null": true,
+        "TableName": "Track",
         "Name": "VarBinaryColNull"
       },
       {
@@ -485,6 +541,7 @@
         "ID": false,
         "FK": false,
         "Null": false,
+        "TableName": "Track",
         "Name": "VarCharCol"
       },
       {
@@ -493,6 +550,7 @@
         "ID": false,
         "FK": false,
         "Null": true,
+        "TableName": "Track",
         "Name": "VarCharColNull"
       }
     ],

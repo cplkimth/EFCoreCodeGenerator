@@ -3,248 +3,357 @@
 using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace Chinook.Data
+namespace Chinook.Data;
+
+public partial class ChinookContext : DbContext
 {
-    public partial class ChinookContext : DbContext
+    public ChinookContext()
     {
-        public ChinookContext()
-        {
-        }
-
-        public ChinookContext(DbContextOptions<ChinookContext> options)
-            : base(options)
-        {
-        }
-
-        public virtual DbSet<Album> Albums { get; set; }
-        public virtual DbSet<AlbumView> AlbumViews { get; set; }
-        public virtual DbSet<Artist> Artists { get; set; }
-        public virtual DbSet<Company> Companies { get; set; }
-        public virtual DbSet<Playlist> Playlists { get; set; }
-        public virtual DbSet<PlaylistTrack> PlaylistTracks { get; set; }
-        public virtual DbSet<PlaylistTrackHistory> PlaylistTrackHistories { get; set; }
-        public virtual DbSet<Track> Tracks { get; set; }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Data Source=.,3433;Initial Catalog=Chinook;Integrated Security=True");
-            }
-        }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Album>(entity =>
-            {
-                entity.ToTable("Album");
-
-                entity.HasIndex(e => e.ArtistId, "IFK_AlbumArtistId");
-
-                entity.Property(e => e.Title)
-                    .IsRequired()
-                    .HasMaxLength(160);
-
-                entity.HasOne(d => d.Artist)
-                    .WithMany(p => p.Albums)
-                    .HasForeignKey(d => d.ArtistId)
-                    .HasConstraintName("FK_AlbumArtistId");
-            });
-
-            modelBuilder.Entity<AlbumView>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToView("AlbumView");
-
-                entity.Property(e => e.Name).HasMaxLength(120);
-
-                entity.Property(e => e.Title)
-                    .IsRequired()
-                    .HasMaxLength(160);
-            });
-
-            modelBuilder.Entity<Artist>(entity =>
-            {
-                entity.ToTable("Artist");
-
-                entity.Property(e => e.Name).HasMaxLength(120);
-
-                entity.HasOne(d => d.Company)
-                    .WithMany(p => p.Artists)
-                    .HasForeignKey(d => d.CompanyId)
-                    .HasConstraintName("FK_Artist_Company");
-            });
-
-            modelBuilder.Entity<Company>(entity =>
-            {
-                entity.ToTable("Company");
-
-                entity.Property(e => e.Name)
-                    .IsRequired()
-                    .HasMaxLength(120);
-            });
-
-            modelBuilder.Entity<Playlist>(entity =>
-            {
-                entity.ToTable("Playlist");
-
-                entity.Property(e => e.Name).HasMaxLength(120);
-            });
-
-            modelBuilder.Entity<PlaylistTrack>(entity =>
-            {
-                entity.HasKey(e => new { e.PlaylistId, e.TrackId })
-                    .IsClustered(false);
-
-                entity.ToTable("PlaylistTrack");
-
-                entity.HasIndex(e => e.TrackId, "IFK_PlaylistTrackTrackId");
-
-                entity.HasOne(d => d.Playlist)
-                    .WithMany(p => p.PlaylistTracks)
-                    .HasForeignKey(d => d.PlaylistId)
-                    .HasConstraintName("FK_PlaylistTrackPlaylistId");
-
-                entity.HasOne(d => d.Track)
-                    .WithMany(p => p.PlaylistTracks)
-                    .HasForeignKey(d => d.TrackId)
-                    .HasConstraintName("FK_PlaylistTrackTrackId");
-            });
-
-            modelBuilder.Entity<PlaylistTrackHistory>(entity =>
-            {
-                entity.HasKey(e => new { e.PlaylistId, e.TrackId, e.WrittenAt });
-
-                entity.ToTable("PlaylistTrackHistory");
-
-                entity.Property(e => e.WrittenAt).HasColumnType("datetime");
-
-                entity.HasOne(d => d.PlaylistTrack)
-                    .WithMany(p => p.PlaylistTrackHistories)
-                    .HasForeignKey(d => new { d.PlaylistId, d.TrackId })
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_PlaylistTrackHistory_PlaylistTrack");
-            });
-
-            modelBuilder.Entity<Track>(entity =>
-            {
-                entity.ToTable("Track");
-
-                entity.HasIndex(e => e.AlbumId, "IFK_TrackAlbumId");
-
-                entity.Property(e => e.BinaryCol)
-                    .IsRequired()
-                    .HasMaxLength(50)
-                    .HasDefaultValueSql("((0))")
-                    .IsFixedLength();
-
-                entity.Property(e => e.BinaryColNull)
-                    .HasMaxLength(50)
-                    .IsFixedLength();
-
-                entity.Property(e => e.CharCol)
-                    .IsRequired()
-                    .HasMaxLength(10)
-                    .IsUnicode(false)
-                    .HasDefaultValueSql("('')")
-                    .IsFixedLength();
-
-                entity.Property(e => e.CharColNull)
-                    .HasMaxLength(10)
-                    .IsUnicode(false)
-                    .IsFixedLength();
-
-                entity.Property(e => e.DateCol)
-                    .HasColumnType("date")
-                    .HasDefaultValueSql("(getdate())");
-
-                entity.Property(e => e.DateColNull).HasColumnType("date");
-
-                entity.Property(e => e.DateTimeCol)
-                    .HasColumnType("datetime")
-                    .HasDefaultValueSql("(getdate())");
-
-                entity.Property(e => e.DateTimeColNull).HasColumnType("datetime");
-
-                entity.Property(e => e.DecimalCol).HasColumnType("decimal(18, 2)");
-
-                entity.Property(e => e.DecimalColNull).HasColumnType("decimal(18, 2)");
-
-                entity.Property(e => e.GuidCol).HasDefaultValueSql("(newid())");
-
-                entity.Property(e => e.Name)
-                    .IsRequired()
-                    .HasMaxLength(200);
-
-                entity.Property(e => e.NcharCol)
-                    .IsRequired()
-                    .HasMaxLength(10)
-                    .HasDefaultValueSql("('')")
-                    .IsFixedLength();
-
-                entity.Property(e => e.NcharColNull)
-                    .HasMaxLength(10)
-                    .IsFixedLength();
-
-                entity.Property(e => e.NvarCharCol)
-                    .IsRequired()
-                    .HasMaxLength(50)
-                    .HasDefaultValueSql("('')");
-
-                entity.Property(e => e.NvarCharColNull)
-                    .IsRequired()
-                    .HasMaxLength(50)
-                    .HasDefaultValueSql("('')");
-
-                entity.Property(e => e.SmallDateTimeCol)
-                    .HasColumnType("smalldatetime")
-                    .HasDefaultValueSql("(getdate())");
-
-                entity.Property(e => e.SmallDateTimeColNull).HasColumnType("smalldatetime");
-
-                entity.Property(e => e.SmallMoneyCol).HasColumnType("smallmoney");
-
-                entity.Property(e => e.SmallMoneyColNull).HasColumnType("smallmoney");
-
-                entity.Property(e => e.TimeCol).HasDefaultValueSql("(getdate())");
-
-                entity.Property(e => e.TimeStampCol)
-                    .IsRequired()
-                    .IsRowVersion()
-                    .IsConcurrencyToken();
-
-                entity.Property(e => e.VarBinaryCol)
-                    .IsRequired()
-                    .HasMaxLength(50)
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.VarBinaryColNull).HasMaxLength(50);
-
-                entity.Property(e => e.VarCharCol)
-                    .IsRequired()
-                    .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .HasDefaultValueSql("('')");
-
-                entity.Property(e => e.VarCharColNull)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.HasOne(d => d.Album)
-                    .WithMany(p => p.Tracks)
-                    .HasForeignKey(d => d.AlbumId)
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .HasConstraintName("FK_TrackAlbumId");
-            });
-
-            OnModelCreatingGeneratedProcedures(modelBuilder);
-            OnModelCreatingPartial(modelBuilder);
-        }
-
-        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
+
+    public ChinookContext(DbContextOptions<ChinookContext> options)
+        : base(options)
+    {
+    }
+
+    public virtual DbSet<Album> Albums { get; set; }
+
+    public virtual DbSet<Artist> Artists { get; set; }
+
+    public virtual DbSet<Company> Companies { get; set; }
+
+    public virtual DbSet<Customer> Customers { get; set; }
+
+    public virtual DbSet<Employee> Employees { get; set; }
+
+    public virtual DbSet<Genre> Genres { get; set; }
+
+    public virtual DbSet<Invoice> Invoices { get; set; }
+
+    public virtual DbSet<InvoiceLine> InvoiceLines { get; set; }
+
+    public virtual DbSet<MediaType> MediaTypes { get; set; }
+
+    public virtual DbSet<Playlist> Playlists { get; set; }
+
+    public virtual DbSet<PlaylistTrack> PlaylistTracks { get; set; }
+
+    public virtual DbSet<PlaylistTrackHistory> PlaylistTrackHistories { get; set; }
+
+    public virtual DbSet<TodoItem> TodoItems { get; set; }
+
+    public virtual DbSet<Track> Tracks { get; set; }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Album>(entity =>
+        {
+            entity.ToTable("Album");
+
+            entity.HasIndex(e => e.ArtistId, "IFK_AlbumArtistId");
+
+            entity.Property(e => e.Title)
+                .IsRequired()
+                .HasMaxLength(160);
+
+            entity.HasOne(d => d.Artist).WithMany(p => p.Albums)
+                .HasForeignKey(d => d.ArtistId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_AlbumArtistId");
+        });
+
+        modelBuilder.Entity<Artist>(entity =>
+        {
+            entity.ToTable("Artist");
+
+            entity.Property(e => e.Name).HasMaxLength(120);
+        });
+
+        modelBuilder.Entity<Company>(entity =>
+        {
+            entity.ToTable("Company");
+
+            entity.Property(e => e.Name)
+                .IsRequired()
+                .HasMaxLength(120);
+        });
+
+        modelBuilder.Entity<Customer>(entity =>
+        {
+            entity.ToTable("Customer");
+
+            entity.HasIndex(e => e.SupportRepId, "IFK_CustomerSupportRepId");
+
+            entity.Property(e => e.Address).HasMaxLength(70);
+            entity.Property(e => e.City).HasMaxLength(40);
+            entity.Property(e => e.Company).HasMaxLength(80);
+            entity.Property(e => e.Country).HasMaxLength(40);
+            entity.Property(e => e.Email)
+                .IsRequired()
+                .HasMaxLength(60);
+            entity.Property(e => e.Fax).HasMaxLength(24);
+            entity.Property(e => e.FirstName)
+                .IsRequired()
+                .HasMaxLength(40);
+            entity.Property(e => e.LastName)
+                .IsRequired()
+                .HasMaxLength(20);
+            entity.Property(e => e.Phone).HasMaxLength(24);
+            entity.Property(e => e.PostalCode).HasMaxLength(10);
+            entity.Property(e => e.State).HasMaxLength(40);
+
+            entity.HasOne(d => d.SupportRep).WithMany(p => p.Customers)
+                .HasForeignKey(d => d.SupportRepId)
+                .HasConstraintName("FK_CustomerSupportRepId");
+        });
+
+        modelBuilder.Entity<Employee>(entity =>
+        {
+            entity.ToTable("Employee");
+
+            entity.HasIndex(e => e.ReportsTo, "IFK_EmployeeReportsTo");
+
+            entity.Property(e => e.Address).HasMaxLength(70);
+            entity.Property(e => e.BirthDate).HasColumnType("datetime");
+            entity.Property(e => e.City).HasMaxLength(40);
+            entity.Property(e => e.Country).HasMaxLength(40);
+            entity.Property(e => e.Email).HasMaxLength(60);
+            entity.Property(e => e.Fax).HasMaxLength(24);
+            entity.Property(e => e.FirstName)
+                .IsRequired()
+                .HasMaxLength(20);
+            entity.Property(e => e.HireDate).HasColumnType("datetime");
+            entity.Property(e => e.LastName)
+                .IsRequired()
+                .HasMaxLength(20);
+            entity.Property(e => e.Phone).HasMaxLength(24);
+            entity.Property(e => e.PostalCode).HasMaxLength(10);
+            entity.Property(e => e.State).HasMaxLength(40);
+            entity.Property(e => e.Title).HasMaxLength(30);
+
+            entity.HasOne(d => d.ReportsToNavigation).WithMany(p => p.InverseReportsToNavigation)
+                .HasForeignKey(d => d.ReportsTo)
+                .HasConstraintName("FK_EmployeeReportsTo");
+        });
+
+        modelBuilder.Entity<Genre>(entity =>
+        {
+            entity.ToTable("Genre");
+
+            entity.Property(e => e.Name).HasMaxLength(120);
+        });
+
+        modelBuilder.Entity<Invoice>(entity =>
+        {
+            entity.ToTable("Invoice");
+
+            entity.HasIndex(e => e.CustomerId, "IFK_InvoiceCustomerId");
+
+            entity.Property(e => e.BillingAddress).HasMaxLength(70);
+            entity.Property(e => e.BillingCity).HasMaxLength(40);
+            entity.Property(e => e.BillingCountry).HasMaxLength(40);
+            entity.Property(e => e.BillingPostalCode).HasMaxLength(10);
+            entity.Property(e => e.BillingState).HasMaxLength(40);
+            entity.Property(e => e.InvoiceDate).HasColumnType("datetime");
+            entity.Property(e => e.Total).HasColumnType("numeric(10, 2)");
+
+            entity.HasOne(d => d.Customer).WithMany(p => p.Invoices)
+                .HasForeignKey(d => d.CustomerId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_InvoiceCustomerId");
+        });
+
+        modelBuilder.Entity<InvoiceLine>(entity =>
+        {
+            entity.ToTable("InvoiceLine");
+
+            entity.HasIndex(e => e.InvoiceId, "IFK_InvoiceLineInvoiceId");
+
+            entity.HasIndex(e => e.TrackId, "IFK_InvoiceLineTrackId");
+
+            entity.Property(e => e.UnitPrice).HasColumnType("numeric(10, 2)");
+
+            entity.HasOne(d => d.Invoice).WithMany(p => p.InvoiceLines)
+                .HasForeignKey(d => d.InvoiceId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_InvoiceLineInvoiceId");
+
+            entity.HasOne(d => d.Track).WithMany(p => p.InvoiceLines)
+                .HasForeignKey(d => d.TrackId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_InvoiceLineTrackId");
+        });
+
+        modelBuilder.Entity<MediaType>(entity =>
+        {
+            entity.ToTable("MediaType");
+
+            entity.Property(e => e.Name).HasMaxLength(120);
+        });
+
+        modelBuilder.Entity<Playlist>(entity =>
+        {
+            entity.ToTable("Playlist");
+
+            entity.Property(e => e.Name).HasMaxLength(120);
+        });
+
+        modelBuilder.Entity<PlaylistTrack>(entity =>
+        {
+            entity.HasKey(e => new { e.PlaylistId, e.TrackId }).IsClustered(false);
+
+            entity.ToTable("PlaylistTrack");
+
+            entity.HasIndex(e => e.TrackId, "IFK_PlaylistTrackTrackId");
+
+            entity.Property(e => e.Memo)
+                .IsRequired()
+                .HasMaxLength(120)
+                .HasDefaultValueSql("(N'')");
+
+            entity.HasOne(d => d.Playlist).WithMany(p => p.PlaylistTracks)
+                .HasForeignKey(d => d.PlaylistId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_PlaylistTrackPlaylistId");
+
+            entity.HasOne(d => d.Track).WithMany(p => p.PlaylistTracks)
+                .HasForeignKey(d => d.TrackId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_PlaylistTrackTrackId");
+        });
+
+        modelBuilder.Entity<PlaylistTrackHistory>(entity =>
+        {
+            entity.HasKey(e => new { e.PlaylistId, e.TrackId, e.WrittenAt });
+
+            entity.ToTable("PlaylistTrackHistory");
+
+            entity.Property(e => e.WrittenAt).HasColumnType("datetime");
+            entity.Property(e => e.Memo)
+                .IsRequired()
+                .HasMaxLength(120)
+                .HasDefaultValueSql("(N'')");
+
+            entity.HasOne(d => d.PlaylistTrack).WithMany(p => p.PlaylistTrackHistories)
+                .HasForeignKey(d => new { d.PlaylistId, d.TrackId })
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_PlaylistTrackHistory_PlaylistTrack");
+        });
+
+        modelBuilder.Entity<TodoItem>(entity =>
+        {
+            entity.ToTable("TodoItem");
+
+            entity.Property(e => e.Description)
+                .IsRequired()
+                .HasMaxLength(1000)
+                .HasDefaultValueSql("('')");
+            entity.Property(e => e.Title)
+                .IsRequired()
+                .HasMaxLength(50)
+                .HasDefaultValueSql("('')");
+        });
+
+        modelBuilder.Entity<Track>(entity =>
+        {
+            entity.ToTable("Track");
+
+            entity.HasIndex(e => e.AlbumId, "IFK_TrackAlbumId");
+
+            entity.Property(e => e.BinaryCol)
+                .IsRequired()
+                .HasMaxLength(50)
+                .HasDefaultValueSql("((0))")
+                .IsFixedLength();
+            entity.Property(e => e.BinaryColNull)
+                .HasMaxLength(50)
+                .IsFixedLength();
+            entity.Property(e => e.CharCol)
+                .IsRequired()
+                .HasMaxLength(10)
+                .IsUnicode(false)
+                .HasDefaultValueSql("('')")
+                .IsFixedLength();
+            entity.Property(e => e.CharColNull)
+                .HasMaxLength(10)
+                .IsUnicode(false)
+                .IsFixedLength();
+            entity.Property(e => e.DateCol)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("date");
+            entity.Property(e => e.DateColNull).HasColumnType("date");
+            entity.Property(e => e.DateTimeCol)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime");
+            entity.Property(e => e.DateTimeColNull).HasColumnType("datetime");
+            entity.Property(e => e.DecimalCol).HasColumnType("decimal(18, 2)");
+            entity.Property(e => e.DecimalColNull).HasColumnType("decimal(18, 2)");
+            entity.Property(e => e.GenreId).HasDefaultValueSql("((1))");
+            entity.Property(e => e.GuidCol).HasDefaultValueSql("(newid())");
+            entity.Property(e => e.MediaTypeId).HasDefaultValueSql("((1))");
+            entity.Property(e => e.Name)
+                .IsRequired()
+                .HasMaxLength(200);
+            entity.Property(e => e.NcharCol)
+                .IsRequired()
+                .HasMaxLength(10)
+                .HasDefaultValueSql("('')")
+                .IsFixedLength();
+            entity.Property(e => e.NcharColNull)
+                .HasMaxLength(10)
+                .IsFixedLength();
+            entity.Property(e => e.NvarCharCol)
+                .IsRequired()
+                .HasMaxLength(50)
+                .HasDefaultValueSql("('')");
+            entity.Property(e => e.NvarCharColNull)
+                .IsRequired()
+                .HasMaxLength(50)
+                .HasDefaultValueSql("('')");
+            entity.Property(e => e.SmallDateTimeCol)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("smalldatetime");
+            entity.Property(e => e.SmallDateTimeColNull).HasColumnType("smalldatetime");
+            entity.Property(e => e.SmallMoneyCol).HasColumnType("smallmoney");
+            entity.Property(e => e.SmallMoneyColNull).HasColumnType("smallmoney");
+            entity.Property(e => e.TimeCol).HasDefaultValueSql("(getdate())");
+            entity.Property(e => e.TimeStampCol)
+                .IsRequired()
+                .IsRowVersion()
+                .IsConcurrencyToken();
+            entity.Property(e => e.VarBinaryCol)
+                .IsRequired()
+                .HasMaxLength(50)
+                .HasDefaultValueSql("((0))");
+            entity.Property(e => e.VarBinaryColNull).HasMaxLength(50);
+            entity.Property(e => e.VarCharCol)
+                .IsRequired()
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasDefaultValueSql("('')");
+            entity.Property(e => e.VarCharColNull)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+
+            entity.HasOne(d => d.Album).WithMany(p => p.Tracks)
+                .HasForeignKey(d => d.AlbumId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK_TrackAlbumId");
+
+            entity.HasOne(d => d.Genre).WithMany(p => p.Tracks)
+                .HasForeignKey(d => d.GenreId)
+                .HasConstraintName("FK_Track_Genre");
+
+            entity.HasOne(d => d.MediaType).WithMany(p => p.Tracks)
+                .HasForeignKey(d => d.MediaTypeId)
+                .HasConstraintName("FK_Track_MediaType");
+        });
+
+        OnModelCreatingGeneratedProcedures(modelBuilder);
+        OnModelCreatingGeneratedFunctions(modelBuilder);
+        OnModelCreatingPartial(modelBuilder);
+    }
+
+    partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }

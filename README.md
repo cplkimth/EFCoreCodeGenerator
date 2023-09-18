@@ -300,7 +300,7 @@ public List<Album> GetWithArtistName()
 ### Header
 ```
 {
-	"Version":1, // version (don't modify this)
+	"Version":2, // version (don't modify this)
 	"Scope":0, // scope of template. 0:per project, 1:per entity.
 	"TargetPath":"Generated.cs", // path of generated code (relative to default directory(UEF))
 	"Overwritable": true // if true, it will overwrite exist file
