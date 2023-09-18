@@ -1,14 +1,13 @@
-﻿using System.Collections;
-using System.Globalization;
-using System.Resources;
+﻿#region usings
 using System.Text.Json;
-using System.Text;
-using EFCoreCodeGeneratorV2.Models;
-using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
 using EFCoreCodeGenerator.Elements;
+using EFCoreCodeGenerator.SchemaExtractors;
 using EFCoreCodeGeneratorV2.Generators;
+using EFCoreCodeGeneratorV2.Models;
+using Microsoft.EntityFrameworkCore;
+#endregion
 
 namespace EFCoreCodeGeneratorV2;
 
@@ -16,87 +15,74 @@ public static class CodeGenerator
 {
     private const string TemplatePostfix = "*.jsonmp";
 
-    private static DbContext _dbContext;
-
-    private static string _dataNamespace;
-
     private const string DefaultTmplateDirectory = "templates";
 
     private static string _templateDirectory;
-    
+
     private static string _solutionDirectory;
 
-    // private static SchemaExtractor _schemaExtractor;
-
-    // private static readonly HashSet<string> _resourceKeys = new();
-
-    public static void Generate(DbContext dbContext, string templateDirectory = DefaultTmplateDirectory)
+    public static string Generate(DbContext dbContext, string templateDirectory = DefaultTmplateDirectory)
     {
-        dynamic schemaExtractor = new object();
-        Database database = schemaExtractor.Extract(dbContext);
+        var schemaExtractor = new DbContextSchemaExtractor(dbContext);
 
-        GenerateCore(database, templateDirectory, dbContext);
+        return GenerateCore(schemaExtractor, templateDirectory, dbContext);
     }
 
-    public static void Generate(string modelFilePath, string templateDirectory = DefaultTmplateDirectory)
+    public static string Generate(string modelFilePath, string templateDirectory = DefaultTmplateDirectory)
     {
-        JsonSerializerOptions options = new()
-                                        {
-                                            ReferenceHandler = ReferenceHandler.Preserve
-                                        };
-        var database = JsonSerializer.Deserialize<Database>(File.ReadAllText(modelFilePath), options);
-        
-        GenerateCore(database, templateDirectory, null);
+        var schemaExtractor = new JsonFileSchemaExtractor(modelFilePath);
+
+        return GenerateCore(schemaExtractor, templateDirectory, null);
     }
 
-    private static void GenerateCore(Database database, string templateDirectory, DbContext dbContext)
+    private static string GenerateCore(SchemaExtractor schemaExtractor, string templateDirectory, DbContext dbContext)
     {
         _templateDirectory = templateDirectory;
         _solutionDirectory = Utility.GetSolutionRoot().FullName;
 
         VariableManager.Instance.Inialize(_templateDirectory, dbContext);
 
+        var tables = schemaExtractor.Extract();
+
         Console.WriteLine("Generaing templates ...");
         // WriteTemplateText();
 
         Console.WriteLine("Inflating templates ...");
-        InflatePackage(database);
+        InflatePackage(tables);
 
         Console.WriteLine("Finished without error(s)");
+
+        return JsonSerializer.Serialize(tables);
     }
 
-    private static void InflatePackage(Database database)
+    private static void InflatePackage(Table[] tables)
     {
         var templatePathes = Directory
-                .GetFiles(_templateDirectory, TemplatePostfix, SearchOption.AllDirectories)
-                .Where(x => Path.GetFileName(x).StartsWith("_") == false);
+            .GetFiles(_templateDirectory, TemplatePostfix, SearchOption.AllDirectories)
+            .Where(x => Path.GetFileName(x).StartsWith("_") == false);
 
         foreach (var templatePath in templatePathes)
         {
             var templateText = File.ReadAllText(templatePath);
-            Template template = Template.Load(templateText);
+            var template = Template.Load(templateText);
 
             Console.WriteLine($"{Path.GetFileName(templatePath)}");
 
             if (template.Scope == TemplateScope.Database)
-            {
-                InflatePackageCore(template, database.Tables.ToArray());
-            }
+                InflatePackageCore(template, tables.ToArray());
             else if (template.Scope == TemplateScope.Table)
-            {
-                foreach (var table in database.Tables)
+                foreach (var table in tables)
                     InflatePackageCore(template, table);
-            }
         }
     }
 
     private static void InflatePackageCore(Template template, params Table[] tables)
     {
         var code = Generator.Generate(template.Body, tables);
-                        
+
         var pathToWrite = GetPathToWrite(template.TargetPath, tables.Length > 0 ? tables[0].Name : "");
         WriteFileIfNone(pathToWrite, code, template.Overwritable);
-        
+
         Console.WriteLine($"  => {Path.GetFileName(pathToWrite)}");
     }
 
@@ -104,7 +90,7 @@ public static class CodeGenerator
     {
         if (tableName != null)
             pathToWrite = VariableManager.Instance.Fill(pathToWrite);
-        
+
         var matches = Regex.Matches(pathToWrite, "`(.*?)`");
         foreach (Match match in matches)
             if (match.Value == "`Name`")
@@ -121,10 +107,10 @@ public static class CodeGenerator
     {
         if (overwritable == false && File.Exists(path))
             return;
-        
+
         if (Directory.Exists(Path.GetDirectoryName(path)) == false)
             Directory.CreateDirectory(Path.GetDirectoryName(path));
-        
+
         File.WriteAllText(path, code);
     }
 }

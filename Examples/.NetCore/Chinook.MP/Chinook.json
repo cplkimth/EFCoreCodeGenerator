@@ -1,156 +1,501 @@
-{
-  "$id": "1",
-  "Tables": {
-    "$id": "2",
-    "$values": [
+[
+  {
+    "Columns": [
       {
-        "$id": "3",
-        "Columns": {
-          "$id": "4",
-          "$values": [
-            {
-              "$id": "5",
-              "Table": {
-                "$ref": "3"
-              },
-              "Type": "int",
-              "PK": true,
-              "ID": true,
-              "FK": false,
-              "Null": false,
-              "Name": "AlbumId"
-            },
-            {
-              "$id": "6",
-              "Table": {
-                "$ref": "3"
-              },
-              "Type": "string",
-              "PK": false,
-              "ID": false,
-              "FK": false,
-              "Null": false,
-              "Name": "Title"
-            },
-            {
-              "$id": "7",
-              "Table": {
-                "$ref": "3"
-              },
-              "Type": "int",
-              "PK": false,
-              "ID": false,
-              "FK": true,
-              "Null": false,
-              "Name": "ArtistId"
-            }
-          ]
-        },
-        "Name": "Album"
+        "Type": "int",
+        "PK": true,
+        "ID": true,
+        "FK": false,
+        "Null": false,
+        "Name": "AlbumId"
       },
       {
-        "$id": "8",
-        "Columns": {
-          "$id": "9",
-          "$values": [
-            {
-              "$id": "10",
-              "Table": {
-                "$ref": "8"
-              },
-              "Type": "int",
-              "PK": true,
-              "ID": true,
-              "FK": false,
-              "Null": false,
-              "Name": "TrackId"
-            },
-            {
-              "$id": "11",
-              "Table": {
-                "$ref": "8"
-              },
-              "Type": "string",
-              "PK": false,
-              "ID": false,
-              "FK": false,
-              "Null": false,
-              "Name": "Name"
-            },
-            {
-              "$id": "12",
-              "Table": {
-                "$ref": "8"
-              },
-              "Type": "int",
-              "PK": false,
-              "ID": false,
-              "FK": true,
-              "Null": false,
-              "Name": "AlbumId"
-            },
-            {
-              "$id": "13",
-              "Table": {
-                "$ref": "8"
-              },
-              "Type": "Guid?",
-              "PK": false,
-              "ID": false,
-              "FK": false,
-              "Null": true,
-              "Name": "GuidColNull"
-            }
-          ]
-        },
-        "Name": "Track"
+        "Type": "int",
+        "PK": false,
+        "ID": false,
+        "FK": true,
+        "Null": false,
+        "Name": "ArtistId"
       },
       {
-        "$id": "14",
-        "Columns": {
-          "$id": "15",
-          "$values": [
-            {
-              "$id": "16",
-              "Table": {
-                "$ref": "14"
-              },
-              "Type": "int",
-              "PK": true,
-              "ID": false,
-              "FK": true,
-              "Null": false,
-              "Name": "PlaylistId"
-            },
-            {
-              "$id": "17",
-              "Table": {
-                "$ref": "14"
-              },
-              "Type": "int",
-              "PK": true,
-              "ID": false,
-              "FK": true,
-              "Null": false,
-              "Name": "TrackId"
-            },
-            {
-              "$id": "18",
-              "Table": {
-                "$ref": "14"
-              },
-              "Type": "string",
-              "PK": false,
-              "ID": false,
-              "FK": false,
-              "Null": false,
-              "Name": "Memo"
-            }
-          ]
-        },
-        "Name": "PlaylistTrack"
+        "Type": "string",
+        "PK": false,
+        "ID": false,
+        "FK": false,
+        "Null": false,
+        "Name": "Title"
       }
-    ]
+    ],
+    "Name": "Album"
   },
-  "Name": "Chinook"
-}
+  {
+    "Columns": [
+      {
+        "Type": "int",
+        "PK": true,
+        "ID": true,
+        "FK": false,
+        "Null": false,
+        "Name": "ArtistId"
+      },
+      {
+        "Type": "int?",
+        "PK": false,
+        "ID": false,
+        "FK": true,
+        "Null": true,
+        "Name": "CompanyId"
+      },
+      {
+        "Type": "string",
+        "PK": false,
+        "ID": false,
+        "FK": false,
+        "Null": true,
+        "Name": "Name"
+      }
+    ],
+    "Name": "Artist"
+  },
+  {
+    "Columns": [
+      {
+        "Type": "int",
+        "PK": true,
+        "ID": true,
+        "FK": false,
+        "Null": false,
+        "Name": "CompanyId"
+      },
+      {
+        "Type": "string",
+        "PK": false,
+        "ID": false,
+        "FK": false,
+        "Null": false,
+        "Name": "Name"
+      }
+    ],
+    "Name": "Company"
+  },
+  {
+    "Columns": [
+      {
+        "Type": "int",
+        "PK": true,
+        "ID": true,
+        "FK": false,
+        "Null": false,
+        "Name": "PlaylistId"
+      },
+      {
+        "Type": "string",
+        "PK": false,
+        "ID": false,
+        "FK": false,
+        "Null": true,
+        "Name": "Name"
+      }
+    ],
+    "Name": "Playlist"
+  },
+  {
+    "Columns": [
+      {
+        "Type": "int",
+        "PK": true,
+        "ID": false,
+        "FK": true,
+        "Null": false,
+        "Name": "PlaylistId"
+      },
+      {
+        "Type": "int",
+        "PK": true,
+        "ID": false,
+        "FK": true,
+        "Null": false,
+        "Name": "TrackId"
+      },
+      {
+        "Type": "bool?",
+        "PK": false,
+        "ID": false,
+        "FK": false,
+        "Null": true,
+        "Name": "Dummy"
+      }
+    ],
+    "Name": "PlaylistTrack"
+  },
+  {
+    "Columns": [
+      {
+        "Type": "int",
+        "PK": true,
+        "ID": false,
+        "FK": true,
+        "Null": false,
+        "Name": "PlaylistId"
+      },
+      {
+        "Type": "int",
+        "PK": true,
+        "ID": false,
+        "FK": true,
+        "Null": false,
+        "Name": "TrackId"
+      },
+      {
+        "Type": "DateTime",
+        "PK": true,
+        "ID": false,
+        "FK": false,
+        "Null": false,
+        "Name": "WrittenAt"
+      }
+    ],
+    "Name": "PlaylistTrackHistory"
+  },
+  {
+    "Columns": [
+      {
+        "Type": "int",
+        "PK": true,
+        "ID": true,
+        "FK": false,
+        "Null": false,
+        "Name": "TrackId"
+      },
+      {
+        "Type": "int?",
+        "PK": false,
+        "ID": false,
+        "FK": true,
+        "Null": true,
+        "Name": "AlbumId"
+      },
+      {
+        "Type": "long",
+        "PK": false,
+        "ID": false,
+        "FK": false,
+        "Null": false,
+        "Name": "BigIntCol"
+      },
+      {
+        "Type": "long?",
+        "PK": false,
+        "ID": false,
+        "FK": false,
+        "Null": true,
+        "Name": "BigIntColNull"
+      },
+      {
+        "Type": "byte[]",
+        "PK": false,
+        "ID": false,
+        "FK": false,
+        "Null": false,
+        "Name": "BinaryCol"
+      },
+      {
+        "Type": "byte[]",
+        "PK": false,
+        "ID": false,
+        "FK": false,
+        "Null": true,
+        "Name": "BinaryColNull"
+      },
+      {
+        "Type": "bool",
+        "PK": false,
+        "ID": false,
+        "FK": false,
+        "Null": false,
+        "Name": "BitCol"
+      },
+      {
+        "Type": "bool?",
+        "PK": false,
+        "ID": false,
+        "FK": false,
+        "Null": true,
+        "Name": "BitColNull"
+      },
+      {
+        "Type": "string",
+        "PK": false,
+        "ID": false,
+        "FK": false,
+        "Null": false,
+        "Name": "CharCol"
+      },
+      {
+        "Type": "string",
+        "PK": false,
+        "ID": false,
+        "FK": false,
+        "Null": true,
+        "Name": "CharColNull"
+      },
+      {
+        "Type": "DateTime",
+        "PK": false,
+        "ID": false,
+        "FK": false,
+        "Null": false,
+        "Name": "DateCol"
+      },
+      {
+        "Type": "DateTime?",
+        "PK": false,
+        "ID": false,
+        "FK": false,
+        "Null": true,
+        "Name": "DateColNull"
+      },
+      {
+        "Type": "DateTime",
+        "PK": false,
+        "ID": false,
+        "FK": false,
+        "Null": false,
+        "Name": "DateTimeCol"
+      },
+      {
+        "Type": "DateTime?",
+        "PK": false,
+        "ID": false,
+        "FK": false,
+        "Null": true,
+        "Name": "DateTimeColNull"
+      },
+      {
+        "Type": "decimal",
+        "PK": false,
+        "ID": false,
+        "FK": false,
+        "Null": false,
+        "Name": "DecimalCol"
+      },
+      {
+        "Type": "decimal?",
+        "PK": false,
+        "ID": false,
+        "FK": false,
+        "Null": true,
+        "Name": "DecimalColNull"
+      },
+      {
+        "Type": "double",
+        "PK": false,
+        "ID": false,
+        "FK": false,
+        "Null": false,
+        "Name": "FloatCol"
+      },
+      {
+        "Type": "double?",
+        "PK": false,
+        "ID": false,
+        "FK": false,
+        "Null": true,
+        "Name": "FloatColNull"
+      },
+      {
+        "Type": "Guid",
+        "PK": false,
+        "ID": false,
+        "FK": false,
+        "Null": false,
+        "Name": "GuidCol"
+      },
+      {
+        "Type": "Guid?",
+        "PK": false,
+        "ID": false,
+        "FK": false,
+        "Null": true,
+        "Name": "GuidColNull"
+      },
+      {
+        "Type": "string",
+        "PK": false,
+        "ID": false,
+        "FK": false,
+        "Null": false,
+        "Name": "Name"
+      },
+      {
+        "Type": "string",
+        "PK": false,
+        "ID": false,
+        "FK": false,
+        "Null": false,
+        "Name": "NcharCol"
+      },
+      {
+        "Type": "string",
+        "PK": false,
+        "ID": false,
+        "FK": false,
+        "Null": true,
+        "Name": "NcharColNull"
+      },
+      {
+        "Type": "string",
+        "PK": false,
+        "ID": false,
+        "FK": false,
+        "Null": false,
+        "Name": "NvarCharCol"
+      },
+      {
+        "Type": "string",
+        "PK": false,
+        "ID": false,
+        "FK": false,
+        "Null": false,
+        "Name": "NvarCharColNull"
+      },
+      {
+        "Type": "float",
+        "PK": false,
+        "ID": false,
+        "FK": false,
+        "Null": false,
+        "Name": "RealCol"
+      },
+      {
+        "Type": "float?",
+        "PK": false,
+        "ID": false,
+        "FK": false,
+        "Null": true,
+        "Name": "RealColNull"
+      },
+      {
+        "Type": "DateTime",
+        "PK": false,
+        "ID": false,
+        "FK": false,
+        "Null": false,
+        "Name": "SmallDateTimeCol"
+      },
+      {
+        "Type": "DateTime?",
+        "PK": false,
+        "ID": false,
+        "FK": false,
+        "Null": true,
+        "Name": "SmallDateTimeColNull"
+      },
+      {
+        "Type": "short",
+        "PK": false,
+        "ID": false,
+        "FK": false,
+        "Null": false,
+        "Name": "SmallIntCol"
+      },
+      {
+        "Type": "short?",
+        "PK": false,
+        "ID": false,
+        "FK": false,
+        "Null": true,
+        "Name": "SmallIntColNull"
+      },
+      {
+        "Type": "decimal",
+        "PK": false,
+        "ID": false,
+        "FK": false,
+        "Null": false,
+        "Name": "SmallMoneyCol"
+      },
+      {
+        "Type": "decimal?",
+        "PK": false,
+        "ID": false,
+        "FK": false,
+        "Null": true,
+        "Name": "SmallMoneyColNull"
+      },
+      {
+        "Type": "TimeSpan",
+        "PK": false,
+        "ID": false,
+        "FK": false,
+        "Null": false,
+        "Name": "TimeCol"
+      },
+      {
+        "Type": "TimeSpan?",
+        "PK": false,
+        "ID": false,
+        "FK": false,
+        "Null": true,
+        "Name": "TimeColNull"
+      },
+      {
+        "Type": "byte[]",
+        "PK": false,
+        "ID": false,
+        "FK": false,
+        "Null": false,
+        "Name": "TimeStampCol"
+      },
+      {
+        "Type": "byte",
+        "PK": false,
+        "ID": false,
+        "FK": false,
+        "Null": false,
+        "Name": "TinyIntCol"
+      },
+      {
+        "Type": "byte?",
+        "PK": false,
+        "ID": false,
+        "FK": false,
+        "Null": true,
+        "Name": "TinyIntColNull"
+      },
+      {
+        "Type": "byte[]",
+        "PK": false,
+        "ID": false,
+        "FK": false,
+        "Null": false,
+        "Name": "VarBinaryCol"
+      },
+      {
+        "Type": "byte[]",
+        "PK": false,
+        "ID": false,
+        "FK": false,
+        "Null": true,
+        "Name": "VarBinaryColNull"
+      },
+      {
+        "Type": "string",
+        "PK": false,
+        "ID": false,
+        "FK": false,
+        "Null": false,
+        "Name": "VarCharCol"
+      },
+      {
+        "Type": "string",
+        "PK": false,
+        "ID": false,
+        "FK": false,
+        "Null": true,
+        "Name": "VarCharColNull"
+      }
+    ],
+    "Name": "Track"
+  }
+]

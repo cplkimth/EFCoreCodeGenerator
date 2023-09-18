@@ -13,8 +13,6 @@ public class Column : BaseModel
 
     public override string ToString() => $"{Type} {Name} ({(PK ? "P":"_")}{(FK ? "F":"_")}{(ID ? "I":"_")}{(Null ? "N":"_")})";
 
-    public Table Table { get; set; }
-
     public string Type { get; init; }
     public bool PK { get; init; }
     public bool ID { get; init; }

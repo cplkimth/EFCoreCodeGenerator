@@ -5,8 +5,7 @@
 	"Overwritable": true
 }
 *** body starts here ***
-`T
-public partial class _`Name`
+`T public partial class _`Name`
 {
 	// A : 
 	`A::public `Type` _`Name` {get; set;}
@@ -14,7 +13,6 @@ public partial class _`Name`
 	// P : 
 	`P::public `Type` _`Name`Key {get; set;}
 	``
-}
-T`
+}T`
 
 `T public partial class _`Name` {} T`

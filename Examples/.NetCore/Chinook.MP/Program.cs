@@ -9,6 +9,7 @@ using CodeGenerator = EFCoreCodeGeneratorV2.CodeGenerator;
 
 // Package package = new Package{ Name = "Chinook" };
 
-CodeGenerator.Generate(@"D:\git\EFCoreCodeGenerator\Examples\.NetCore\Chinook.MP\Chinook.json");
+// CodeGenerator.Generate(@"D:\git\EFCoreCodeGenerator\Examples\.NetCore\Chinook.MP\Chinook.json");
+CodeGenerator.Generate(new ChinookContext());
 
 Console.WriteLine();

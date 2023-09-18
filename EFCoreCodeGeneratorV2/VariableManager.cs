@@ -24,6 +24,7 @@ public class VariableManager
     private const string DataProjectName = "DataProjectName";
     private const string DataProjectDirectory = "DataProjectDirectory";
     private const string DataProjectNamespace = "DataProjectNamespace";
+    private const string DbContextName = "DbContextName";
 
     public void Inialize(string templateDirectory, DbContext dbContext)
     {
@@ -36,7 +37,10 @@ public class VariableManager
         _variables = JsonSerializer.Deserialize<Dictionary<string, string>>(json);
 
         if (dbContext != null)
-            _variables.Add("DataNamespace", dbContext.GetType().Namespace);
+        {
+            _variables[DataProjectNamespace] = dbContext.GetType().Namespace;
+            _variables[DbContextName] = dbContext.GetType().Name;
+        }
 
         if (_variables.IsEmptyOrDefault(SolutionName))
             _variables[SolutionName] = Utility.GetSolutionRoot().Name;
@@ -52,6 +56,9 @@ public class VariableManager
 
         if (_variables.IsEmptyOrDefault(DataProjectNamespace))
             _variables[DataProjectNamespace] = _variables[SolutionName] + "." + _variables[DataProjectName];
+
+        if (_variables.IsEmptyOrDefault(DbContextName))
+            _variables[DbContextName] = DbContextName;
 
         #region preset
         _variables["GeneratedTime"] = DateTime.Now.ToString();

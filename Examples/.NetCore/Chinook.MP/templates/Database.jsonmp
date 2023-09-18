@@ -14,7 +14,6 @@ public partial class _`Name`
 	// P : 
 	`P::public `Type` `Name`Key {get; set;}
 	``
-}
-T`
+}T`
 
 `T public partial class _`Name` {} T`

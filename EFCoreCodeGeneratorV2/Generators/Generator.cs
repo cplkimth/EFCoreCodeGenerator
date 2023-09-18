@@ -15,7 +15,7 @@ public static class Generator
         var tableMatches = Regex.Matches(template, "`T(.*?)T`", RegexOptions.Singleline);
         foreach (Match tableMatch in tableMatches)
         {
-            var replaced = PerTables(tableMatch.Groups[1].Value, tables);
+            var replaced = InflateTables(tableMatch.Groups[1].Value, tables);
 
             builder.Replace(tableMatch.Value, replaced);
         }
@@ -27,13 +27,13 @@ public static class Generator
         return builder.ToString();
     }
 
-    private static string PerTables(string template, Table[] tables)
+    private static string InflateTables(string template, Table[] tables)
     {
         StringBuilder builder = new();
 
         foreach (var table in tables)
         {
-            var replaced = PerTable(template, table);
+            var replaced = InflateTable(template, table);
 
             replaced = ReplaceTable(replaced, table);
 
@@ -43,7 +43,7 @@ public static class Generator
         return builder.ToString();
     }
 
-    private static string PerTable(string template, Table table)
+    private static string InflateTable(string template, Table table)
     {
         StringBuilder builder = new(template);
 
@@ -58,23 +58,6 @@ public static class Generator
             var replacedText = string.Join(separator, lines);
 
             builder.Replace(columnMatch.Value, replacedText);
-        }
-
-        return builder.ToString();
-    }
-
-    private static string PerDatabase(string template, Table[] tables)
-    {
-        StringBuilder builder = new(template);
-
-        var matches = Regex.Matches(template, "`T:(.*?):(.*?)``", RegexOptions.Singleline);
-        foreach (Match match in matches)
-        {
-            List<string> lines = tables.ToList().ConvertAll(x => ReplaceTable(match.Groups[2].Value, x));
-            var separator = BuildSeparator(match.Groups[1].Value);
-            var replacedText = string.Join(separator, lines);
-        
-            builder.Replace(match.Value, replacedText);
         }
 
         return builder.ToString();

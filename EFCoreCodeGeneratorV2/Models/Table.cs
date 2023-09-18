@@ -19,10 +19,7 @@ public class Table : BaseModel
     public void Add(params Column[] columns)
     {
         foreach (var node in columns)
-        {
-            node.Table = this;
             Columns.Add(node);
-        }
     }
 
     public List<Column> Search(string criteria)
